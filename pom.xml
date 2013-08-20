@@ -4,13 +4,13 @@
 
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>SELENIUM_INTEGRATION_TEST</groupId>
-    <artifactId>SELENIUM_INTEGRATION_TEST</artifactId>
+    <groupId>humanResources-app</groupId>
+    <artifactId>humanResources-app</artifactId>
     <name>humanResources-app</name>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0</version>
     <modules>
-        <module>humanResources-war</module>
         <module>humanResources-ejb</module>
+        <module>humanResources-war</module>
         <module>humanResources-ear</module>
     </modules>
     <packaging>pom</packaging>

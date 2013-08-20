@@ -1,15 +1,15 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>SELENIUM_INTEGRATION_TEST</artifactId>
-        <groupId>SELENIUM_INTEGRATION_TEST</groupId>
-        <version>1.0-SNAPSHOT</version>
+        <artifactId>humanResources-app</artifactId>
+        <groupId>humanResources-app</groupId>
+        <version>1.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>humanResources-ear</artifactId>
     <packaging>ear</packaging>
-    <name>>humanResources-ear</name>
+    <name>humanResources-ear</name>
 
     <build>
         <plugins>
@@ -27,16 +27,17 @@
                     <version>1.4</version>
                     <modules>
                         <webModule>
-                            <groupId>humanResources-war</groupId>
+                            <groupId>humanResources-app</groupId>
                             <artifactId>humanResources-war</artifactId>
                             <bundleFileName>humanResources-war.war</bundleFileName>
                             <contextRoot>/humanResources</contextRoot>
                         </webModule>
-                        <ejbModule>
-                            <groupId>humanResources-ejb</groupId>
+                        <javaModule>
+                            <groupId>humanResources-app</groupId>
                             <artifactId>humanResources-ejb</artifactId>
                             <bundleFileName>humanResources-ejb.jar</bundleFileName>
-                        </ejbModule>
+                            <includeInApplicationXml>true</includeInApplicationXml>
+                        </javaModule>
                     </modules>
                     <displayName>My Ear Name displayed in the App Server</displayName>
                     <!-- If I want maven to generate the application.xml, set this to true -->
@@ -57,15 +58,15 @@
     <!-- Define the versions of your ear components here -->
     <dependencies>
         <dependency>
-            <groupId>humanResources-war</groupId>
+            <groupId>humanResources-app</groupId>
             <artifactId>humanResources-war</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>1.0</version>
             <type>war</type>
         </dependency>
         <dependency>
-            <groupId>humanResources-ejb</groupId>
+            <groupId>humanResources-app</groupId>
             <artifactId>humanResources-ejb</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>1.0</version>
             <type>jar</type>
         </dependency>
     </dependencies>

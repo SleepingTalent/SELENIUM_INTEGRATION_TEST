@@ -2,16 +2,13 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
     <parent>
-        <artifactId>SELENIUM_INTEGRATION_TEST</artifactId>
-        <groupId>SELENIUM_INTEGRATION_TEST</groupId>
-        <version>1.0-SNAPSHOT</version>
+        <artifactId>humanResources-app</artifactId>
+        <groupId>humanResources-app</groupId>
+        <version>1.0</version>
     </parent>
 
   <modelVersion>4.0.0</modelVersion>
-
-  <groupId>humanResources-ejb</groupId>
   <artifactId>humanResources-ejb</artifactId>
-  <version>1.0-SNAPSHOT</version>
   <name>humanResources-ejb</name>
   <packaging>jar</packaging>
 

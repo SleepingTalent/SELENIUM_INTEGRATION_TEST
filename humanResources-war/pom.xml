@@ -10,7 +10,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>humanResources-war</artifactId>
-    <name>RichFaces 4 Application</name>
+    <name>humanResources-war</name>
     <packaging>war</packaging>
 
     <url>http://jboss.org/richfaces</url>

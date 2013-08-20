@@ -6,11 +6,12 @@
 
     <groupId>SELENIUM_INTEGRATION_TEST</groupId>
     <artifactId>SELENIUM_INTEGRATION_TEST</artifactId>
-    <name>RichFaces 4 Application</name>
+    <name>humanResources-app</name>
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>humanResources-war</module>
         <module>humanResources-ejb</module>
+        <module>humanResources-ear</module>
     </modules>
     <packaging>pom</packaging>
 
@@ -61,135 +62,7 @@
         <org.richfaces.bom.version>4.3.3.Final</org.richfaces.bom.version>
     </properties>
 
-    <build>
-        <finalName>SELENIUM_INTEGRATION_TEST</finalName>
-        <plugins>
-            <plugin>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>2.3.2</version>
-            </plugin>
-            <plugin>
-                <artifactId>maven-war-plugin</artifactId>
-                <version>2.1.1</version>
-            </plugin>
-        </plugins>
-    </build>
-
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>org.richfaces</groupId>
-                <artifactId>richfaces-bom</artifactId>
-                <version>${org.richfaces.bom.version}</version>
-                <scope>import</scope>
-                <type>pom</type>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
-
     <dependencies>
-        <dependency>
-            <groupId>org.richfaces.ui</groupId>
-            <artifactId>richfaces-components-ui</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.richfaces.core</groupId>
-            <artifactId>richfaces-core-impl</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>javax.faces</groupId>
-            <artifactId>javax.faces-api</artifactId>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.glassfish</groupId>
-            <artifactId>javax.faces</artifactId>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>javax.servlet-api</artifactId>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>javax.servlet.jsp</groupId>
-            <artifactId>jsp-api</artifactId>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>javax.el</groupId>
-            <artifactId>el-api</artifactId>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>javax.servlet.jsp.jstl</groupId>
-            <artifactId>jstl-api</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>net.sf.ehcache</groupId>
-            <artifactId>ehcache</artifactId>
-        </dependency>
     </dependencies>
 
-    <profiles>
-        <profile>
-            <id>jee6</id>
-            <build>
-                <plugins>
-                    <plugin>
-                        <artifactId>maven-war-plugin</artifactId>
-                        <configuration>
-                            <webappDirectory>${project.build.directory}/${project.build.finalName}-jee6</webappDirectory>
-                            <classifier>jee6</classifier>
-                        </configuration>
-                    </plugin>
-                </plugins>
-            </build>
-
-            <dependencies>
-                <dependency>
-                    <groupId>javax.faces</groupId>
-                    <artifactId>javax.faces-api</artifactId>
-                    <scope>provided</scope>
-                </dependency>
-                <dependency>
-                    <groupId>org.glassfish</groupId>
-                    <artifactId>javax.faces</artifactId>
-                    <scope>provided</scope>
-                </dependency>
-                <dependency>
-                    <groupId>javax.transaction</groupId>
-                    <artifactId>jta</artifactId>
-                    <version>1.1</version>
-                    <scope>provided</scope>
-                </dependency>
-            </dependencies>
-        </profile>
-        <profile>
-            <id>release</id>
-            <build>
-                <plugins>
-                    <plugin>
-                        <artifactId>maven-war-plugin</artifactId>
-                        <executions>
-                            <execution>
-                                <id>jee6</id>
-                                <phase>package</phase>
-                                <goals>
-                                    <goal>war</goal>
-                                </goals>
-                                <configuration>
-                                    <webappDirectory>${project.build.directory}/${project.build.finalName}-jee6</webappDirectory>
-                                    <classifier>jee6</classifier>
-                                    <packagingExcludes>WEB-INF/lib/javax.faces*</packagingExcludes>
-                                    <warSourceExcludes>WEB-INF/lib/javax.faces*</warSourceExcludes>
-                                </configuration>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-    </profiles>
 </project>

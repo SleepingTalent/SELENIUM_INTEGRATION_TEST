@@ -1,6 +1,5 @@
 package com.fs.humanResources.common;
 
-import com.fs.domain.page.HumanResourcesTool;
 import org.apache.log4j.Logger;
 import org.junit.After;
 import org.openqa.selenium.WebDriver;

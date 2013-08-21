@@ -96,18 +96,23 @@
                 <artifactId>maven-failsafe-plugin</artifactId>
                 <version>2.16</version>
                 <configuration>
-                    <testSourceDirectory>../humanResources-ear/src/test/java</testSourceDirectory>
+                    <testSourceDirectory>./src/test/java</testSourceDirectory>
+                    <includes>
+                        <include>com.fs.humanResources.admin.AdminPageTest.java</include>
+                    </includes>
                    <!-- <groups>com.fs.humanResources.common.SeleniumTestCategory</groups> -->
                 </configuration>
                 <executions>
                     <execution>
                         <id>run-integration-tests</id>
+                        <phase>integration-test</phase>
                         <goals>
                             <goal>integration-test</goal>
                         </goals>
                     </execution>
                     <execution>
                         <id>verify-integration-tests</id>
+                        <phase>verify</phase>
                         <goals>
                             <goal>verify</goal>
                         </goals>

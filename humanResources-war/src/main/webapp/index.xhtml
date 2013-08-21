@@ -5,12 +5,12 @@
 <body>
     <ui:composition template="/templates/template.xhtml">
 
-        <ui:define name="title">RichFaces Sample</ui:define>
+        <ui:define name="title">Employee Details</ui:define>
 
         <ui:define name="body">
             <h:form prependId="false">
                 <h:panelGroup id="output">
-                    <h:outputText value="Hello #{employeeController.employeeDetails.firstName}!"/>
+                    <h:outputText value="Hello #{employeeController.employeeDetails.firstName}! You are a valued Employee"/>
                 </h:panelGroup>
             </h:form>
         </ui:define>

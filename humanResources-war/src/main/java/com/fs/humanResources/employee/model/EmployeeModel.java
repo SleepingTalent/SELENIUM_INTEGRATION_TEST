@@ -19,8 +19,7 @@ public class EmployeeModel implements Serializable {
     EmployeeViewBean employee;
     AddressViewBean address;
 
-    @PostConstruct
-    public void setUpEmployee() {
+    private void setUpEmployee() {
         String firstName = "Joe";
         String lastName = "Smith";
         Date dataOfBirth = new Date();
@@ -37,6 +36,7 @@ public class EmployeeModel implements Serializable {
     }
 
     public EmployeeViewBean getEmployee() {
+        setUpEmployee();
         log.info("Get Employee");
         return employee;
     }

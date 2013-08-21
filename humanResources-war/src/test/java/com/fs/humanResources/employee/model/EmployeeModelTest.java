@@ -20,7 +20,6 @@ public class EmployeeModelTest extends BaseUnitTest{
     @Before
     public void setUp() {
         employee = createEmployee();
-        employeeModel.setUpEmployee();
     }
 
     private EmployeeViewBean createEmployee() {

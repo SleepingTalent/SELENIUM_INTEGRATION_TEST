@@ -59,7 +59,7 @@ public class EmployeeDTOTest extends BaseUnitTest {
 
     @Test
     public void employeeIdSetAsExpected() {
-        Assert.assertEquals(employeeId, employeeDTO.getEmpolyeeId());
+        Assert.assertEquals(employeeId, employeeDTO.getStaffNumber());
     }
 
     @Test

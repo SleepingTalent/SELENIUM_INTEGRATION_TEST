@@ -8,20 +8,20 @@ public class EmployeeViewBean {
     private String firstName;
     private String lastName;
     private Date dateOfBirth;
-    private Long empolyeeId;
+    private Long staffNumber;
     private AddressViewBean address;
 
-    public EmployeeViewBean(String firstName, String lastName, Date dateOfBirth, Long empolyeeId, AddressViewBean address) {
-        this(firstName,lastName, dateOfBirth,empolyeeId);
+    public EmployeeViewBean(String firstName, String lastName, Date dateOfBirth, Long staffNumber, AddressViewBean address) {
+        this(firstName,lastName, dateOfBirth, staffNumber);
 
         this.address = address;
     }
 
-    public EmployeeViewBean(String firstName, String lastName, Date dateOfBirth, Long empolyeeId) {
+    public EmployeeViewBean(String firstName, String lastName, Date dateOfBirth, Long staffNumber) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.dateOfBirth = dateOfBirth;
-        this.empolyeeId = empolyeeId;
+        this.staffNumber = staffNumber;
     }
 
     public String getFirstName() {
@@ -36,8 +36,8 @@ public class EmployeeViewBean {
         return dateOfBirth;
     }
 
-    public Long getEmpolyeeId() {
-        return empolyeeId;
+    public Long getStaffNumber() {
+        return staffNumber;
     }
 
     public AddressViewBean getAddress() {

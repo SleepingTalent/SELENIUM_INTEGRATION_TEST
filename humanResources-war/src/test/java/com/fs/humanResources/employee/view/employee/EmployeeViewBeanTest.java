@@ -59,7 +59,7 @@ public class EmployeeViewBeanTest extends BaseUnitTest {
 
     @Test
     public void employeeIdSetAsExpected() {
-        Assert.assertEquals(employeeId, employeeViewBean.getEmpolyeeId());
+        Assert.assertEquals(employeeId, employeeViewBean.getStaffNumber());
     }
 
     @Test

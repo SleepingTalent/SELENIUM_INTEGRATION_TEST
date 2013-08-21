@@ -12,19 +12,19 @@ public class EmployeeDTO {
     private String firstName;
     private String lastName;
     private Date dateOfBirth;
-    private Long empolyeeId;
+    private Long staffNumber;
     private AddressDTO address;
 
-    public EmployeeDTO(String firstName, String lastName, Date dateOfBirth, Long empolyeeId, AddressDTO address) {
-        this(firstName,lastName, dateOfBirth,empolyeeId);
+    public EmployeeDTO(String firstName, String lastName, Date dateOfBirth, Long staffNumber, AddressDTO address) {
+        this(firstName,lastName, dateOfBirth, staffNumber);
         this.address = address;
     }
 
-    public EmployeeDTO(String firstName, String lastName, Date dateOfBirth, Long empolyeeId) {
+    public EmployeeDTO(String firstName, String lastName, Date dateOfBirth, Long staffNumber) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.dateOfBirth = dateOfBirth;
-        this.empolyeeId = empolyeeId;
+        this.staffNumber = staffNumber;
     }
 
     public EmployeeDTO(Employee employee) {
@@ -47,8 +47,8 @@ public class EmployeeDTO {
         return dateOfBirth;
     }
 
-    public Long getEmpolyeeId() {
-        return empolyeeId;
+    public Long getStaffNumber() {
+        return staffNumber;
     }
 
     public AddressDTO getAddress() {

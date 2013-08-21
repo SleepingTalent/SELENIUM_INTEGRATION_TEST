@@ -6,6 +6,10 @@ http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd" version="1.0">
 
     <persistence-unit name="JpaPersistenceUnit">
         <jta-data-source>java:jboss/datasources/CodeExampleDS</jta-data-source>
+
+        <class>com.fs.humanResources.model.employee.entities.Employee</class>
+        <class>com.fs.humanResources.model.address.entities.Address</class>
+
         <properties>
             <property name="hibernate.archive.autodetection" value="class, hbm"/>
             <property name="hibernate.show_sql" value="true"/>

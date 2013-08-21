@@ -26,7 +26,7 @@ public abstract class BaseSeleniumTest {
     }
 
     private WebDriver initialiseDriver() {
-        if (isDriverRun(System.getProperty("database.url"), "htmlUnit")) {
+        if (isDriverRun(System.getProperty("selenium.driver.type"), "htmlUnit")) {
             log.info("Running with HtmlUnitDriver");
             return new HtmlUnitDriver();
         } else {
@@ -39,8 +39,9 @@ public abstract class BaseSeleniumTest {
         return driver;
     }
 
-    private static boolean isDriverRun(String value, String defaultValue) {
-        return (value != null && !value.isEmpty() && value.equals(defaultValue));
+    private boolean isDriverRun(String sysPropsDriverType, String expectedDriverType) {
+        log.info("System Property Driver Type : "+sysPropsDriverType);
+        return (sysPropsDriverType != null && !sysPropsDriverType.isEmpty() && sysPropsDriverType.equals(expectedDriverType));
     }
 
 }

@@ -1,8 +1,8 @@
-package com.fs.humanResources.view.employee;
+package com.fs.humanResources.employee.view.employee;
 
 
 import com.fs.common.BaseUnitTest;
-import com.fs.humanResources.view.address.AddressViewBean;
+import com.fs.humanResources.employee.view.address.AddressViewBean;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;

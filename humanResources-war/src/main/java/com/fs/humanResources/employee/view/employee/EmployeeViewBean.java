@@ -1,5 +1,5 @@
-package com.fs.humanResources.view.employee;
-import com.fs.humanResources.view.address.AddressViewBean;
+package com.fs.humanResources.employee.view.employee;
+import com.fs.humanResources.employee.view.address.AddressViewBean;
 
 import java.util.Date;
 

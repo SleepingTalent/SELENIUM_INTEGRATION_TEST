@@ -1,4 +1,4 @@
-package com.fs.humanResources.view.address;
+package com.fs.humanResources.employee.view.address;
 
 public class AddressViewBean {
 

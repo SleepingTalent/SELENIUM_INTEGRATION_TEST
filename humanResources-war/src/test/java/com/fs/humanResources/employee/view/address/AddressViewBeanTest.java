@@ -1,4 +1,4 @@
-package com.fs.humanResources.view.address;
+package com.fs.humanResources.employee.view.address;
 
 import com.fs.common.BaseUnitTest;
 import org.junit.Assert;

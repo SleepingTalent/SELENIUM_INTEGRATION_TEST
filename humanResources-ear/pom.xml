@@ -11,6 +11,10 @@
     <packaging>ear</packaging>
     <name>humanResources-ear</name>
 
+    <properties>
+        <skip.deployment>true</skip.deployment>
+    </properties>
+
     <build>
         <plugins>
             <plugin>
@@ -64,6 +68,7 @@
                             <goal>undeploy</goal>
                         </goals>
                         <configuration>
+                            <skip>${skip.deployment}</skip>
                             <ignoreMissingDeployment>true</ignoreMissingDeployment>
                         </configuration>
                     </execution>
@@ -73,6 +78,9 @@
                         <goals>
                             <goal>deploy</goal>
                         </goals>
+                        <configuration>
+                            <skip>${skip.deployment}</skip>
+                        </configuration>
                     </execution>
                 </executions>
             </plugin>

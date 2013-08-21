@@ -1,19 +1,68 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
-    xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:a4j="http://richfaces.org/a4j">
+      xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:a4j="http://richfaces.org/a4j">
 
 <body>
-    <ui:composition template="/templates/template.xhtml">
 
-        <ui:define name="title">Employee Details</ui:define>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:a4j="http://richfaces.org/a4j"
+                xmlns:rich="http://richfaces.org/rich"
+                template="/templates/template.xhtml">
 
-        <ui:define name="body">
-            <h:form prependId="false">
-                <h:panelGroup id="output">
-                    <h:outputText value="Hello #{employeeController.employeeDetails.firstName}! You are a valued Employee"/>
-                </h:panelGroup>
-            </h:form>
-        </ui:define>
-    </ui:composition>
+    <ui:define name="title">Human Resources Home</ui:define>
+
+    <ui:define name="body">
+        <h:form prependId="false">
+            <rich:panel>
+                <f:facet name="header">
+                    Human Resources Admin Tool
+                </f:facet>
+                The CDK includes a code-generation facility and a
+                templating facility using a JSP-like syntax. These capabilities help
+                to avoid a routine process of a component creation. The component factory
+                works like a well-oiled machine allowing the creation of first-class
+                rich components with built-in Ajax functionality even more easily than
+                the creation of simpler components by means of the traditional coding
+                approach.
+                <h:panelGrid columns="2" columnClasses="cols,cols" width="400">
+
+                    <rich:panelMenu style="width:200px" mode="ajax"
+                                    iconExpandedGroup="disc" iconCollapsedGroup="disc"
+                                    iconExpandedTopGroup="chevronUp" iconGroupTopPosition="right"
+                                    iconCollapsedTopGroup="chevronDown">
+
+                        <rich:panelMenuGroup label="Employee Admin">
+                            <rich:panelMenuItem label="Edit Employee" action="">
+                            </rich:panelMenuItem>
+                            <rich:panelMenuItem label="Add Employee" action="">
+                            </rich:panelMenuItem>
+                            <rich:panelMenuItem label="Delete Employee" action="">
+                            </rich:panelMenuItem>
+                        </rich:panelMenuGroup>
+
+                        <rich:panelMenuGroup label="Browse">
+                            <rich:panelMenuItem label="Browse Employees" action="">
+                            </rich:panelMenuItem>
+                        </rich:panelMenuGroup>
+
+                        <rich:panelMenuGroup label="Search">
+                            <rich:panelMenuItem label="Search For Employee" action="">
+                            </rich:panelMenuItem>
+                        </rich:panelMenuGroup>
+                    </rich:panelMenu>
+
+                </h:panelGrid>
+            </rich:panel>
+        </h:form>
+    </ui:define>
+</ui:composition>
+
+
+
+
 </body>
-</html>
+        </html>

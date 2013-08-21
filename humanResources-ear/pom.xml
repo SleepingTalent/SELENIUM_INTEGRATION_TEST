@@ -98,9 +98,10 @@
                 <configuration>
                     <testSourceDirectory>./src/test/java</testSourceDirectory>
                     <includes>
-                        <include>com.fs.humanResources.admin.AdminPageTest.java</include>
+                        <include>**/*PageTest.java</include>
                     </includes>
-                   <!-- <groups>com.fs.humanResources.common.SeleniumTestCategory</groups> -->
+                    <failIfNoTests>true</failIfNoTests>
+                    <failIfNoSpecifiedTests>true</failIfNoSpecifiedTests>
                 </configuration>
                 <executions>
                     <execution>

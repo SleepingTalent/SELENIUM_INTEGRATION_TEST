@@ -45,7 +45,7 @@ public class EmployeeModelTest extends BaseUnitTest{
         Assert.assertEquals(employee.getFirstName(), actual.getFirstName());
         Assert.assertEquals(employee.getLastName(), actual.getLastName());
         Assert.assertEquals(employee.getStaffNumber(), actual.getStaffNumber());
-        Assert.assertEquals(employee.getDateOfBirth(), actual.getDateOfBirth());
+        Assert.assertEquals(employee.getDateOfBirth().getTime(), actual.getDateOfBirth().getTime());
 
         AddressViewBean expectedAddress = employee.getAddress();
         AddressViewBean actualAddress = actual.getAddress();

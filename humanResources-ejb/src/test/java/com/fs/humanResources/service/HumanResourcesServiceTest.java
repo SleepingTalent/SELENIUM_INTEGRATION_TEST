@@ -1,13 +1,13 @@
 package com.fs.humanResources.service;
 
 import com.fs.common.BaseUnitTest;
+import com.fs.humanResources.dto.address.AddressDTO;
+import com.fs.humanResources.dto.employee.EmployeeDTO;
 import com.fs.humanResources.model.address.entities.Address;
 import com.fs.humanResources.model.address.helper.AddressHelper;
 import com.fs.humanResources.model.employee.dao.EmployeeDAO;
 import com.fs.humanResources.model.employee.entities.Employee;
 import com.fs.humanResources.service.exception.EmployeeNotFoundException;
-import com.fs.humanResources.view.address.AddressViewBean;
-import com.fs.humanResources.view.employee.EmployeeViewBean;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -53,7 +53,7 @@ public class HumanResourcesServiceTest extends BaseUnitTest {
 
     @Test
     public void getEmployeeDetails_returns_expected_employee() throws NoResultException, EmployeeNotFoundException {
-        EmployeeViewBean actual = humanResourcesService.getEmployeeDetails(foundEmployeeId);
+        EmployeeDTO actual = humanResourcesService.getEmployeeDetails(foundEmployeeId);
 
         Assert.assertEquals(employee.getFirstName(), actual.getFirstName());
         Assert.assertEquals(employee.getLastName(), actual.getLastName());
@@ -63,7 +63,7 @@ public class HumanResourcesServiceTest extends BaseUnitTest {
         Assert.assertEquals(employee.getAddressList().size(), 1);
 
         Address expectedAddress = employee.getAddressList().get(0);
-        AddressViewBean actualAddress = actual.getAddress();
+        AddressDTO actualAddress = actual.getAddress();
 
         Assert.assertEquals(expectedAddress.getHouseNumber(), actualAddress.getHouseNumber());
         Assert.assertEquals(expectedAddress.getAddressFirstLine(), actualAddress.getAddressFirstLine());

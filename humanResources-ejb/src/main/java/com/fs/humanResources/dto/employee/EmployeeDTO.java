@@ -1,37 +1,38 @@
-package com.fs.humanResources.view.employee;
+package com.fs.humanResources.dto.employee;
+
+
+import com.fs.humanResources.dto.address.AddressDTO;
 import com.fs.humanResources.model.address.helper.AddressHelper;
 import com.fs.humanResources.model.employee.entities.Employee;
-import com.fs.humanResources.view.address.AddressViewBean;
 
 import java.util.Date;
 
-public class EmployeeViewBean {
+public class EmployeeDTO {
 
     private String firstName;
     private String lastName;
     private Date dateOfBirth;
     private Long empolyeeId;
-    private AddressViewBean address;
+    private AddressDTO address;
 
-    public EmployeeViewBean(String firstName, String lastName, Date dateOfBirth, Long empolyeeId, AddressViewBean address) {
+    public EmployeeDTO(String firstName, String lastName, Date dateOfBirth, Long empolyeeId, AddressDTO address) {
         this(firstName,lastName, dateOfBirth,empolyeeId);
-
         this.address = address;
     }
 
-    public EmployeeViewBean(String firstName, String lastName, Date dateOfBirth, Long empolyeeId) {
+    public EmployeeDTO(String firstName, String lastName, Date dateOfBirth, Long empolyeeId) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.dateOfBirth = dateOfBirth;
         this.empolyeeId = empolyeeId;
     }
 
-    public EmployeeViewBean(Employee employee) {
+    public EmployeeDTO(Employee employee) {
         this(employee.getFirstName(),employee.getLastName(),
                 employee.getDateOfBirth(),employee.getStaffNumber());
 
-       AddressHelper addressHelper = new AddressHelper();
-       this.address =  new AddressViewBean(addressHelper.findPrimaryAddress(employee.getAddressList()));
+        AddressHelper addressHelper = new AddressHelper();
+        this.address =  new AddressDTO(addressHelper.findPrimaryAddress(employee.getAddressList()));
     }
 
     public String getFirstName() {
@@ -50,7 +51,7 @@ public class EmployeeViewBean {
         return empolyeeId;
     }
 
-    public AddressViewBean getAddress() {
+    public AddressDTO getAddress() {
         return address;
     }
 }

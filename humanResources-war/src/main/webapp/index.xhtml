@@ -21,39 +21,39 @@
                 <f:facet name="header">
                     Human Resources Admin Tool
                 </f:facet>
-                The CDK includes a code-generation facility and a
-                templating facility using a JSP-like syntax. These capabilities help
-                to avoid a routine process of a component creation. The component factory
-                works like a well-oiled machine allowing the creation of first-class
-                rich components with built-in Ajax functionality even more easily than
-                the creation of simpler components by means of the traditional coding
-                approach.
                 <h:panelGrid columns="2" columnClasses="cols,cols" width="400">
 
-                    <rich:panelMenu style="width:200px" mode="ajax"
+                    <rich:panelMenu style="width:145px" mode="ajax"
                                     iconExpandedGroup="disc" iconCollapsedGroup="disc"
                                     iconExpandedTopGroup="chevronUp" iconGroupTopPosition="right"
                                     iconCollapsedTopGroup="chevronDown">
 
                         <rich:panelMenuGroup label="Employee Admin">
-                            <rich:panelMenuItem label="Edit Employee" action="">
+                            <rich:panelMenuItem label="Edit Employee" action="#{navigationController.navigateToEditEmployee}">
                             </rich:panelMenuItem>
-                            <rich:panelMenuItem label="Add Employee" action="">
+                            <rich:panelMenuItem label="Add Employee" action="#{navigationController.navigateToAddEmployee}">
                             </rich:panelMenuItem>
-                            <rich:panelMenuItem label="Delete Employee" action="">
+                            <rich:panelMenuItem label="Delete Employee" action="#{navigationController.navigateToDeleteEmployee}">
                             </rich:panelMenuItem>
                         </rich:panelMenuGroup>
 
                         <rich:panelMenuGroup label="Browse">
-                            <rich:panelMenuItem label="Browse Employees" action="">
+                            <rich:panelMenuItem label="Browse Employees" action="#{navigationController.navigateToBrowseEmployees}">
                             </rich:panelMenuItem>
                         </rich:panelMenuGroup>
 
                         <rich:panelMenuGroup label="Search">
-                            <rich:panelMenuItem label="Search For Employee" action="">
+                            <rich:panelMenuItem label="Search For Employee" action="#{navigationController.navigateToSearchForEmployees}">
                             </rich:panelMenuItem>
                         </rich:panelMenuGroup>
                     </rich:panelMenu>
+
+                    <rich:panel>
+                    <f:facet name="header">
+                        Latest News
+                    </f:facet>
+                    Welcome to the Human Resources Admin Tool.
+                    </rich:panel>
 
                 </h:panelGrid>
             </rich:panel>

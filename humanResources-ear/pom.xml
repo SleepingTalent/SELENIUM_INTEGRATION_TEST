@@ -12,7 +12,7 @@
     <name>humanResources-ear</name>
 
     <properties>
-        <skip.deployment>true</skip.deployment>
+        <skip.deployment>false</skip.deployment>
     </properties>
 
     <build>
@@ -36,12 +36,12 @@
                             <bundleFileName>humanResources-war.war</bundleFileName>
                             <contextRoot>/humanResources</contextRoot>
                         </webModule>
-                        <javaModule>
+                        <jarModule>
                             <groupId>humanResources-app</groupId>
                             <artifactId>humanResources-ejb</artifactId>
                             <bundleFileName>humanResources-ejb.jar</bundleFileName>
                             <includeInApplicationXml>true</includeInApplicationXml>
-                        </javaModule>
+                        </jarModule>
                     </modules>
                     <displayName>My Ear Name displayed in the App Server</displayName>
                     <!-- If I want maven to generate the application.xml, set this to true -->

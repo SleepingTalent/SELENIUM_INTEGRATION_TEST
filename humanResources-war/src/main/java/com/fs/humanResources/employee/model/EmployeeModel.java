@@ -2,6 +2,7 @@ package com.fs.humanResources.employee.model;
 
 import com.fs.humanResources.employee.view.address.AddressViewBean;
 import com.fs.humanResources.employee.view.employee.EmployeeViewBean;
+import org.apache.log4j.Logger;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
@@ -12,6 +13,8 @@ import java.util.Date;
 @Named
 @SessionScoped
 public class EmployeeModel implements Serializable {
+
+    Logger log = Logger.getLogger(EmployeeModel.class);
 
     EmployeeViewBean employee;
     AddressViewBean address;
@@ -34,7 +37,7 @@ public class EmployeeModel implements Serializable {
     }
 
     public EmployeeViewBean getEmployee() {
+        log.info("Get Employee");
         return employee;
     }
-
 }

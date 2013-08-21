@@ -6,7 +6,8 @@ http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd"
 
              version="1.0">
 
-    <persistence-unit name="JpaPersistenceUnit">
+
+    <persistence-unit name="integration-test">
         <properties>
             <!--
             <property name="hibernate.ejb.cfgfile" value="/hibernate.cfg.xml"/>

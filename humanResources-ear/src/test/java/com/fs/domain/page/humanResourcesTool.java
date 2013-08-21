@@ -17,6 +17,5 @@ public class HumanResourcesTool extends PageObject {
 
     private void assertHomePageDisplayed() {
         Assert.assertEquals("Human Resources Home", getDriver().getTitle());
-
     }
 }

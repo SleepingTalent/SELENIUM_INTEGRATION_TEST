@@ -61,6 +61,14 @@ public class HumanResourcesTool extends PageObject {
         return assertMenuItemDisplayed("Delete Employee");
     }
 
+    public WebElement assertBrowseEmployeeMenuItemDisplayed() {
+        return assertMenuItemDisplayed("Browse Employees");
+    }
+
+    public WebElement assertSearchForEmployeeMenuItemDisplayed() {
+        return assertMenuItemDisplayed("Search For Employee");
+    }
+
     private WebElement assertMenuItemDisplayed(String labelText) {
         return findElementByClassWithText(MENU_ITEM_LABEL_CLASS, labelText);
     }

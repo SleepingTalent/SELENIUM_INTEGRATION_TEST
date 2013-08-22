@@ -13,14 +13,16 @@ public class AdminPageTest extends BaseSeleniumTest {
     }
 
     @Test
-    public void employeeAdmin_menuDisplayed_asExpected() {
+    public void employeeAdmin_menusDisplayed_asExpected() {
         humanResourcesTool.assertEmployeeAdminMenuDisplayed().click();
         humanResourcesTool.assertEditEmployeeMenuItemDisplayed();
         humanResourcesTool.assertAddEmployeeMenuItemDisplayed();
         humanResourcesTool.assertDeleteEmployeeMenuItemDisplayed();
 
         humanResourcesTool.assertBrowseMenuDisplayed().click();
+        humanResourcesTool.assertBrowseEmployeeMenuItemDisplayed();
 
         humanResourcesTool.assertSearchMenuDisplayed().click();
+        humanResourcesTool.assertSearchForEmployeeMenuItemDisplayed();
     }
 }

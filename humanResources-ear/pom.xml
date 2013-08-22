@@ -12,7 +12,7 @@
     <name>humanResources-ear</name>
 
     <properties>
-        <skip.deployment>true</skip.deployment>
+        <skip.deployment>false</skip.deployment>
     </properties>
 
     <build>

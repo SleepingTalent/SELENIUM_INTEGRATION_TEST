@@ -8,5 +8,6 @@ public class AdminPageTest extends BaseSeleniumTest{
     @Test
     public void exampleTest() {
         humanResourcesTool.openHomePage();
+        humanResourcesTool.assertMainPanelPresent();
     }
 }

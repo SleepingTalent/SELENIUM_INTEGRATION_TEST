@@ -1,6 +1,7 @@
 package com.fs.humanResources.admin;
 
 import com.fs.humanResources.common.BaseSeleniumTest;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -13,7 +14,7 @@ public class AdminPageTest extends BaseSeleniumTest {
     }
 
     @Test
-    public void employeeAdmin_menusDisplayed_asExpected() {
+    public void menusDisplayed_asExpected() {
         humanResourcesTool.assertEmployeeAdminMenuDisplayed().click();
         humanResourcesTool.assertEditEmployeeMenuItemDisplayed();
         humanResourcesTool.assertAddEmployeeMenuItemDisplayed();
@@ -24,5 +25,11 @@ public class AdminPageTest extends BaseSeleniumTest {
 
         humanResourcesTool.assertSearchMenuDisplayed().click();
         humanResourcesTool.assertSearchForEmployeeMenuItemDisplayed();
+    }
+
+    @Test
+    public void latestNewsDisplayed_asExpected() {
+       String actualText = humanResourcesTool.assertLatestNewsPanelDisplayed().getText();
+        Assert.assertEquals("Latest News\nWelcome to the Human Resources Admin Tool.",actualText);
     }
 }

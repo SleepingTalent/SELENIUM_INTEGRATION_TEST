@@ -13,6 +13,7 @@ public class HumanResourcesTool extends PageObject {
 
     private static final String FORM = "adminTool";
     private static final String CONTENT_PANEL_ID = "contentPanel";
+    private static final String LATEST_NEWS_PANEL_ID = "newsPanel";
 
     private static final String EMPLOYEE_ADMIN_MENU_ID = "employeeAdmin";
     private static final String BROWSE_MENU_ID = "browse";
@@ -39,6 +40,10 @@ public class HumanResourcesTool extends PageObject {
 
     public WebElement assertEmployeeAdminMenuDisplayed() {
         return findFormElementById(FORM, EMPLOYEE_ADMIN_MENU_ID);
+    }
+
+    public WebElement assertLatestNewsPanelDisplayed() {
+        return findFormElementById(FORM, LATEST_NEWS_PANEL_ID);
     }
 
     public WebElement assertBrowseMenuDisplayed() {

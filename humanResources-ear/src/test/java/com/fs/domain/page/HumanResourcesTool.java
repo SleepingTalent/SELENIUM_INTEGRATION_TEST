@@ -1,10 +1,11 @@
 package com.fs.domain.page;
 
-import com.fs.domain.common.exception.SeleniumTimeoutException;
+
 import com.fs.domain.common.page.PageObject;
 import org.apache.log4j.Logger;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 public class HumanResourcesTool extends PageObject {
 
@@ -12,6 +13,12 @@ public class HumanResourcesTool extends PageObject {
 
     private static final String FORM = "adminTool";
     private static final String CONTENT_PANEL_ID = "contentPanel";
+
+    private static final String EMPLOYEE_ADMIN_MENU_ID = "employeeAdmin";
+    private static final String BROWSE_MENU_ID = "browse";
+    private static final String SEARCH_MENU_ID = "search";
+
+    public static final String MENU_ITEM_LABEL_CLASS = "rf-pm-itm-lbl";
 
     public HumanResourcesTool(WebDriver driver) {
         super(driver);
@@ -27,12 +34,34 @@ public class HumanResourcesTool extends PageObject {
     }
 
     public void assertMainPanelPresent() {
-        try {
-            findElementById(FORM + ":" + CONTENT_PANEL_ID, true);
-        } catch (SeleniumTimeoutException se) {
-            log.info("Timed out trying to find element (" + FORM + ":" + CONTENT_PANEL_ID + ") retrying!");
-            findElementById(FORM + ":" + CONTENT_PANEL_ID, false);
-        }
+        findFormElementById(FORM, CONTENT_PANEL_ID);
+    }
 
+    public WebElement assertEmployeeAdminMenuDisplayed() {
+        return findFormElementById(FORM, EMPLOYEE_ADMIN_MENU_ID);
+    }
+
+    public WebElement assertBrowseMenuDisplayed() {
+        return findFormElementById(FORM, BROWSE_MENU_ID);
+    }
+
+    public WebElement assertSearchMenuDisplayed() {
+        return findFormElementById(FORM, SEARCH_MENU_ID);
+    }
+
+    public WebElement assertEditEmployeeMenuItemDisplayed() {
+        return assertMenuItemDisplayed("Edit Employee");
+    }
+
+    public WebElement assertAddEmployeeMenuItemDisplayed() {
+        return assertMenuItemDisplayed("Add Employee");
+    }
+
+    public WebElement assertDeleteEmployeeMenuItemDisplayed() {
+        return assertMenuItemDisplayed("Delete Employee");
+    }
+
+    private WebElement assertMenuItemDisplayed(String labelText) {
+        return findElementByClassWithText(MENU_ITEM_LABEL_CLASS, labelText);
     }
 }

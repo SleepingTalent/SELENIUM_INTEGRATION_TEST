@@ -7,6 +7,9 @@ import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.junit.Assert.fail;
 
 public class ElementHelper {
@@ -19,26 +22,34 @@ public class ElementHelper {
 
     public ElementHelper(WebDriver driver) {
         this.driver = driver;
-        webDriverWait = new WebDriverWait(driver,WAIT_TIME);
+        webDriverWait = new WebDriverWait(driver, WAIT_TIME);
     }
 
-    public WebElement findElementById(String id, boolean reThrowError) throws SeleniumTimeoutException {
-           return waitUntilCondition(ExpectedConditions.visibilityOfElementLocated(FindByHelper.findById(id)),reThrowError);
+    public WebElement findElementById(String id, boolean reThrowError) {
+        return waitUntilConditionReturnElement(ExpectedConditions.visibilityOfElementLocated(FindByHelper.findById(id)), reThrowError);
     }
 
-    private WebElement waitUntilCondition(ExpectedCondition<WebElement> condition, boolean reThrowError) throws SeleniumTimeoutException {
+    public WebElement findElementsByClassContainingText(String cssClass,String text, boolean reThrowError) {
+        return waitUntilConditionReturnElement(ExpectedConditions.visibilityOfElementLocated(FindByHelper.findByClassAndText(cssClass,text)), reThrowError);
+    }
+
+    private WebElement waitUntilConditionReturnElement(ExpectedCondition<WebElement> condition, boolean reThrowError) {
         WebElement webElement = null;
 
         try {
             webElement = webDriverWait.until(condition);
         } catch (Exception ex) {
-            if (reThrowError) {
-                throw new SeleniumTimeoutException();
-            } else {
-                fail(ex.getMessage());
-            }
+            handleTimeout(ex, reThrowError);
         }
 
         return webElement;
+    }
+
+    private void handleTimeout(Exception ex, boolean reThrowError) {
+        if (reThrowError) {
+            throw new SeleniumTimeoutException();
+        } else {
+            fail(ex.getMessage());
+        }
     }
 }

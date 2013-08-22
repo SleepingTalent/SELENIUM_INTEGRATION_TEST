@@ -28,21 +28,21 @@
                                     iconExpandedTopGroup="chevronUp" iconGroupTopPosition="right"
                                     iconCollapsedTopGroup="chevronDown">
 
-                        <rich:panelMenuGroup label="Employee Admin">
-                            <rich:panelMenuItem label="Edit Employee" action="#{navigationController.navigateToEditEmployee}">
+                        <rich:panelMenuGroup id="employeeAdmin" label="Employee Admin">
+                            <rich:panelMenuItem id="editEmployee" label="Edit Employee" action="#{navigationController.navigateToEditEmployee}">
                             </rich:panelMenuItem>
-                            <rich:panelMenuItem label="Add Employee" action="#{navigationController.navigateToAddEmployee}">
+                            <rich:panelMenuItem id="addEmployee" label="Add Employee" action="#{navigationController.navigateToAddEmployee}">
                             </rich:panelMenuItem>
-                            <rich:panelMenuItem label="Delete Employee" action="#{navigationController.navigateToDeleteEmployee}">
+                            <rich:panelMenuItem id="deleteEmployee" label="Delete Employee" action="#{navigationController.navigateToDeleteEmployee}">
                             </rich:panelMenuItem>
                         </rich:panelMenuGroup>
 
-                        <rich:panelMenuGroup label="Browse">
+                        <rich:panelMenuGroup id="browse" label="Browse">
                             <rich:panelMenuItem label="Browse Employees" action="#{navigationController.navigateToBrowseEmployees}">
                             </rich:panelMenuItem>
                         </rich:panelMenuGroup>
 
-                        <rich:panelMenuGroup label="Search">
+                        <rich:panelMenuGroup id="search" label="Search">
                             <rich:panelMenuItem label="Search For Employee" action="#{navigationController.navigateToSearchForEmployees}">
                             </rich:panelMenuItem>
                         </rich:panelMenuGroup>

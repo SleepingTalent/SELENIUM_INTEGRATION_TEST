@@ -2,6 +2,7 @@ package com.fs.domain.page;
 
 
 import com.fs.domain.common.page.PageObject;
+import com.fs.domain.page.admin.AddEmployeePage;
 import org.apache.log4j.Logger;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
@@ -34,7 +35,7 @@ public class HumanResourcesTool extends PageObject {
         Assert.assertEquals("Human Resources Home", getDriver().getTitle());
     }
 
-    public void assertMainPanelPresent() {
+    public void assertPageIsPresent() {
         findFormElementById(FORM, CONTENT_PANEL_ID);
     }
 
@@ -76,5 +77,10 @@ public class HumanResourcesTool extends PageObject {
 
     private WebElement assertMenuItemDisplayed(String labelText) {
         return findElementByClassWithText(MENU_ITEM_LABEL_CLASS, labelText);
+    }
+
+    public AddEmployeePage clickAddEmployeeMenuItem() {
+        assertAddEmployeeMenuItemDisplayed().click();
+        return new AddEmployeePage(getDriver());
     }
 }

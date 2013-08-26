@@ -1,6 +1,7 @@
 package com.fs.humanResources.navigation.controller;
 
 
+import com.fs.humanResources.navigation.outcome.NavigationOutcomes;
 import org.apache.log4j.Logger;
 
 import javax.enterprise.context.RequestScoped;
@@ -12,24 +13,24 @@ public class NavigationController {
 
     Logger log = Logger.getLogger(NavigationController.class);
 
-    public void navigateToEditEmployee() {
-        log.info("Navigating..");
+    public String navigateToEditEmployee() {
+        return NavigationOutcomes.EDIT_EMPLOYEE.getOutcome();
     }
 
-    public void navigateToAddEmployee() {
-        log.info("Navigating..");
+    public String navigateToAddEmployee() {
+        return NavigationOutcomes.ADD_EMPLOYEE.getOutcome();
     }
 
-    public void navigateToDeleteEmployee() {
-        log.info("Navigating..");
+    public String navigateToDeleteEmployee() {
+        return NavigationOutcomes.DELETE_EMPLOYEE.getOutcome();
     }
 
-    public void navigateToBrowseEmployees() {
-        log.info("Navigating..");
+    public String navigateToBrowseEmployees() {
+        return NavigationOutcomes.BROWSE_TO_EMPLOYEE.getOutcome();
     }
 
-    public void navigateToSearchForEmployees() {
-        log.info("Navigating..");
+    public String navigateToSearchForEmployees() {
+        return NavigationOutcomes.SEARCH_FOR_EMPLOYEE.getOutcome();
     }
 
 }

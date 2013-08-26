@@ -10,7 +10,7 @@ public class AdminPageTest extends BaseSeleniumTest {
     @Before
     public void setUp() {
         humanResourcesTool.openHomePage();
-        humanResourcesTool.assertMainPanelPresent();
+        humanResourcesTool.assertPageIsPresent();
     }
 
     @Test

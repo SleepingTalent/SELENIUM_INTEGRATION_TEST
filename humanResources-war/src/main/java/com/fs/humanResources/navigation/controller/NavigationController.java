@@ -1,15 +1,15 @@
 package com.fs.humanResources.navigation.controller;
 
-
 import com.fs.humanResources.navigation.outcome.NavigationOutcomes;
 import org.apache.log4j.Logger;
 
-import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
+import java.io.Serializable;
 
 @Named
-@RequestScoped
-public class NavigationController {
+@SessionScoped
+public class NavigationController implements Serializable {
 
     Logger log = Logger.getLogger(NavigationController.class);
 
@@ -18,6 +18,7 @@ public class NavigationController {
     }
 
     public String navigateToAddEmployee() {
+        log.info("Navigating to addEmployee page.");
         return NavigationOutcomes.ADD_EMPLOYEE.getOutcome();
     }
 

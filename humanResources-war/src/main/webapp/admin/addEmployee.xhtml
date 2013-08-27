@@ -19,10 +19,6 @@
         <h:form id="addEmployee">
             <p:panel id="addEmployeePanel" styleClass="addEmployeePanel" header="Add New Employee">
                     <p:panelGrid columns="3">
-                        <f:facet name="header">
-                            Employee Details
-                        </f:facet>
-
                         <h:outputText id="firstNamelbl" value="First Name:"/>
                         <h:inputText label="firstName" id="firstName" required="true"
                                      value="#{employeeController.employee.firstName}">

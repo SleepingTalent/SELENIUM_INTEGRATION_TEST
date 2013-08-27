@@ -17,6 +17,6 @@
 }
 
 .addEmployeePanel {
-    width:450px;
-    height:510px;
+   min-width:450px;
+   min-height:510px;
 }

@@ -22,13 +22,13 @@
                     Add New Employee
                 </f:facet>
                 <h:panelGrid columns="3">
-                    <h:outputText value="First Name:" />
+                    <h:outputText id="firstNamelbl" value="First Name:" />
                     <h:inputText label="firstName" id="firstName" required="true" value="#{employeeController.employee.firstName}">
                         <f:validateLength minimum="3" />
                     </h:inputText>
                     <rich:message for="firstName" ajaxRendered="true" />
 
-                    <h:outputText value="Last Name:" />
+                    <h:outputText id="lastNamelbl" value="Last Name:" />
                     <h:inputText label="lastName" id="lastName" required="true" value="#{employeeController.employee.lastName}">
                         <f:validateLength minimum="3" />
                     </h:inputText>

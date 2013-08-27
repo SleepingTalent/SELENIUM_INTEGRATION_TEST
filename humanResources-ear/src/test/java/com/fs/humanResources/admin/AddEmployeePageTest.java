@@ -2,6 +2,7 @@ package com.fs.humanResources.admin;
 
 import com.fs.domain.page.admin.AddEmployeePage;
 import com.fs.humanResources.common.BaseSeleniumTest;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -23,7 +24,11 @@ public class AddEmployeePageTest extends BaseSeleniumTest {
     }
 
     @Test
-    public void defaultTest() {
-        //Test..
+    public void addEmployeeFormElements_displayedAsExpected() {
+        Assert.assertEquals("First Name:",addEmployeePage.firstNameLabelDisplayed().getText());
+        addEmployeePage.firstNameInputDisplayed();
+
+        Assert.assertEquals("Last Name:",addEmployeePage.lastNameLabelDisplayed().getText());
+        addEmployeePage.lastNameInputDisplayed();
     }
 }

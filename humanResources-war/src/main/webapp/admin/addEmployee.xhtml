@@ -18,60 +18,49 @@
     <ui:define name="body">
         <h:form id="addEmployee">
             <p:panel id="addEmployeePanel" styleClass="addEmployeePanel" header="Add New Employee">
-                    <p:panelGrid columns="3">
+                    <p:panelGrid columns="2">
                         <h:outputText id="firstNamelbl" value="First Name:"/>
-                        <h:inputText label="firstName" id="firstName" required="true"
-                                     value="#{employeeController.employee.firstName}">
-                            <f:validateLength minimum="3"/>
-                        </h:inputText>
-                        <p:message for="firstName" ajaxRendered="true"/>
+                        <p:inputText label="firstName" id="firstName" required="true"
+                                     value="#{employeeController.employee.firstName}"
+                                     requiredMessage="Firstname is required"/>
 
                         <h:outputText id="lastNamelbl" value="Last Name:"/>
-                        <h:inputText label="lastName" id="lastName" required="true"
-                                     value="#{employeeController.employee.lastName}">
-                            <f:validateLength minimum="3"/>
-                        </h:inputText>
-                        <p:message for="lastName" ajaxRendered="true"/>
+                        <p:inputText label="lastName" id="lastName" required="true"
+                                     value="#{employeeController.employee.lastName}"
+                                     requiredMessage="Lastname is required"/>
 
                         <h:outputText id="dateOfBirthlbl" value="Date Of Birth:"/>
-                        <h:inputText id="dateOfBirth" required="true"
-                                     value="#{employeeController.employee.dateOfBirth}">
+                        <p:inputText id="dateOfBirth" required="true"
+                                     value="#{employeeController.employee.dateOfBirth}"
+                                     requiredMessage="Date Of Birth is required">
                             <f:convertDateTime pattern="dd-mm-yyyy"/>
-                        </h:inputText>
-                        <p:message for="dateOfBirth" ajaxRendered="true"/>
+                        </p:inputText>
 
                         <h:outputText id="houseNumberlbl" value="House No:"/>
-                        <h:inputText label="houseNumber" id="houseNumber" required="true"
-                                     value="#{employeeController.employee.address.houseNumber}">
-                            <f:validateLength minimum="1"/>
-                        </h:inputText>
-                        <p:message for="houseNumber" ajaxRendered="true"/>
+                        <p:inputText label="houseNumber" id="houseNumber" required="true"
+                                     value="#{employeeController.employee.address.houseNumber}"
+                                     requiredMessage="House No is required"/>
 
                         <h:outputText id="addressFirstLinelbl" value="Address Line 1:"/>
-                        <h:inputText label="addressFirstLine" id="addressFirstLine" required="false"
+                        <p:inputText label="addressFirstLine" id="addressFirstLine" required="false"
                                      value="#{employeeController.employee.address.addressFirstLine}"/>
-                        <p:message for="addressFirstLine" ajaxRendered="true"/>
 
                         <h:outputText id="addressSecondLinelbl" value="Address Line 2:"/>
-                        <h:inputText label="addressSecondLine" id="addressSecondLine" required="false"
+                        <p:inputText label="addressSecondLine" id="addressSecondLine" required="false"
                                      value="#{employeeController.employee.address.addressSecondLine}"/>
-                        <p:message for="addressSecondLine" ajaxRendered="true"/>
 
                         <h:outputText id="townCitylbl" value="Town/City :"/>
-                        <h:inputText label="townCity" id="townCity" required="false"
+                        <p:inputText label="townCity" id="townCity" required="false"
                                      value="#{employeeController.employee.address.townCity}"/>
-                        <p:message for="townCity" ajaxRendered="true"/>
 
                         <h:outputText id="postCodelbl" value="Postcode :"/>
-                        <h:inputText label="postCode" id="postCode" required="true"
-                                     value="#{employeeController.employee.address.postCode}">
-                            <f:validateLength minimum="6"/>
-                        </h:inputText>
-                        <p:message for="postCode" ajaxRendered="true"/>
+                        <p:inputText label="postCode" id="postCode" required="true"
+                                     value="#{employeeController.employee.address.postCode}"
+                                     requiredMessage="Postcode is required"/>
 
                     </p:panelGrid>
                 <f:facet name="footer">
-                    <a4j:commandButton id="addEmployeeBtn" value="Add Employee"/>
+                    <a4j:commandButton id="addEmployeeBtn" value="Add Employee" update=":growl"/>
                 </f:facet>
             </p:panel>
         </h:form>

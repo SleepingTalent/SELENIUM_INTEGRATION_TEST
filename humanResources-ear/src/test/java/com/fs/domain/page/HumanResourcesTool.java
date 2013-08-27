@@ -20,7 +20,8 @@ public class HumanResourcesTool extends PageObject {
     private static final String BROWSE_MENU_ID = "browse";
     private static final String SEARCH_MENU_ID = "search";
 
-    public static final String MENU_ITEM_LABEL_CLASS = "rf-pm-itm-lbl";
+    public static final String MENU_LABEL_CLASS = "ui-menuitem-text";
+    public static final String MENU_ITEM_LABEL_CLASS = "ui-menuitem";
 
     public HumanResourcesTool(WebDriver driver) {
         super(driver);
@@ -40,7 +41,7 @@ public class HumanResourcesTool extends PageObject {
     }
 
     public WebElement assertEmployeeAdminMenuDisplayed() {
-        return findFormElementById(FORM, EMPLOYEE_ADMIN_MENU_ID);
+        return assertMenuDisplayed("Employee Admin");
     }
 
     public WebElement assertLatestNewsPanelDisplayed() {
@@ -48,11 +49,11 @@ public class HumanResourcesTool extends PageObject {
     }
 
     public WebElement assertBrowseMenuDisplayed() {
-        return findFormElementById(FORM, BROWSE_MENU_ID);
+        return assertMenuDisplayed("Browse");
     }
 
     public WebElement assertSearchMenuDisplayed() {
-        return findFormElementById(FORM, SEARCH_MENU_ID);
+        return assertMenuDisplayed("Search");
     }
 
     public WebElement assertEditEmployeeMenuItemDisplayed() {
@@ -72,7 +73,11 @@ public class HumanResourcesTool extends PageObject {
     }
 
     public WebElement assertSearchForEmployeeMenuItemDisplayed() {
-        return assertMenuItemDisplayed("Search For Employee");
+        return assertMenuItemDisplayed("Search Employees");
+    }
+
+    private WebElement assertMenuDisplayed(String labelText) {
+        return findElementByClassWithText(MENU_LABEL_CLASS, labelText);
     }
 
     private WebElement assertMenuItemDisplayed(String labelText) {

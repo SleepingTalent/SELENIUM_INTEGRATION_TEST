@@ -14,6 +14,11 @@
         <param-value>true</param-value>
     </context-param>
 
+    <context-param>
+        <param-name>primefaces.THEME</param-name>
+        <param-value>home</param-value>
+    </context-param>
+
     <servlet>
         <servlet-name>Faces Servlet</servlet-name>
         <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
@@ -29,7 +34,7 @@
     </servlet-mapping>
     
     <!-- Resource Servlet - serves static resources and resources for specific components -->
-    <servlet>
+   <!-- <servlet>
         <servlet-name>Resource Servlet</servlet-name>
         <servlet-class>org.richfaces.webapp.ResourceServlet</servlet-class>
         <load-on-startup>1</load-on-startup>
@@ -37,13 +42,13 @@
     <servlet-mapping>
         <servlet-name>Resource Servlet</servlet-name>
         <url-pattern>/org.richfaces.resources/*</url-pattern>
-    </servlet-mapping>
+    </servlet-mapping>   -->
     
     <!-- Resource Mapping - resources will be served compressed and packed in production -->
-    <context-param>
+   <!-- <context-param>
         <param-name>org.richfaces.resourceMapping.enabled</param-name>
         <param-value>true</param-value>
-    </context-param>
+    </context-param>      -->
 
     <session-config>
         <session-timeout>30</session-timeout>

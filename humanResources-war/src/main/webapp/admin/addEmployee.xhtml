@@ -10,42 +10,74 @@
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:f="http://java.sun.com/jsf/core"
                 xmlns:a4j="http://richfaces.org/a4j"
-                xmlns:rich="http://richfaces.org/rich"
+                xmlns:p="http://primefaces.org/ui"
                 template="/templates/template.xhtml">
 
     <ui:define name="title">Add New Employee</ui:define>
 
     <ui:define name="body">
         <h:form id="addEmployee">
-            <rich:panel id="addEmployeePanel">
-                <f:facet name="header">
-                    Add New Employee
+            <p:panel id="addEmployeePanel" header="Add New Employee">
+                    <p:panelGrid columns="3">
+                        <f:facet name="header">
+                            Employee Details
+                        </f:facet>
+
+                        <h:outputText id="firstNamelbl" value="First Name:"/>
+                        <h:inputText label="firstName" id="firstName" required="true"
+                                     value="#{employeeController.employee.firstName}">
+                            <f:validateLength minimum="3"/>
+                        </h:inputText>
+                        <p:message for="firstName" ajaxRendered="true"/>
+
+                        <h:outputText id="lastNamelbl" value="Last Name:"/>
+                        <h:inputText label="lastName" id="lastName" required="true"
+                                     value="#{employeeController.employee.lastName}">
+                            <f:validateLength minimum="3"/>
+                        </h:inputText>
+                        <p:message for="lastName" ajaxRendered="true"/>
+
+                        <h:outputText id="dateOfBirthlbl" value="Date Of Birth:"/>
+                        <h:inputText id="dateOfBirth" required="true"
+                                     value="#{employeeController.employee.dateOfBirth}">
+                            <f:convertDateTime pattern="dd-mm-yyyy"/>
+                        </h:inputText>
+                        <p:message for="dateOfBirth" ajaxRendered="true"/>
+
+                        <h:outputText id="houseNumberlbl" value="House No:"/>
+                        <h:inputText label="houseNumber" id="houseNumber" required="true"
+                                     value="#{employeeController.employee.address.houseNumber}">
+                            <f:validateLength minimum="1"/>
+                        </h:inputText>
+                        <p:message for="houseNumber" ajaxRendered="true"/>
+
+                        <h:outputText id="addressFirstLinelbl" value="Address Line 1:"/>
+                        <h:inputText label="addressFirstLine" id="addressFirstLine" required="false"
+                                     value="#{employeeController.employee.address.addressFirstLine}"/>
+                        <p:message for="addressFirstLine" ajaxRendered="true"/>
+
+                        <h:outputText id="addressSecondLinelbl" value="Address Line 2:"/>
+                        <h:inputText label="addressSecondLine" id="addressSecondLine" required="false"
+                                     value="#{employeeController.employee.address.addressSecondLine}"/>
+                        <p:message for="addressSecondLine" ajaxRendered="true"/>
+
+                        <h:outputText id="townCitylbl" value="Town/City :"/>
+                        <h:inputText label="townCity" id="townCity" required="false"
+                                     value="#{employeeController.employee.address.townCity}"/>
+                        <p:message for="townCity" ajaxRendered="true"/>
+
+                        <h:outputText id="postCodelbl" value="Postcode :"/>
+                        <h:inputText label="postCode" id="postCode" required="true"
+                                     value="#{employeeController.employee.address.postCode}">
+                            <f:validateLength minimum="6"/>
+                        </h:inputText>
+                        <p:message for="postCode" ajaxRendered="true"/>
+
+                    </p:panelGrid>
+                <f:facet name="footer">
+                    <a4j:commandButton id="addEmployeeBtn" value="Add Employee"/>
                 </f:facet>
-                <h:panelGrid columns="3">
-                    <h:outputText id="firstNamelbl" value="First Name:" />
-                    <h:inputText label="firstName" id="firstName" required="true" value="#{employeeController.employee.firstName}">
-                        <f:validateLength minimum="3" />
-                    </h:inputText>
-                    <rich:message for="firstName" ajaxRendered="true" />
-
-                    <h:outputText id="lastNamelbl" value="Last Name:" />
-                    <h:inputText label="lastName" id="lastName" required="true" value="#{employeeController.employee.lastName}">
-                        <f:validateLength minimum="3" />
-                    </h:inputText>
-                    <rich:message for="lastName" ajaxRendered="true" />
-
-                    <h:outputText id="dateOfBirthlbl" value="Date Of Birth:" />
-                    <h:inputText id="dateOfBirth" required="true" value="#{employeeController.employee.dateOfBirth}">
-                        <f:convertDateTime pattern="dd-mm-yyyy" />
-                    </h:inputText>
-                    <rich:message for="dateOfBirth" ajaxRendered="true" />
-
-                    <f:facet name="footer">
-                        <a4j:commandButton id="addEmployeeBtn" value="Add Employee" />
-                    </f:facet>
-                </h:panelGrid>
-
-            </rich:panel>
+            </p:panel>
         </h:form>
     </ui:define>
 </ui:composition>

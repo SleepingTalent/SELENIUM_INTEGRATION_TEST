@@ -19,12 +19,15 @@ public class AdminPageTest extends BaseSeleniumTest {
         humanResourcesTool.assertEditEmployeeMenuItemDisplayed();
         humanResourcesTool.assertAddEmployeeMenuItemDisplayed();
         humanResourcesTool.assertDeleteEmployeeMenuItemDisplayed();
+        humanResourcesTool.assertEmployeeAdminMenuDisplayed().click();
 
         humanResourcesTool.assertBrowseMenuDisplayed().click();
         humanResourcesTool.assertBrowseEmployeeMenuItemDisplayed();
+        humanResourcesTool.assertBrowseMenuDisplayed().click();
 
         humanResourcesTool.assertSearchMenuDisplayed().click();
         humanResourcesTool.assertSearchForEmployeeMenuItemDisplayed();
+        humanResourcesTool.assertSearchMenuDisplayed().click();
     }
 
     @Test

@@ -16,6 +16,9 @@ public class AddressViewBean {
         this.postCode = postCode;
     }
 
+    public AddressViewBean() {
+    }
+
     public String getHouseNumber() {
         return houseNumber;
     }

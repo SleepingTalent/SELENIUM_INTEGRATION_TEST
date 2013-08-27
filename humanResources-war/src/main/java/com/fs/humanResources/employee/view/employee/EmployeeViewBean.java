@@ -25,6 +25,7 @@ public class EmployeeViewBean {
     }
 
     public EmployeeViewBean() {
+        address = new AddressViewBean();
     }
 
     public String getFirstName() {

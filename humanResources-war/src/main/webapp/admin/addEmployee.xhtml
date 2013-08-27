@@ -34,6 +34,12 @@
                     </h:inputText>
                     <rich:message for="lastName" ajaxRendered="true" />
 
+                    <h:outputText id="dateOfBirthlbl" value="Date Of Birth:" />
+                    <h:inputText id="dateOfBirth" required="true" value="#{employeeController.employee.dateOfBirth}">
+                        <f:convertDateTime pattern="dd-mm-yyyy" />
+                    </h:inputText>
+                    <rich:message for="dateOfBirth" ajaxRendered="true" />
+
                     <f:facet name="footer">
                         <a4j:commandButton id="addEmployeeBtn" value="Add Employee" />
                     </f:facet>

@@ -29,8 +29,8 @@
                                     iconCollapsedTopGroup="chevronDown">
 
                         <rich:panelMenuGroup id="employeeAdmin" label="Employee Admin">
+                            <rich:panelMenuItem id="addEmployee" label="Add Employee" actionListener="#{employeeController.prepareAddEmployee()}" action="#{navigationController.navigateToAddEmployee}" />
                             <rich:panelMenuItem id="editEmployee" label="Edit Employee" action="#{navigationController.navigateToEditEmployee}" />
-                            <rich:panelMenuItem id="addEmployee" label="Add Employee" action="#{navigationController.navigateToAddEmployee}" />
                             <rich:panelMenuItem id="deleteEmployee" label="Delete Employee" action="#{navigationController.navigateToDeleteEmployee}" />
                         </rich:panelMenuGroup>
 

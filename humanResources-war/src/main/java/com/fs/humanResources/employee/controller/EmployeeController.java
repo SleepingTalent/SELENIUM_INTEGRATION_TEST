@@ -17,9 +17,12 @@ public class EmployeeController {
     @Inject
     EmployeeModel employeeModel;
 
-    public EmployeeViewBean getEmployeeDetails() {
+    public EmployeeViewBean getEmployee() {
         log.info("Getting Employee Details");
         return employeeModel.getEmployee();
     }
 
+    public void prepareAddEmployee() {
+         employeeModel.setEmployee(new EmployeeViewBean());
+    }
 }

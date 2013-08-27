@@ -24,6 +24,9 @@ public class EmployeeViewBean {
         this.staffNumber = staffNumber;
     }
 
+    public EmployeeViewBean() {
+    }
+
     public String getFirstName() {
         return firstName;
     }

@@ -8,10 +8,15 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;
+import org.mockito.Matchers;
 import org.mockito.Mock;
 
 import java.util.Date;
 
+import static org.mockito.Matchers.anyObject;
+import static org.mockito.Matchers.eq;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 
@@ -49,7 +54,7 @@ public class EmployeeControllerTest extends BaseUnitTest {
 
     @Test
     public void getEmployee_returnsAsExpected() {
-        EmployeeViewBean actual = employeeController.getEmployeeDetails();
+        EmployeeViewBean actual = employeeController.getEmployee();
 
         Assert.assertEquals(employee.getFirstName(), actual.getFirstName());
         Assert.assertEquals(employee.getLastName(), actual.getLastName());
@@ -64,5 +69,11 @@ public class EmployeeControllerTest extends BaseUnitTest {
         Assert.assertEquals(expectedAddress.getAddressSecondLine(), actualAddress.getAddressSecondLine());
         Assert.assertEquals(expectedAddress.getTownCity(), actualAddress.getTownCity());
         Assert.assertEquals(expectedAddress.getPostCode(), actualAddress.getPostCode());
+    }
+
+    @Test
+    public void prepareAddEmployee_setsModel_asExpected() {
+        employeeController.prepareAddEmployee();
+        verify(employeeModel, times(1)).setEmployee(Matchers.<EmployeeViewBean>anyObject());
     }
 }

@@ -1,4 +1,22 @@
-table {
-    border-collapse: collapse;
-    border: none;
+.ui-layout-unit {
+    border: 0;
+}
+
+.ui-panelgrid td {
+    border: 0;
+    padding: 5px;
+}
+
+.adminToolLayout {
+    min-width:400px;
+    min-height:400px;
+}
+
+.adminMenu {
+    width:200px;
+}
+
+.addEmployeePanel {
+    width:450px;
+    height:510px;
 }

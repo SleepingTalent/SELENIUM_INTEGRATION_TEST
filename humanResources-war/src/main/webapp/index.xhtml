@@ -19,9 +19,9 @@
         <h:form id="adminTool">
             <p:panel id="contentPanel" header="Human Resources Admin Tool" footer="Fairbairn Solutions LTD">
 
-                <p:layout style="min-width:400px;min-height:400px;" id="layout">
+                <p:layout styleClass="adminToolLayout" id="adminToolLayout">
                     <p:layoutUnit position="west" resizable="true" size="500">
-                        <p:tieredMenu style="width:200px" autoDisplay="false">
+                        <p:tieredMenu styleClass="adminMenu" autoDisplay="false">
                             <p:submenu label="Employee Admin" icon="ui-icon-gear">
                                 <p:menuitem id="addEmployee" value="Add Employee" actionListener="#{employeeController.prepareAddEmployee()}" action="#{navigationController.navigateToAddEmployee}" icon="ui-icon-disk" />
                                 <p:menuitem id="editEmployee" value="Edit Employee" action="#{navigationController.navigateToEditEmployee}" icon="ui-icon-pencil" />

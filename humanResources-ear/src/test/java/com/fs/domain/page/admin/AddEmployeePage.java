@@ -106,7 +106,35 @@ public class AddEmployeePage extends PageObject {
         findFormElementById(FORM, ADD_EMPLOYEE_BTN).click();
     }
 
-    public void setDateOfBirthText(String text) {
-        setInputTextOnElement(dateOfBirthInputDisplayed(),text);
+    public void setDateOfBirth(String dateOfBirth) {
+        setInputTextOnElement(dateOfBirthInputDisplayed(), dateOfBirth);
+    }
+
+    public void setFirstName(String fistName) {
+        setInputTextOnElement(firstNameInputDisplayed(), fistName);
+    }
+
+    public void setLastName(String lastName) {
+        setInputTextOnElement(lastNameInputDisplayed(), lastName);
+    }
+
+    public void setHouseNumber(String houseNumber) {
+        setInputTextOnElement(houseNumberInputDisplayed(), houseNumber);
+    }
+
+    public void setAddressFirstLine(String addressFirstLine) {
+        setInputTextOnElement(addressFirstLineInputDisplayed(), addressFirstLine);
+    }
+
+    public void setAddressSecondLine(String addressSecondLine) {
+        setInputTextOnElement(addressSecondLineInputDisplayed(),addressSecondLine);
+    }
+
+    public void setTownCity(String townCity) {
+        setInputTextOnElement(townCityInputDisplayed(),townCity);
+    }
+
+    public void setPostcode(String postcode) {
+        setInputTextOnElement(postCodeInputDisplayed(),postcode);
     }
 }

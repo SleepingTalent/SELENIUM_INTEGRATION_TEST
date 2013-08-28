@@ -1,4 +1,4 @@
-function handleDialogSubmit(xhr, status, args) {
+function handleDialogSubmit(xhr, status, args, dialog) {
     if (args.validationFailed) {
         dialog.show();
     } else {

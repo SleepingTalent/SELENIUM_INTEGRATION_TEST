@@ -49,7 +49,7 @@
 
                     <f:facet name="footer">
                         <p:commandButton id="addEmployeeBtn" value="Add Employee"
-                                         oncomplete="if (args &amp;&amp; !args.validationFailed) _addEmployeeDialog.hide()" update=":addEmployeeMsg"/>
+                                         oncomplete=" handleDialogSubmit(xhr, status, args, _addEmployeeDialog)" update=":addEmployeeMsg"/>
                     </f:facet>
                 </p:panelGrid>
         </h:form>

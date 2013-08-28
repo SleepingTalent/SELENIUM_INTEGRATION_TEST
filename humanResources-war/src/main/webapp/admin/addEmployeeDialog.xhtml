@@ -4,9 +4,11 @@
                 xmlns:f="http://java.sun.com/jsf/core"
                 xmlns:a4j="http://richfaces.org/a4j"
                 xmlns:p="http://primefaces.org/ui">
-    <p:dialog id="addEmployeeDialog" modal="true">
+
+    <p:dialog id="addEmployeeDialog" widgetVar="_addEmployeeDialog" header="Add New Employee" modal="true" dynamic="true" resizable="false" closable="true">
+        <p:growl id="addEmployeeMsg" showDetail="false" sticky="true"/>
+
         <h:form id="addEmployee">
-            <p:panel id="addEmployeePanel" styleClass="addEmployeePanel" header="Add New Employee">
                 <p:panelGrid columns="2">
                     <h:outputText id="firstNamelbl" value="First Name:"/>
                     <p:inputText label="firstName" id="firstName" required="true"
@@ -22,7 +24,6 @@
                     <p:inputMask id="dateOfBirth" required="true"
                                  value="#{employeeController.employee.dateOfBirth}"
                                  requiredMessage="Date Of Birth is required" mask="99/99/9999"/>
-
 
                     <h:outputText id="houseNumberlbl" value="House No:"/>
                     <p:inputText label="houseNumber" id="houseNumber" required="true"
@@ -42,15 +43,15 @@
                                  value="#{employeeController.employee.address.townCity}"/>
 
                     <h:outputText id="postCodelbl" value="Postcode:"/>
-                    <p:inputText label="postCode" id="postCode" required="true"
+                    <p:inputMask label="postCode" id="postCode" required="true"
                                  value="#{employeeController.employee.address.postCode}"
-                                 requiredMessage="Postcode is required"/>
+                                 requiredMessage="Postcode is required" mask="a*9-9a*"/>
 
+                    <f:facet name="footer">
+                        <p:commandButton id="addEmployeeBtn" value="Add Employee"
+                                         oncomplete="if (args &amp;&amp; !args.validationFailed) _addEmployeeDialog.hide()" update=":addEmployeeMsg"/>
+                    </f:facet>
                 </p:panelGrid>
-                <f:facet name="footer">
-                    <a4j:commandButton id="addEmployeeBtn" value="Add Employee" update=":growl"/>
-                </f:facet>
-            </p:panel>
         </h:form>
     </p:dialog>
 </ui:composition>

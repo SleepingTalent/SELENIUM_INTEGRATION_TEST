@@ -99,6 +99,7 @@
                     <testSourceDirectory>./src/test/java</testSourceDirectory>
                     <includes>
                         <include>**/*PageTest.java</include>
+                        <include>**/*DialogTest.java</include>
                     </includes>
                     <failIfNoTests>true</failIfNoTests>
                     <failIfNoSpecifiedTests>true</failIfNoSpecifiedTests>

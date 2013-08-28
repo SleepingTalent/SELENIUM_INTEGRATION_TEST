@@ -1,14 +1,13 @@
 package com.fs.domain.page.admin;
 
 import com.fs.domain.common.page.PageObject;
-import org.codehaus.plexus.util.xml.pull.XmlPullParser;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public class AddEmployeePage extends PageObject {
+public class AddEmployeeDialog extends PageObject {
 
     private static final String FORM = "addEmployee";
-    private static final String CONTENT_PANEL_ID = "addEmployeePanel";
+    private static final String ADD_EMPLOYEE_DIALOG = "addEmployeeDialog";
 
     private static final String FIRSTNAME_INPUT_ID = "firstName";
     private static final String LASTNAME_INPUT_ID = "lastName";
@@ -30,12 +29,12 @@ public class AddEmployeePage extends PageObject {
 
     private static final String ADD_EMPLOYEE_BTN = "addEmployeeBtn";
 
-    public AddEmployeePage(WebDriver driver) {
+    public AddEmployeeDialog(WebDriver driver) {
         super(driver);
     }
 
-    public void assertPageIsPresent() {
-        findFormElementById(FORM, CONTENT_PANEL_ID);
+    public void assertDialogIsPresent() {
+        findElementById(ADD_EMPLOYEE_DIALOG);
     }
 
     public WebElement firstNameInputDisplayed() {

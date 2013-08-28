@@ -2,7 +2,7 @@ package com.fs.domain.page;
 
 
 import com.fs.domain.common.page.PageObject;
-import com.fs.domain.page.admin.AddEmployeePage;
+import com.fs.domain.page.admin.AddEmployeeDialog;
 import org.apache.log4j.Logger;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
@@ -29,6 +29,7 @@ public class HumanResourcesTool extends PageObject {
 
     public void openHomePage() {
         openHomePage("http://localhost:8181/humanResources/");
+        getDriver().manage().window().maximize();
         assertHomePageDisplayed();
     }
 
@@ -84,8 +85,8 @@ public class HumanResourcesTool extends PageObject {
         return findElementByClassWithText(MENU_ITEM_LABEL_CLASS, labelText);
     }
 
-    public AddEmployeePage clickAddEmployeeMenuItem() {
+    public AddEmployeeDialog clickAddEmployeeMenuItem() {
         assertAddEmployeeMenuItemDisplayed().click();
-        return new AddEmployeePage(getDriver());
+        return new AddEmployeeDialog(getDriver());
     }
 }

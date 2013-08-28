@@ -37,11 +37,15 @@ public abstract class PageObject {
     }
 
     protected WebElement findFormElementById(String form, String id) {
+        return findElementById(form + ":" + id);
+    }
+
+    protected WebElement findElementById(String id) {
         try {
-            return elementHelper.findElementById(form + ":" + id, true);
+            return elementHelper.findElementById(id, true);
         } catch (SeleniumTimeoutException se) {
-            log.info("Timed out trying to find element (" + form + ":" + id + ") retrying!");
-            return elementHelper.findElementById(form + ":" + id, false);
+            log.info("Timed out trying to find element (" + id + ") retrying!");
+            return elementHelper.findElementById(id, false);
         }
     }
 
@@ -55,15 +59,15 @@ public abstract class PageObject {
     }
 
     public void assertGrowlMessageDisplayed(String text) {
-       findElementByClassWithText(GROWL_MESSAGE_CLASS,text);
+        findElementByClassWithText(GROWL_MESSAGE_CLASS, text);
     }
 
     public void closeGrowlMessage() {
         try {
-            elementHelper.findByClass(GROWL_MESSAGE_CLASS,true).click();
+            elementHelper.findByClass(GROWL_MESSAGE_CLASS, true).click();
         } catch (SeleniumTimeoutException se) {
             log.info("Timed out trying to find element with class (" + GROWL_MESSAGE_CLASS + ") retrying!");
-            elementHelper.findByClass(GROWL_MESSAGE_CLASS,false).click();
+            elementHelper.findByClass(GROWL_MESSAGE_CLASS, false).click();
         }
     }
 

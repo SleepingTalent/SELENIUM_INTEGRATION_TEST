@@ -60,7 +60,7 @@ public class AddEmployeePageTest extends BaseSeleniumTest {
         addEmployeePage.setAddressFirstLine("Maple Grove");
         addEmployeePage.setAddressSecondLine("Main Street");
         addEmployeePage.setTownCity("Meanwhile City");
-        addEmployeePage.setPostcode("AB1 2CD");
+        addEmployeePage.setPostcode("AB12CD");
 
         addEmployeePage.firstNameInputDisplayed().clear();
         addEmployeePage.clickAddEmployeeBtn();
@@ -88,7 +88,7 @@ public class AddEmployeePageTest extends BaseSeleniumTest {
         addEmployeePage.assertGrowlMessageDisplayed("Postcode is required");
         addEmployeePage.closeGrowlMessage();
 
-        addEmployeePage.setPostcode("AB1 2CD");
+        addEmployeePage.setPostcode("AB12CD");
 
         addEmployeePage.dateOfBirthInputDisplayed().clear();
         addEmployeePage.clickAddEmployeeBtn();

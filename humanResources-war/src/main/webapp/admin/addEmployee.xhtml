@@ -53,9 +53,9 @@
                                      value="#{employeeController.employee.address.townCity}"/>
 
                         <h:outputText id="postCodelbl" value="Postcode:"/>
-                        <p:inputText label="postCode" id="postCode" required="true"
+                        <p:inputMask label="postCode" id="postCode" required="true"
                                      value="#{employeeController.employee.address.postCode}"
-                                     requiredMessage="Postcode is required"/>
+                                     requiredMessage="Postcode is required" mask="a*9-9a*"/>
 
                     </p:panelGrid>
                 <f:facet name="footer">

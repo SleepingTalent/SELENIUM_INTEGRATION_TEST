@@ -30,5 +30,23 @@ public class AddEmployeePageTest extends BaseSeleniumTest {
 
         Assert.assertEquals("Last Name:",addEmployeePage.lastNameLabelDisplayed().getText());
         addEmployeePage.lastNameInputDisplayed();
+
+        Assert.assertEquals("Date Of Birth:",addEmployeePage.dateOfBirthLabelDisplayed().getText());
+        addEmployeePage.dateOfBirthInputDisplayed();
+
+        Assert.assertEquals("House No:",addEmployeePage.houseNumberLabelDisplayed().getText());
+        addEmployeePage.houseNumberInputDisplayed();
+
+        Assert.assertEquals("Address Line 1:",addEmployeePage.addressFirstLineLabelDisplayed().getText());
+        addEmployeePage.addressFirstLineInputDisplayed();
+
+        Assert.assertEquals("Address Line 2:",addEmployeePage.addressSecondLineLabelDisplayed().getText());
+        addEmployeePage.addressSecondLineInputDisplayed();
+
+        Assert.assertEquals("Town/City:",addEmployeePage.townCityLabelDisplayed().getText());
+        addEmployeePage.townCityInputDisplayed();
+
+        Assert.assertEquals("Postcode:",addEmployeePage.postCodeLabelDisplayed().getText());
+        addEmployeePage.postCodeInputDisplayed();
     }
 }

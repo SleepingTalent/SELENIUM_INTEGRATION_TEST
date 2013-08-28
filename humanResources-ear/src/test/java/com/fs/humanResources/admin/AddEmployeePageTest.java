@@ -5,6 +5,9 @@ import com.fs.humanResources.common.BaseSeleniumTest;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.HasInputDevices;
+import org.openqa.selenium.interactions.Keyboard;
 
 public class AddEmployeePageTest extends BaseSeleniumTest {
 
@@ -31,7 +34,7 @@ public class AddEmployeePageTest extends BaseSeleniumTest {
         Assert.assertEquals("Last Name:",addEmployeePage.lastNameLabelDisplayed().getText());
         addEmployeePage.lastNameInputDisplayed();
 
-        Assert.assertEquals("Date Of Birth:",addEmployeePage.dateOfBirthLabelDisplayed().getText());
+        Assert.assertEquals("DOB (dd/mm/yyyy):",addEmployeePage.dateOfBirthLabelDisplayed().getText());
         addEmployeePage.dateOfBirthInputDisplayed();
 
         Assert.assertEquals("House No:",addEmployeePage.houseNumberLabelDisplayed().getText());
@@ -54,7 +57,8 @@ public class AddEmployeePageTest extends BaseSeleniumTest {
     public void validationMessages_displayedAsExpected() {
         addEmployeePage.firstNameInputDisplayed().sendKeys("James");
         addEmployeePage.lastNameInputDisplayed().sendKeys("Smith");
-        addEmployeePage.dateOfBirthInputDisplayed().sendKeys("10-01-1980");
+
+        addEmployeePage.setDateOfBirthText("26122008");
 
         addEmployeePage.houseNumberInputDisplayed().sendKeys("55");
         addEmployeePage.addressFirstLineInputDisplayed().sendKeys("Maple Grove");
@@ -94,10 +98,5 @@ public class AddEmployeePageTest extends BaseSeleniumTest {
         addEmployeePage.clickAddEmployeeBtn();
         addEmployeePage.assertGrowlMessageDisplayed("Date Of Birth is required");
         addEmployeePage.closeGrowlMessage();
-
-       /* addEmployeePage.dateOfBirthInputDisplayed().sendKeys("01010101");
-        addEmployeePage.clickAddEmployeeBtn();
-        addEmployeePage.assertGrowlMessageDisplayed("Date Of Birth is required");
-        addEmployeePage.closeGrowlMessage();   */
     }
 }

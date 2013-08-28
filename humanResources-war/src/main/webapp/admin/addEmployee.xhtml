@@ -29,12 +29,11 @@
                                      value="#{employeeController.employee.lastName}"
                                      requiredMessage="Lastname is required"/>
 
-                        <h:outputText id="dateOfBirthlbl" value="Date Of Birth:"/>
-                        <p:inputText id="dateOfBirth" required="true"
-                                     value="#{employeeController.employee.dateOfBirth}"
-                                     requiredMessage="Date Of Birth is required">
-                            <f:convertDateTime pattern="dd-mm-yyyy"/>
-                        </p:inputText>
+                        <h:outputText id="dateOfBirthlbl" value="DOB (dd/mm/yyyy):"/>
+                        <p:inputMask  id="dateOfBirth" required="true"
+                                      value="#{employeeController.employee.dateOfBirth}"
+                                      requiredMessage="Date Of Birth is required" mask="99/99/9999"/>
+
 
                         <h:outputText id="houseNumberlbl" value="House No:"/>
                         <p:inputText label="houseNumber" id="houseNumber" required="true"

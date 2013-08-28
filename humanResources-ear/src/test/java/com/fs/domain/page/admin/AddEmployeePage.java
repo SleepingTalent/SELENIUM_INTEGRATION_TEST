@@ -105,4 +105,8 @@ public class AddEmployeePage extends PageObject {
     public void clickAddEmployeeBtn() {
         findFormElementById(FORM, ADD_EMPLOYEE_BTN).click();
     }
+
+    public void setDateOfBirthText(String text) {
+        setInputTextOnElement(dateOfBirthInputDisplayed(),text);
+    }
 }

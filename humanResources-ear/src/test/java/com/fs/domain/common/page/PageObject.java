@@ -5,6 +5,8 @@ import com.fs.domain.helper.ElementHelper;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.HasInputDevices;
+import org.openqa.selenium.interactions.Keyboard;
 
 import java.util.List;
 
@@ -63,6 +65,13 @@ public abstract class PageObject {
             log.info("Timed out trying to find element with class (" + GROWL_MESSAGE_CLASS + ") retrying!");
             elementHelper.findByClass(GROWL_MESSAGE_CLASS,false).click();
         }
+    }
+
+    protected void setInputTextOnElement(WebElement element, String text) {
+        Keyboard keyboard = ((HasInputDevices) getDriver()).getKeyboard();
+        element.click();
+        element.clear();
+        keyboard.sendKeys(text);
     }
 
 

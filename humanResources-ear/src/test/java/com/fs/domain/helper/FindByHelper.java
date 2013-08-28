@@ -11,4 +11,8 @@ public class FindByHelper {
     public static By findByClassAndText(String cssClass, String text) {
         return By.xpath("//*[contains(@class,'"+cssClass+"')][normalize-space(text())='"+text+"']");
     }
+
+    public static By findByClass(String cssClass) {
+        return By.className(cssClass);
+    }
 }

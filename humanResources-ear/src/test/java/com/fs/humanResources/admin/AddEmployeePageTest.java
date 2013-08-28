@@ -49,4 +49,55 @@ public class AddEmployeePageTest extends BaseSeleniumTest {
         Assert.assertEquals("Postcode:",addEmployeePage.postCodeLabelDisplayed().getText());
         addEmployeePage.postCodeInputDisplayed();
     }
+
+    @Test
+    public void validationMessages_displayedAsExpected() {
+        addEmployeePage.firstNameInputDisplayed().sendKeys("James");
+        addEmployeePage.lastNameInputDisplayed().sendKeys("Smith");
+        addEmployeePage.dateOfBirthInputDisplayed().sendKeys("10-01-1980");
+
+        addEmployeePage.houseNumberInputDisplayed().sendKeys("55");
+        addEmployeePage.addressFirstLineInputDisplayed().sendKeys("Maple Grove");
+        addEmployeePage.addressSecondLineInputDisplayed().sendKeys("Main Street");
+        addEmployeePage.townCityInputDisplayed().sendKeys("Meanwhile City");
+        addEmployeePage.postCodeInputDisplayed().sendKeys("AB1 2CD");
+
+        addEmployeePage.firstNameInputDisplayed().clear();
+        addEmployeePage.clickAddEmployeeBtn();
+        addEmployeePage.assertGrowlMessageDisplayed("Firstname is required");
+        addEmployeePage.closeGrowlMessage();
+
+        addEmployeePage.firstNameInputDisplayed().sendKeys("James");
+
+        addEmployeePage.lastNameInputDisplayed().clear();
+        addEmployeePage.clickAddEmployeeBtn();
+        addEmployeePage.assertGrowlMessageDisplayed("Lastname is required");
+        addEmployeePage.closeGrowlMessage();
+
+        addEmployeePage.lastNameInputDisplayed().sendKeys("Smith");
+
+        addEmployeePage.houseNumberInputDisplayed().clear();
+        addEmployeePage.clickAddEmployeeBtn();
+        addEmployeePage.assertGrowlMessageDisplayed("House No is required");
+        addEmployeePage.closeGrowlMessage();
+
+        addEmployeePage.houseNumberInputDisplayed().sendKeys("55");
+
+        addEmployeePage.postCodeInputDisplayed().clear();
+        addEmployeePage.clickAddEmployeeBtn();
+        addEmployeePage.assertGrowlMessageDisplayed("Postcode is required");
+        addEmployeePage.closeGrowlMessage();
+
+        addEmployeePage.postCodeInputDisplayed().sendKeys("AB1 2CD");
+
+        addEmployeePage.dateOfBirthInputDisplayed().clear();
+        addEmployeePage.clickAddEmployeeBtn();
+        addEmployeePage.assertGrowlMessageDisplayed("Date Of Birth is required");
+        addEmployeePage.closeGrowlMessage();
+
+       /* addEmployeePage.dateOfBirthInputDisplayed().sendKeys("01010101");
+        addEmployeePage.clickAddEmployeeBtn();
+        addEmployeePage.assertGrowlMessageDisplayed("Date Of Birth is required");
+        addEmployeePage.closeGrowlMessage();   */
+    }
 }

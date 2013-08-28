@@ -14,6 +14,9 @@ public abstract class PageObject {
 
     Logger log = Logger.getLogger(PageObject.class);
 
+    private static String GROWL_MESSAGE_CLASS = "ui-growl-title";
+    private static String GROWL_MESSAGE_CLOSE_CLASS = "ui-growl-icon-close";
+
     private WebDriver driver;
 
     private ElementHelper elementHelper;
@@ -48,4 +51,19 @@ public abstract class PageObject {
             return elementHelper.findElementsByClassContainingText(className, text, true);
         }
     }
+
+    public void assertGrowlMessageDisplayed(String text) {
+       findElementByClassWithText(GROWL_MESSAGE_CLASS,text);
+    }
+
+    public void closeGrowlMessage() {
+        try {
+            elementHelper.findByClass(GROWL_MESSAGE_CLASS,true).click();
+        } catch (SeleniumTimeoutException se) {
+            log.info("Timed out trying to find element with class (" + GROWL_MESSAGE_CLASS + ") retrying!");
+            elementHelper.findByClass(GROWL_MESSAGE_CLASS,false).click();
+        }
+    }
+
+
 }

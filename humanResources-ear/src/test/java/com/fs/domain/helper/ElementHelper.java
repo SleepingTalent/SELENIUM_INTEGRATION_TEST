@@ -29,6 +29,10 @@ public class ElementHelper {
         return waitUntilConditionReturnElement(ExpectedConditions.visibilityOfElementLocated(FindByHelper.findById(id)), reThrowError);
     }
 
+    public WebElement findByClass(String cssClass, boolean reThrowError) {
+        return waitUntilConditionReturnElement(ExpectedConditions.visibilityOfElementLocated(FindByHelper.findByClass(cssClass)), reThrowError);
+    }
+
     public WebElement findElementsByClassContainingText(String cssClass,String text, boolean reThrowError) {
         return waitUntilConditionReturnElement(ExpectedConditions.visibilityOfElementLocated(FindByHelper.findByClassAndText(cssClass,text)), reThrowError);
     }
@@ -52,4 +56,5 @@ public class ElementHelper {
             fail(ex.getMessage());
         }
     }
+
 }

@@ -28,6 +28,8 @@ public class AddEmployeePage extends PageObject {
     private static final String TOWN_CITY_LABEL_ID = "townCitylbl";
     private static final String POSTCODE_LABEL_ID = "postCodelbl";
 
+    private static final String ADD_EMPLOYEE_BTN = "addEmployeeBtn";
+
     public AddEmployeePage(WebDriver driver) {
         super(driver);
     }
@@ -98,5 +100,9 @@ public class AddEmployeePage extends PageObject {
 
     public WebElement postCodeLabelDisplayed() {
         return findFormElementById(FORM, POSTCODE_LABEL_ID);
+    }
+
+    public void clickAddEmployeeBtn() {
+        findFormElementById(FORM, ADD_EMPLOYEE_BTN).click();
     }
 }

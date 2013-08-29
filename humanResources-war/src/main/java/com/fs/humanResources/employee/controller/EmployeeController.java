@@ -22,7 +22,7 @@ public class EmployeeController {
         return employeeModel.getEmployee();
     }
 
-    public void prepareAddEmployee() {
+    public void clearEmployeeViewBean() {
          employeeModel.setEmployee(new EmployeeViewBean());
     }
 }

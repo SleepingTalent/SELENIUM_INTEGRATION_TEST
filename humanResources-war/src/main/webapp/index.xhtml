@@ -1,15 +1,14 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:a4j="http://richfaces.org/a4j">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
 
 <body>
 
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:h="http://java.sun.com/jsf/html"
-                xmlns:f="http://java.sun.com/jsf/core"
-                xmlns:a4j="http://richfaces.org/a4j"
                 xmlns:p="http://primefaces.org/ui"
                 template="/templates/template.xhtml">
 
@@ -21,21 +20,29 @@
 
                 <p:layout styleClass="adminToolLayout" id="adminToolLayout">
                     <p:layoutUnit position="west" resizable="true" size="500">
-                        <p:tieredMenu styleClass="adminMenu" autoDisplay="false">
+                        <p:panelMenu styleClass="adminMenu" autoDisplay="false">
                             <p:submenu label="Employee Admin" icon="ui-icon-gear">
-                                <p:menuitem id="addEmployee" value="Add Employee" actionListener="#{employeeController.prepareAddEmployee()}" oncomplete="_addEmployeeDialog.show()" icon="ui-icon-disk" />
-                                <p:menuitem id="editEmployee" value="Edit Employee" actionListener="#{employeeController.prepareAddEmployee()}" oncomplete="_findEmployeeDialog.show()" icon="ui-icon-pencil" />
-                                <p:menuitem id="deleteEmployee" value="Delete Employee" action="#{navigationController.navigateToDeleteEmployee}" icon="ui-icon-close" />
+                                <p:menuitem id="addEmployee" value="Add Employee"
+                                            actionListener="#{employeeController.clearEmployeeViewBean()}"
+                                            oncomplete="_addEmployeeDialog.show()" icon="ui-icon-disk"/>
+                                <p:menuitem id="editEmployee" value="Edit Employee"
+                                            actionListener="#{employeeController.clearEmployeeViewBean()}"
+                                            oncomplete="_findEmployeeDialog.show()" icon="ui-icon-pencil"/>
+                                <p:menuitem id="deleteEmployee" value="Delete Employee"
+                                            actionListener="#{employeeController.clearEmployeeViewBean()}"
+                                            oncomplete="_findEmployeeDialog.show()" icon="ui-icon-close"/>
                             </p:submenu>
-                            <p:separator />
                             <p:submenu label="Browse" icon="ui-icon-folder-collapsed">
-                                <p:menuitem id="browseEmployees" value="Browse Employees" action="#{navigationController.navigateToBrowseEmployees}" ajax="false" icon="ui-icon-folder-open"/>
+                                <p:menuitem id="browseEmployees" value="Browse Employees"
+                                            action="#{navigationController.navigateToBrowseEmployees}" ajax="false"
+                                            icon="ui-icon-folder-open"/>
                             </p:submenu>
-                            <p:separator />
                             <p:submenu label="Search" icon="ui-icon-search">
-                                <p:menuitem id="searchEmployees" value="Search Employees" action="#{navigationController.navigateToBrowseEmployees}" ajax="false" icon="ui-icon-search"/>
+                                <p:menuitem id="searchEmployees" value="Search Employees"
+                                            action="#{navigationController.navigateToBrowseEmployees}" ajax="false"
+                                            icon="ui-icon-search"/>
                             </p:submenu>
-                        </p:tieredMenu>
+                        </p:panelMenu>
                     </p:layoutUnit>
 
                     <p:layoutUnit position="center" size="200">
@@ -48,13 +55,11 @@
             </p:panel>
         </h:form>
 
-        <ui:include src="admin/addEmployeeDialog.xhtml" />
-        <ui:include src="admin/findEmployeeDialog.xhtml" />
+        <ui:include src="admin/addEmployeeDialog.xhtml"/>
+        <ui:include src="admin/findEmployeeDialog.xhtml"/>
     </ui:define>
 </ui:composition>
 
 
-
-
 </body>
-        </html>
+</html>

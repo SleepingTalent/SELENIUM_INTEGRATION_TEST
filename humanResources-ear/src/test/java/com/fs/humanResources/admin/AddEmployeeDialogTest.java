@@ -65,34 +65,29 @@ public class AddEmployeeDialogTest extends BaseSeleniumTest {
         addEmployeeDialog.firstNameInputDisplayed().clear();
         addEmployeeDialog.clickAddEmployeeBtn();
         addEmployeeDialog.assertGrowlMessageDisplayed("Firstname is required");
-        addEmployeeDialog.closeGrowlMessage();
 
         addEmployeeDialog.setFirstName("James");
 
         addEmployeeDialog.lastNameInputDisplayed().clear();
         addEmployeeDialog.clickAddEmployeeBtn();
         addEmployeeDialog.assertGrowlMessageDisplayed("Lastname is required");
-        addEmployeeDialog.closeGrowlMessage();
 
         addEmployeeDialog.setLastName("Smith");
 
         addEmployeeDialog.houseNumberInputDisplayed().clear();
         addEmployeeDialog.clickAddEmployeeBtn();
         addEmployeeDialog.assertGrowlMessageDisplayed("House No is required");
-        addEmployeeDialog.closeGrowlMessage();
 
         addEmployeeDialog.setHouseNumber("55");
 
         addEmployeeDialog.postCodeInputDisplayed().clear();
         addEmployeeDialog.clickAddEmployeeBtn();
         addEmployeeDialog.assertGrowlMessageDisplayed("Postcode is required");
-        addEmployeeDialog.closeGrowlMessage();
 
         addEmployeeDialog.setPostcode("AB12CD");
 
         addEmployeeDialog.dateOfBirthInputDisplayed().clear();
         addEmployeeDialog.clickAddEmployeeBtn();
         addEmployeeDialog.assertGrowlMessageDisplayed("Date Of Birth is required");
-        addEmployeeDialog.closeGrowlMessage();
     }
 }

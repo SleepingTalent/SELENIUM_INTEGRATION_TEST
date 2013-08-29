@@ -3,6 +3,7 @@ package com.fs.domain.common.page;
 import com.fs.domain.common.exception.SeleniumTimeoutException;
 import com.fs.domain.helper.ElementHelper;
 import org.apache.log4j.Logger;
+import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.HasInputDevices;
@@ -17,7 +18,6 @@ public abstract class PageObject {
     Logger log = Logger.getLogger(PageObject.class);
 
     private static String GROWL_MESSAGE_CLASS = "ui-growl-title";
-    private static String GROWL_MESSAGE_CLOSE_CLASS = "ui-growl-icon-close";
 
     private WebDriver driver;
 
@@ -58,17 +58,17 @@ public abstract class PageObject {
         }
     }
 
-    public void assertGrowlMessageDisplayed(String text) {
-        findElementByClassWithText(GROWL_MESSAGE_CLASS, text);
+    protected WebElement findLinkByText(String text) {
+        try {
+            return elementHelper.findByLinkText(text, true);
+        } catch (SeleniumTimeoutException se) {
+            log.info("Timed out trying to find link with text (" + text + ") retrying!");
+            return elementHelper.findByLinkText(text, false);
+        }
     }
 
-    public void closeGrowlMessage() {
-        try {
-            elementHelper.findByClass(GROWL_MESSAGE_CLASS, true).click();
-        } catch (SeleniumTimeoutException se) {
-            log.info("Timed out trying to find element with class (" + GROWL_MESSAGE_CLASS + ") retrying!");
-            elementHelper.findByClass(GROWL_MESSAGE_CLASS, false).click();
-        }
+    public void assertGrowlMessageDisplayed(String text) {
+        findElementByClassWithText(GROWL_MESSAGE_CLASS, text);
     }
 
     protected void setInputTextOnElement(WebElement element, String text) {

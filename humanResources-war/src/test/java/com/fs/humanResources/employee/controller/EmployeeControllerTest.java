@@ -13,7 +13,6 @@ import org.mockito.Mock;
 
 import java.util.Date;
 
-import static org.mockito.Matchers.anyObject;
 import static org.mockito.Matchers.eq;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
@@ -72,8 +71,8 @@ public class EmployeeControllerTest extends BaseUnitTest {
     }
 
     @Test
-    public void prepareAddEmployee_setsModel_asExpected() {
-        employeeController.prepareAddEmployee();
+    public void clearEmployeeViewBean_setsModel_asExpected() {
+        employeeController.clearEmployeeViewBean();
         verify(employeeModel, times(1)).setEmployee(Matchers.<EmployeeViewBean>anyObject());
     }
 }

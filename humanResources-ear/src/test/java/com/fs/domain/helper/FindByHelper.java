@@ -15,4 +15,8 @@ public class FindByHelper {
     public static By findByClass(String cssClass) {
         return By.className(cssClass);
     }
+
+    public static By findByLinkText(String linkText) {
+        return By.linkText(linkText);
+    }
 }

@@ -17,12 +17,8 @@ public class HumanResourcesTool extends PageObject {
     private static final String CONTENT_PANEL_ID = "contentPanel";
     private static final String LATEST_NEWS_PANEL_ID = "newsPanel";
 
-    private static final String EMPLOYEE_ADMIN_MENU_ID = "employeeAdmin";
-    private static final String BROWSE_MENU_ID = "browse";
-    private static final String SEARCH_MENU_ID = "search";
-
-    public static final String MENU_LABEL_CLASS = "ui-menuitem-text";
-    public static final String MENU_ITEM_LABEL_CLASS = "ui-menuitem";
+    //public static final String MENU_LABEL_CLASS = "ui-menuitem-text";
+    //public static final String MENU_LABEL_CLASS = "ui-panelmenu-panel";
 
     public HumanResourcesTool(WebDriver driver) {
         super(driver);
@@ -59,31 +55,28 @@ public class HumanResourcesTool extends PageObject {
     }
 
     public WebElement assertEditEmployeeMenuItemDisplayed() {
-        return assertMenuItemDisplayed("Edit Employee");
+        return findFormElementById(FORM,"editEmployee");
     }
 
     public WebElement assertAddEmployeeMenuItemDisplayed() {
-        return assertMenuItemDisplayed("Add Employee");
+        return findFormElementById(FORM,"addEmployee");
     }
 
     public WebElement assertDeleteEmployeeMenuItemDisplayed() {
-        return assertMenuItemDisplayed("Delete Employee");
+        return findFormElementById(FORM,"deleteEmployee");
     }
 
     public WebElement assertBrowseEmployeeMenuItemDisplayed() {
-        return assertMenuItemDisplayed("Browse Employees");
+        return findFormElementById(FORM,"browseEmployees");
     }
 
     public WebElement assertSearchForEmployeeMenuItemDisplayed() {
-        return assertMenuItemDisplayed("Search Employees");
+        return findFormElementById(FORM,"searchEmployees");
     }
 
     private WebElement assertMenuDisplayed(String labelText) {
-        return findElementByClassWithText(MENU_LABEL_CLASS, labelText);
-    }
-
-    private WebElement assertMenuItemDisplayed(String labelText) {
-        return findElementByClassWithText(MENU_ITEM_LABEL_CLASS, labelText);
+        //return findElementByClassWithText(MENU_LABEL_CLASS, labelText);
+        return findLinkByText(labelText);
     }
 
     public AddEmployeeDialog clickAddEmployeeMenuItem() {

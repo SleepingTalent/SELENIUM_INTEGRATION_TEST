@@ -6,8 +6,6 @@
                 xmlns:p="http://primefaces.org/ui">
 
     <p:dialog id="addEmployeeDialog" widgetVar="_addEmployeeDialog" header="Add New Employee" modal="true" dynamic="true" resizable="false" closable="true">
-        <p:growl id="addEmployeeMsg" showDetail="false" sticky="true"/>
-
         <h:form id="addEmployee">
                 <p:panelGrid columns="2">
                     <h:outputText id="firstNamelbl" value="First Name:"/>
@@ -49,7 +47,7 @@
 
                     <f:facet name="footer">
                         <p:commandButton id="addEmployeeBtn" value="Add Employee"
-                                         oncomplete=" handleDialogSubmit(xhr, status, args, _addEmployeeDialog)" update=":addEmployeeMsg"/>
+                                         oncomplete=" handleDialogSubmit(xhr, status, args, _addEmployeeDialog)" update=":growl"/>
                     </f:facet>
                 </p:panelGrid>
         </h:form>

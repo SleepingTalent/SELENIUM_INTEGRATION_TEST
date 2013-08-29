@@ -3,6 +3,7 @@ package com.fs.domain.page;
 
 import com.fs.domain.common.page.PageObject;
 import com.fs.domain.page.admin.AddEmployeeDialog;
+import com.fs.domain.page.admin.FindEmployeeDialog;
 import org.apache.log4j.Logger;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
@@ -88,5 +89,10 @@ public class HumanResourcesTool extends PageObject {
     public AddEmployeeDialog clickAddEmployeeMenuItem() {
         assertAddEmployeeMenuItemDisplayed().click();
         return new AddEmployeeDialog(getDriver());
+    }
+
+    public FindEmployeeDialog clickEditEmployeeMenuItem() {
+        assertEditEmployeeMenuItemDisplayed().click();
+        return new FindEmployeeDialog(getDriver());
     }
 }

@@ -24,7 +24,7 @@
                         <p:tieredMenu styleClass="adminMenu" autoDisplay="false">
                             <p:submenu label="Employee Admin" icon="ui-icon-gear">
                                 <p:menuitem id="addEmployee" value="Add Employee" actionListener="#{employeeController.prepareAddEmployee()}" oncomplete="_addEmployeeDialog.show()" icon="ui-icon-disk" />
-                                <p:menuitem id="editEmployee" value="Edit Employee" action="#{navigationController.navigateToEditEmployee}" icon="ui-icon-pencil" />
+                                <p:menuitem id="editEmployee" value="Edit Employee" actionListener="#{employeeController.prepareAddEmployee()}" oncomplete="_findEmployeeDialog.show()" icon="ui-icon-pencil" />
                                 <p:menuitem id="deleteEmployee" value="Delete Employee" action="#{navigationController.navigateToDeleteEmployee}" icon="ui-icon-close" />
                             </p:submenu>
                             <p:separator />
@@ -49,6 +49,7 @@
         </h:form>
 
         <ui:include src="admin/addEmployeeDialog.xhtml" />
+        <ui:include src="admin/findEmployeeDialog.xhtml" />
     </ui:define>
 </ui:composition>
 

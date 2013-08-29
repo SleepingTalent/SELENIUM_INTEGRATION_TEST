@@ -1,0 +1,24 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:a4j="http://richfaces.org/a4j"
+                xmlns:p="http://primefaces.org/ui">
+
+    <p:dialog id="findEmployeeDialog" widgetVar="_findEmployeeDialog" header="Enter Staff Number" modal="true" dynamic="true" resizable="false" closable="true">
+
+        <h:form id="findEmployee">
+                <p:panelGrid columns="2">
+                    <h:outputText id="staffNumberlbl" value="Staff Number:"/>
+                    <p:inputText label="staffNumber" id="staffNumber" required="true"
+                                 value="#{employeeController.employee.staffNumber}"
+                                 requiredMessage="Staff Number is required"/>
+
+                    <f:facet name="footer">
+                        <p:commandButton id="findEmployeeBtn" value="Find Employee"
+                                         oncomplete=" handleDialogSubmit(xhr, status, args, _findEmployeeDialog)" update=":growl"/>
+                    </f:facet>
+                </p:panelGrid>
+        </h:form>
+    </p:dialog>
+</ui:composition>

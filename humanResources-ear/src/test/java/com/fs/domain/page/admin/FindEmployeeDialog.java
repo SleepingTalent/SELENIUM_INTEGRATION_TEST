@@ -30,8 +30,9 @@ public class FindEmployeeDialog extends PageObject {
         return findFormElementById(FORM, STAFF_NUMBER_LABEL_ID);
     }
 
-    public void clickFindEmployeeBtn() {
+    public EditEmployeeDialog clickFindEmployeeBtn() {
         findFormElementById(FORM, FIND_EMPLOYEE_BTN).click();
+        return new EditEmployeeDialog(getDriver());
     }
 
     public void setStaffNumber(String staffNumber) {

@@ -15,7 +15,7 @@
 
                     <f:facet name="footer">
                         <p:commandButton id="findEmployeeBtn" value="Find Employee"
-                                         oncomplete="handleDialogSubmit(xhr, status, args, _findEmployeeDialog)" update=":growl"/>
+                                         oncomplete="handleDialogSubmitAndNextDialog(xhr, status, args, _findEmployeeDialog, _editEmployeeDialog)" update=":growl"/>
                     </f:facet>
                 </p:panelGrid>
         </h:form>

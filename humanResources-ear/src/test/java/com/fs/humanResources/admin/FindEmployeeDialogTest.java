@@ -28,15 +28,15 @@ public class FindEmployeeDialogTest extends BaseSeleniumTest {
 
     @Test
     public void findEmployeeFormElements_displayedAsExpected() {
-       // Assert.assertEquals("Staff Number:", findEmployeeDialog.staffNumberLabelDisplayed().getText());
-       // findEmployeeDialog.staffNumberInputDisplayed();
+       // Assert.assertEquals("Staff Number:", findEmployeeDialog.employeeIdLabelDisplayed().getText());
+       // findEmployeeDialog.employeeInputDisplayed();
     }
 
     @Test
     public void validationMessages_displayedAsExpected() {
-       // findEmployeeDialog.setStaffNumber("12345");
+       // findEmployeeDialog.setEmployeeId("12345");
 
-      //  findEmployeeDialog.staffNumberInputDisplayed().clear();
+      //  findEmployeeDialog.employeeInputDisplayed().clear();
       //  findEmployeeDialog.assertGrowlMessageDisplayed("Staff Number is required");
       //  findEmployeeDialog.closeGrowlMessage();
     }

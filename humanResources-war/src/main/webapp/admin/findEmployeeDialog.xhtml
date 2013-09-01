@@ -4,14 +4,14 @@
                 xmlns:f="http://java.sun.com/jsf/core"
                 xmlns:p="http://primefaces.org/ui">
 
-    <p:dialog id="findEmployeeDialog" widgetVar="_findEmployeeDialog" header="Enter Staff Number" modal="true" dynamic="true" resizable="false" closable="true">
+    <p:dialog id="findEmployeeDialog" widgetVar="_findEmployeeDialog" header="Enter Employee Id" modal="true" dynamic="true" resizable="false" closable="true">
 
         <h:form id="findEmployee">
                 <p:panelGrid columns="2">
-                    <h:outputText id="staffNumberlbl" value="Staff Number:"/>
-                    <p:inputText label="staffNumber" id="staffNumber" required="true"
+                    <h:outputText id="employeeIdlbl" value="Employee Id:"/>
+                    <p:inputText label="employeeId" id="employeeId" required="true"
                                  value="#{employeeController.employee.employeeId}"
-                                 requiredMessage="Staff Number is required"/>
+                                 requiredMessage="Employee Id is required"/>
 
                     <f:facet name="footer">
                         <p:commandButton id="findEmployeeBtn" value="Find Employee" actionListener="#{employeeController.findEmployee}"

@@ -9,8 +9,8 @@ public class FindEmployeeDialog extends PageObject {
     private static final String FORM = "findEmployee";
     private static final String FIND_EMPLOYEE_DIALOG = "findEmployeeDialog";
 
-    private static final String STAFF_NUMBER_INPUT_ID = "staffNumber";
-    private static final String STAFF_NUMBER_LABEL_ID = "staffNumberlbl";
+    private static final String EMPLOYEE_ID = "employeeId";
+    private static final String EMPLOYEE_LABEL_ID = "employeeIdlbl";
 
     private static final String FIND_EMPLOYEE_BTN = "findEmployeeBtn";
 
@@ -22,12 +22,12 @@ public class FindEmployeeDialog extends PageObject {
         findElementById(FIND_EMPLOYEE_DIALOG);
     }
 
-    public WebElement staffNumberInputDisplayed() {
-        return findFormElementById(FORM, STAFF_NUMBER_INPUT_ID);
+    public WebElement employeeInputDisplayed() {
+        return findFormElementById(FORM, EMPLOYEE_ID);
     }
 
-    public WebElement staffNumberLabelDisplayed() {
-        return findFormElementById(FORM, STAFF_NUMBER_LABEL_ID);
+    public WebElement employeeIdLabelDisplayed() {
+        return findFormElementById(FORM, EMPLOYEE_LABEL_ID);
     }
 
     public EditEmployeeDialog clickFindEmployeeBtn() {
@@ -35,8 +35,8 @@ public class FindEmployeeDialog extends PageObject {
         return new EditEmployeeDialog(getDriver());
     }
 
-    public void setStaffNumber(String staffNumber) {
-        setInputTextOnElement(staffNumberInputDisplayed(), staffNumber);
+    public void setEmployeeId(String employeeId) {
+        setInputTextOnElement(employeeInputDisplayed(), employeeId);
     }
 
 }

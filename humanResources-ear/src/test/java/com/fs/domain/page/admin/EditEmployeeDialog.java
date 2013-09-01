@@ -27,8 +27,8 @@ public class EditEmployeeDialog extends PageObject {
     private static final String TOWN_CITY_LABEL_ID = "townCitylbl";
     private static final String POSTCODE_LABEL_ID = "postCodelbl";
 
-    private static final String STAFF_NUMBER_INPUT_ID = "staffNumber";
-    private static final String STAFF_NUMBER_LABEL_ID = "staffNumberlbl";
+    private static final String EMPLOYEE_ID = "employeeId";
+    private static final String EMPLOYEE_ID_LABEL = "employeeIdlbl";
 
 
     private static final String EDIT_EMPLOYEE_BTN = "editEmployeeBtn";
@@ -41,12 +41,12 @@ public class EditEmployeeDialog extends PageObject {
         findElementById(EDIT_EMPLOYEE_DIALOG);
     }
 
-    public WebElement staffNumberInputDisplayed() {
-        return findFormElementById(FORM, STAFF_NUMBER_INPUT_ID);
+    public WebElement employeeIdInputDisplayed() {
+        return findFormElementById(FORM, EMPLOYEE_ID);
     }
 
-    public WebElement staffNumberLabelDisplayed() {
-        return findFormElementById(FORM, STAFF_NUMBER_LABEL_ID);
+    public WebElement employeeIdLabelDisplayed() {
+        return findFormElementById(FORM, EMPLOYEE_ID_LABEL);
     }
 
     public WebElement firstNameInputDisplayed() {

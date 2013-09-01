@@ -22,7 +22,7 @@ public class EditEmployeeDialogTest extends BaseSeleniumTest {
         FindEmployeeDialog findEmployeeDialog = humanResourcesTool.clickEditEmployeeMenuItem();
         findEmployeeDialog.assertDialogIsPresent();
 
-        findEmployeeDialog.setStaffNumber("12345");
+        findEmployeeDialog.setEmployeeId("12345");
         editEmployeeDialog = findEmployeeDialog.clickFindEmployeeBtn();
 
         editEmployeeDialog.assertDialogIsPresent();

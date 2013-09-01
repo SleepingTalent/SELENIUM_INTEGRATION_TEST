@@ -44,9 +44,11 @@ public class EmployeeController {
 
     public void findEmployee() {
         try {
+
         Long staffNumber = employeeModel.getEmployee().getEmployeeId();
         EmployeeDTO employeeDTO = humanResourcesService.getEmployeeDetails(staffNumber);
         employeeModel.setEmployee(new EmployeeViewBean(employeeDTO));
+
         } catch (EmployeeNotFoundException e) {
           //TODO: Add Growl Message...
         }

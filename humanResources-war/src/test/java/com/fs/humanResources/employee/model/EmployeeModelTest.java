@@ -31,14 +31,15 @@ public class EmployeeModelTest extends BaseUnitTest{
         Date dataOfBirth = new Date();
         Long employeeId = 12345l;
 
+        Long addressId = 5668l;
         String houseNumber = "50" ;
         String addressFirstLine = "Test Driven Way";
         String addressSecondLine = "Domain Court";
         String townCity = "Progammer City";
         String postCode = "AB1 CDXY";
 
-        AddressViewBean address = new AddressViewBean(houseNumber,addressFirstLine,addressSecondLine,townCity,postCode);
-        return new EmployeeViewBean(firstName,lastName,dataOfBirth,employeeId,address);
+        AddressViewBean address = new AddressViewBean(addressId,houseNumber,addressFirstLine,addressSecondLine,townCity,postCode);
+        return new EmployeeViewBean(employeeId,firstName,lastName,dataOfBirth,address);
     }
 
     @Test
@@ -47,7 +48,7 @@ public class EmployeeModelTest extends BaseUnitTest{
 
         Assert.assertEquals(employee.getFirstName(), actual.getFirstName());
         Assert.assertEquals(employee.getLastName(), actual.getLastName());
-        Assert.assertEquals(employee.getStaffNumber(), actual.getStaffNumber());
+        Assert.assertEquals(employee.getEmployeeId(), actual.getEmployeeId());
 
 
         DateFormat dateFormat = new SimpleDateFormat();

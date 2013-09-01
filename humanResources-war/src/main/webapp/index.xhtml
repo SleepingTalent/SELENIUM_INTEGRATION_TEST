@@ -23,13 +23,13 @@
                         <p:panelMenu styleClass="adminMenu" autoDisplay="false">
                             <p:submenu label="Employee Admin" icon="ui-icon-gear">
                                 <p:menuitem id="addEmployee" value="Add Employee"
-                                            actionListener="#{employeeController.clearEmployeeViewBean()}"
+                                            actionListener="#{employeeController.clearEmployee()}"
                                             oncomplete="_addEmployeeDialog.show()" icon="ui-icon-disk"/>
                                 <p:menuitem id="editEmployee" value="Edit Employee"
-                                            actionListener="#{employeeController.clearEmployeeViewBean()}"
+                                            actionListener="#{employeeController.clearEmployee()}"
                                             oncomplete="_findEmployeeDialog.show()" icon="ui-icon-pencil"/>
                                 <p:menuitem id="deleteEmployee" value="Delete Employee"
-                                            actionListener="#{employeeController.clearEmployeeViewBean()}"
+                                            actionListener="#{employeeController.clearEmployee()}"
                                             oncomplete="_findEmployeeDialog.show()" icon="ui-icon-close"/>
                             </p:submenu>
                             <p:submenu label="Browse" icon="ui-icon-folder-collapsed">

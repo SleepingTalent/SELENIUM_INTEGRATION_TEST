@@ -9,6 +9,7 @@ public class AddressViewBeanTest extends BaseUnitTest{
 
     AddressViewBean addressViewBean;
 
+    private Long addressId;
     private String houseNumber;
     private String addressFirstLine;
     private String addressSecondLine;
@@ -24,7 +25,7 @@ public class AddressViewBeanTest extends BaseUnitTest{
         townCity = "Progammer City";
         postCode = "AB1 CDXY";
 
-        addressViewBean = new AddressViewBean(houseNumber,addressFirstLine,addressSecondLine,townCity,postCode);
+        addressViewBean = new AddressViewBean(addressId,houseNumber,addressFirstLine,addressSecondLine,townCity,postCode);
     }
 
     @Test

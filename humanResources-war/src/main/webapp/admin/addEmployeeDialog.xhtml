@@ -45,7 +45,7 @@
                                  requiredMessage="Postcode is required" mask="a*9-9a*"/>
 
                     <f:facet name="footer">
-                        <p:commandButton id="addEmployeeBtn" value="Add Employee"
+                        <p:commandButton id="addEmployeeBtn" value="Add Employee" actionListener="#{employeeController.saveEmployee}"
                                          oncomplete="handleDialogSubmit(xhr, status, args, _addEmployeeDialog)" update=":growl"/>
                     </f:facet>
                 </p:panelGrid>

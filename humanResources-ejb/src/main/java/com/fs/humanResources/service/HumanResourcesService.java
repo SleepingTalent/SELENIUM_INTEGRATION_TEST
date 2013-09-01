@@ -15,14 +15,23 @@ public class HumanResourcesService {
         this.employeeDAO = employeeDAO;
     }
 
-    public EmployeeDTO getEmployeeDetails(Long employeeId) throws EmployeeNotFoundException {
+    public EmployeeDTO getEmployeeDetails(Long staffNumber) throws EmployeeNotFoundException {
         try {
 
-            Employee employee = employeeDAO.getEmployeeDetails(employeeId);
+            Employee employee = employeeDAO.getEmployeeDetails(staffNumber);
             return new EmployeeDTO(employee);
 
         } catch (NoResultException e) {
             throw new EmployeeNotFoundException(e);
         }
     }
+
+    public void saveEmployeeDetails(EmployeeDTO employeeDTO) {
+        employeeDAO.create(employeeDTO.getEntity());
+    }
+
+    public void updateEmployeeDetails(EmployeeDTO employeeDTO) {
+        employeeDAO.update(employeeDTO.getEntity());
+    }
+
 }

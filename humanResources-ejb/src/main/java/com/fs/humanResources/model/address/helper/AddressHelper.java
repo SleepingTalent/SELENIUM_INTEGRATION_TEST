@@ -1,5 +1,6 @@
 package com.fs.humanResources.model.address.helper;
 
+import com.fs.humanResources.dto.address.AddressDTO;
 import com.fs.humanResources.model.address.entities.Address;
 
 import java.util.ArrayList;
@@ -27,6 +28,16 @@ public class AddressHelper {
 
         for(Address address : addresses ) {
             addressList.add(address);
+        }
+
+        return addressList;
+    }
+
+    public List<Address> convertDTOToEntityList(AddressDTO... addressDTO) {
+        List<Address> addressList = new ArrayList();
+
+        for(AddressDTO address : addressDTO ) {
+            addressList.add(address.getEntity());
         }
 
         return addressList;

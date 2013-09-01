@@ -27,7 +27,6 @@ public class AddressDAOIntegrationTest extends BaseDAOTest {
         addressDAO = new AddressDAO(getEntityManager());
 
         employee = new Employee();
-        employee.setStaffNumber(1234l);
         employee.setFirstName("Dave");
         employee.setLastName("Smith");
         employee.setDateOfBirth(new Date());

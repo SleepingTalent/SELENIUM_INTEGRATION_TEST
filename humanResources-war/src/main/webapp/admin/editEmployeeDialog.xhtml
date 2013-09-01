@@ -9,7 +9,7 @@
                 <p:panelGrid columns="2">
                     <h:outputText id="staffNumberlbl" value="Staff Number:"/>
                     <p:inputText label="staffNumber" id="staffNumber" required="true"
-                                 value="#{employeeController.employee.staffNumber}"
+                                 value="#{employeeController.employee.employeeId}"
                                  disabled="true"/>
 
                     <h:outputText id="firstNamelbl" value="First Name:"/>
@@ -50,7 +50,7 @@
                                  requiredMessage="Postcode is required" mask="a*9-9a*"/>
 
                     <f:facet name="footer">
-                        <p:commandButton id="editEmployeeBtn" value="Edit Employee"
+                        <p:commandButton id="editEmployeeBtn" value="Edit Employee" actionListener="#{employeeController.updateEmployee}"
                                          oncomplete="handleDialogSubmit(xhr, status, args, _editEmployeeDialog)" update=":growl"/>
                     </f:facet>
                 </p:panelGrid>

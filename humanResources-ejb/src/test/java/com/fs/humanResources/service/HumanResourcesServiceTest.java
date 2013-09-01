@@ -34,12 +34,17 @@ public class HumanResourcesServiceTest extends BaseUnitTest {
 
     Long notFoundEmployeeId;
 
+    @Mock
+    EmployeeDTO employeeDTO;
+
     @Before
     public void setUp() throws NoResultException {
         foundEmployeeId = 12345l;
         notFoundEmployeeId = 4567l;
 
         employee = createEmployee();
+
+        when(employeeDTO.getEntity()).thenReturn(employee);
 
         when(employeeDAO.getEmployeeDetails(eq(foundEmployeeId))).thenReturn(employee);
         when(employeeDAO.getEmployeeDetails(eq(notFoundEmployeeId))).thenThrow(new NoResultException());
@@ -57,7 +62,7 @@ public class HumanResourcesServiceTest extends BaseUnitTest {
 
         Assert.assertEquals(employee.getFirstName(), actual.getFirstName());
         Assert.assertEquals(employee.getLastName(), actual.getLastName());
-        Assert.assertEquals(employee.getStaffNumber(), actual.getStaffNumber());
+        Assert.assertEquals(employee.getId(), actual.getId());
         Assert.assertEquals(employee.getDateOfBirth(), actual.getDateOfBirth());
 
         Assert.assertEquals(employee.getAddressList().size(), 1);
@@ -75,6 +80,18 @@ public class HumanResourcesServiceTest extends BaseUnitTest {
     @Test(expected = EmployeeNotFoundException.class)
     public void getEmployeeDetails_throws_exception_when_employee_not_found() throws NoResultException, EmployeeNotFoundException {
         humanResourcesService.getEmployeeDetails(notFoundEmployeeId);
+    }
+
+    @Test
+    public void saveEmployeeDetails_verify_expected_methods_called() throws NoResultException, EmployeeNotFoundException {
+        humanResourcesService.saveEmployeeDetails(employeeDTO);
+        verify(employeeDAO,times(1)).create(eq(employee));
+    }
+
+    @Test
+    public void updateEmployeeDetails_verify_expected_methods_called() throws NoResultException, EmployeeNotFoundException {
+        humanResourcesService.updateEmployeeDetails(employeeDTO);
+        verify(employeeDAO,times(1)).update(eq(employee));
     }
 
     private Employee createEmployee() {
@@ -99,7 +116,6 @@ public class HumanResourcesServiceTest extends BaseUnitTest {
 
         Employee employee = new Employee();
         employee.setId(12345l);
-        employee.setStaffNumber(employeeId);
         employee.setFirstName(firstName);
         employee.setLastName(lastName);
         employee.setDateOfBirth(dataOfBirth);

@@ -20,7 +20,6 @@ import static org.mockito.Mockito.*;
 public class EmployeeDAOTest extends BaseUnitTest {
 
     public static final String COUNT_QUERY = "SELECT count(o) from Employee o ";
-    public static final String EMPLOYEE_ID_QUERY = "select e from Employee e where e.staffNumber = :thisStaffNumber";
 
     @InjectMocks
     EmployeeDAO employeeDAO;
@@ -47,8 +46,7 @@ public class EmployeeDAOTest extends BaseUnitTest {
         when(entityManager.createQuery(eq(COUNT_QUERY))).thenReturn(countQuery);
         when(countQuery.getSingleResult()).thenReturn(expectedCount);
 
-        when(entityManager.createQuery(eq(EMPLOYEE_ID_QUERY))).thenReturn(employeeIdQuery);
-        when(employeeIdQuery.getSingleResult()).thenReturn(employee);
+        when(entityManager.find(eq(Employee.class),eq(employee.getId()))).thenReturn(employee);
     }
 
     @Test
@@ -101,7 +99,7 @@ public class EmployeeDAOTest extends BaseUnitTest {
 
     @Test(expected = NoResultException.class)
     public void findById_throws_noResultsException_whenEmployeeNotFound() {
-        Long employeeId = 1234l;
+        Long employeeId = 9999l;
         employeeDAO.findById(employeeId);
     }
 
@@ -112,8 +110,7 @@ public class EmployeeDAOTest extends BaseUnitTest {
         Employee actualEmployee = employeeDAO.getEmployeeDetails(staffNumber);
         Assert.assertEquals(employee.getId(), actualEmployee.getId());
 
-        verify(entityManager, times(1)).createQuery(EMPLOYEE_ID_QUERY);
-        verify(employeeIdQuery,times(1)).getSingleResult();
+        verify(entityManager, times(1)).find(eq(Employee.class),eq(employee.getId()));
     }
 
 }

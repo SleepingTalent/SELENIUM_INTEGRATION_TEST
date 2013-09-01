@@ -1,5 +1,7 @@
 package com.fs.humanResources.employee.view.address;
 
+import com.fs.humanResources.dto.address.AddressDTO;
+
 public class AddressViewBean {
 
     private String houseNumber;
@@ -7,8 +9,10 @@ public class AddressViewBean {
     private String addressSecondLine;
     private String townCity;
     private String postCode;
+    private Long id;
 
-    public AddressViewBean(String houseNumber, String addressFirstLine, String addressSecondLine, String townCity, String postCode) {
+    public AddressViewBean(Long id, String houseNumber, String addressFirstLine, String addressSecondLine, String townCity, String postCode) {
+        this.id = id;
         this.houseNumber = houseNumber;
         this.addressFirstLine = addressFirstLine;
         this.addressSecondLine = addressSecondLine;
@@ -17,6 +21,15 @@ public class AddressViewBean {
     }
 
     public AddressViewBean() {
+    }
+
+    public AddressViewBean(AddressDTO addressDTO) {
+        this.id = addressDTO.getId();
+        this.houseNumber = addressDTO.getHouseNumber();
+        this.addressFirstLine = addressDTO.getAddressFirstLine();
+        this.addressSecondLine = addressDTO.getAddressSecondLine();
+        this.townCity = addressDTO.getTownCity();
+        this.postCode = addressDTO.getPostCode();
     }
 
     public String getHouseNumber() {
@@ -37,5 +50,9 @@ public class AddressViewBean {
 
     public String getPostCode() {
         return postCode;
+    }
+
+    public Long geId() {
+        return id;
     }
 }

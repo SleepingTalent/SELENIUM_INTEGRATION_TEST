@@ -19,6 +19,7 @@ public class EmployeeViewBeanTest extends BaseUnitTest {
     private Long employeeId;
 
     private AddressViewBean address;
+    private Long addressId;
     private String houseNumber;
     private String addressFirstLine;
     private String addressSecondLine;
@@ -32,14 +33,15 @@ public class EmployeeViewBeanTest extends BaseUnitTest {
         dataOfBirth = new Date();
         employeeId = 12345l;
 
+        addressId = 5667l;
         houseNumber = "50" ;
         addressFirstLine = "Test Driven Way";
         addressSecondLine = "Domain Court";
         townCity = "Progammer City";
         postCode = "AB1 CDXY";
 
-        address = new AddressViewBean(houseNumber,addressFirstLine,addressSecondLine,townCity,postCode);
-        employeeViewBean = new EmployeeViewBean(firstName,lastName,dataOfBirth,employeeId,address);
+        address = new AddressViewBean(addressId,houseNumber,addressFirstLine,addressSecondLine,townCity,postCode);
+        employeeViewBean = new EmployeeViewBean(employeeId,firstName,lastName,dataOfBirth,address);
     }
 
     @Test
@@ -59,7 +61,7 @@ public class EmployeeViewBeanTest extends BaseUnitTest {
 
     @Test
     public void employeeIdSetAsExpected() {
-        Assert.assertEquals(employeeId, employeeViewBean.getStaffNumber());
+        Assert.assertEquals(employeeId, employeeViewBean.getEmployeeId());
     }
 
     @Test

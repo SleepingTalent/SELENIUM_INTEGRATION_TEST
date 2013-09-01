@@ -10,11 +10,11 @@
                 <p:panelGrid columns="2">
                     <h:outputText id="staffNumberlbl" value="Staff Number:"/>
                     <p:inputText label="staffNumber" id="staffNumber" required="true"
-                                 value="#{employeeController.employee.staffNumber}"
+                                 value="#{employeeController.employee.employeeId}"
                                  requiredMessage="Staff Number is required"/>
 
                     <f:facet name="footer">
-                        <p:commandButton id="findEmployeeBtn" value="Find Employee"
+                        <p:commandButton id="findEmployeeBtn" value="Find Employee" actionListener="#{employeeController.findEmployee}"
                                          oncomplete="handleDialogSubmitAndNextDialog(xhr, status, args, _findEmployeeDialog, _editEmployeeDialog)" update=":growl"/>
                     </f:facet>
                 </p:panelGrid>

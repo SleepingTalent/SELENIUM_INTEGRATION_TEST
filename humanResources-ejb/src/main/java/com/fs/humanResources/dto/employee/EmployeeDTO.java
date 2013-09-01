@@ -9,30 +9,34 @@ import java.util.Date;
 
 public class EmployeeDTO {
 
+    private Long id;
     private String firstName;
     private String lastName;
     private Date dateOfBirth;
-    private Long staffNumber;
     private AddressDTO address;
 
-    public EmployeeDTO(String firstName, String lastName, Date dateOfBirth, Long staffNumber, AddressDTO address) {
-        this(firstName,lastName, dateOfBirth, staffNumber);
+    public EmployeeDTO(Long id, String firstName, String lastName, Date dateOfBirth, AddressDTO address) {
+        this(id, firstName,lastName, dateOfBirth);
         this.address = address;
     }
 
-    public EmployeeDTO(String firstName, String lastName, Date dateOfBirth, Long staffNumber) {
+    public EmployeeDTO(Long id, String firstName, String lastName, Date dateOfBirth) {
+        this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.dateOfBirth = dateOfBirth;
-        this.staffNumber = staffNumber;
     }
 
     public EmployeeDTO(Employee employee) {
-        this(employee.getFirstName(),employee.getLastName(),
-                employee.getDateOfBirth(),employee.getStaffNumber());
+        this(employee.getId(),employee.getFirstName(),employee.getLastName(),
+                employee.getDateOfBirth());
 
         AddressHelper addressHelper = new AddressHelper();
         this.address =  new AddressDTO(addressHelper.findPrimaryAddress(employee.getAddressList()));
+    }
+
+    public Long getId() {
+        return id;
     }
 
     public String getFirstName() {
@@ -47,11 +51,20 @@ public class EmployeeDTO {
         return dateOfBirth;
     }
 
-    public Long getStaffNumber() {
-        return staffNumber;
-    }
-
     public AddressDTO getAddress() {
         return address;
+    }
+
+    public Employee getEntity() {
+        Employee employee = new Employee();
+        employee.setId(getId());
+        employee.setFirstName(getFirstName());
+        employee.setLastName(getLastName());
+        employee.setDateOfBirth(getDateOfBirth());
+
+        AddressHelper addressHelper = new AddressHelper();
+
+        employee.setAddressList(addressHelper.convertDTOToEntityList(getAddress()));
+        return employee;
     }
 }

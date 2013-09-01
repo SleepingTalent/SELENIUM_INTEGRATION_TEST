@@ -23,7 +23,6 @@ public class EmployeeDAOIntegrationTest extends BaseDAOTest {
         employeeDAO = new EmployeeDAO(getEntityManager());
 
         employee = new Employee();
-        employee.setStaffNumber(1234l);
         employee.setFirstName("Dave");
         employee.setLastName("Smith");
         employee.setDateOfBirth(new Date());
@@ -40,7 +39,6 @@ public class EmployeeDAOIntegrationTest extends BaseDAOTest {
     @Test
     public void create_createsEmployee_AsExpected() {
         Employee employee = new Employee();
-        employee.setStaffNumber(1235l);
         employee.setFirstName("Rachel");
         employee.setLastName("Smith");
         employee.setDateOfBirth(new Date());
@@ -72,7 +70,6 @@ public class EmployeeDAOIntegrationTest extends BaseDAOTest {
         Employee actual = employeeDAO.findById(employee.getId());
 
         Assert.assertEquals(employee.getId(), actual.getId());
-        Assert.assertEquals(employee.getStaffNumber(), actual.getStaffNumber());
         Assert.assertEquals(employee.getFirstName(), actual.getFirstName());
         Assert.assertEquals("modified", actual.getLastName());
         Assert.assertEquals(employee.getDateOfBirth(), actual.getDateOfBirth());
@@ -83,7 +80,6 @@ public class EmployeeDAOIntegrationTest extends BaseDAOTest {
         Employee actual = employeeDAO.findById(employee.getId());
 
         Assert.assertEquals(employee.getId(), actual.getId());
-        Assert.assertEquals(employee.getStaffNumber(), actual.getStaffNumber());
         Assert.assertEquals(employee.getFirstName(), actual.getFirstName());
         Assert.assertEquals(employee.getLastName(), actual.getLastName());
         Assert.assertEquals(employee.getDateOfBirth(), actual.getDateOfBirth());
@@ -91,10 +87,9 @@ public class EmployeeDAOIntegrationTest extends BaseDAOTest {
 
     @Test
     public void getEmployeeDetails_returns_AsExpected() {
-        Employee actual = employeeDAO.getEmployeeDetails(employee.getStaffNumber());
+        Employee actual = employeeDAO.getEmployeeDetails(employee.getId());
 
         Assert.assertEquals(employee.getId(), actual.getId());
-        Assert.assertEquals(employee.getStaffNumber(), actual.getStaffNumber());
         Assert.assertEquals(employee.getFirstName(), actual.getFirstName());
         Assert.assertEquals(employee.getLastName(), actual.getLastName());
         Assert.assertEquals(employee.getDateOfBirth(), actual.getDateOfBirth());

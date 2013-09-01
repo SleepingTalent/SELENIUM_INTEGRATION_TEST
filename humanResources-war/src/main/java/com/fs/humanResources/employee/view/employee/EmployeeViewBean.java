@@ -1,4 +1,6 @@
 package com.fs.humanResources.employee.view.employee;
+import com.fs.humanResources.dto.address.AddressDTO;
+import com.fs.humanResources.dto.employee.EmployeeDTO;
 import com.fs.humanResources.employee.view.address.AddressViewBean;
 
 import java.util.Date;
@@ -8,24 +10,36 @@ public class EmployeeViewBean {
     private String firstName;
     private String lastName;
     private Date dateOfBirth;
-    private Long staffNumber;
+    private Long id;
     private AddressViewBean address;
 
-    public EmployeeViewBean(String firstName, String lastName, Date dateOfBirth, Long staffNumber, AddressViewBean address) {
-        this(firstName,lastName, dateOfBirth, staffNumber);
+    public EmployeeViewBean(Long id, String firstName, String lastName, Date dateOfBirth, AddressViewBean address) {
+        this(id, firstName,lastName, dateOfBirth);
 
         this.address = address;
     }
 
-    public EmployeeViewBean(String firstName, String lastName, Date dateOfBirth, Long staffNumber) {
+    public EmployeeViewBean(Long id, String firstName, String lastName, Date dateOfBirth) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.dateOfBirth = dateOfBirth;
-        this.staffNumber = staffNumber;
+        this.id = id;
     }
 
     public EmployeeViewBean() {
         address = new AddressViewBean();
+    }
+
+    public EmployeeViewBean(EmployeeDTO employeeDTO) {
+        this.firstName = employeeDTO.getFirstName();
+        this.lastName = employeeDTO.getLastName();
+        this.dateOfBirth = employeeDTO.getDateOfBirth();
+        this.id = employeeDTO.getId();
+
+        if(employeeDTO.getAddress() != null) {
+            address = new AddressViewBean(employeeDTO.getAddress());
+        }
+
     }
 
     public String getFirstName() {
@@ -40,11 +54,18 @@ public class EmployeeViewBean {
         return dateOfBirth;
     }
 
-    public Long getStaffNumber() {
-        return staffNumber;
+    public Long getEmployeeId() {
+        return id;
     }
 
     public AddressViewBean getAddress() {
         return address;
+    }
+
+    public EmployeeDTO getDTO() {
+        AddressDTO addressDTO = new AddressDTO(address.geId(),address.getHouseNumber(),address.getAddressFirstLine(),address.getAddressSecondLine(),address.getTownCity(),address.getPostCode(),true);
+
+        return new EmployeeDTO(getEmployeeId(),
+                getFirstName(),getFirstName(),getDateOfBirth(),addressDTO);
     }
 }

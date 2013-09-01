@@ -1,9 +1,11 @@
 package com.fs.humanResources.employee.controller;
 
 import com.fs.common.BaseUnitTest;
+import com.fs.humanResources.dto.employee.EmployeeDTO;
 import com.fs.humanResources.employee.model.EmployeeModel;
 import com.fs.humanResources.employee.view.address.AddressViewBean;
 import com.fs.humanResources.employee.view.employee.EmployeeViewBean;
+import com.fs.humanResources.service.HumanResourcesService;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -27,6 +29,9 @@ public class EmployeeControllerTest extends BaseUnitTest {
     @Mock
     EmployeeModel employeeModel;
 
+    @Mock
+    HumanResourcesService humanResourcesService;
+
     EmployeeViewBean employee;
 
     @Before
@@ -41,14 +46,15 @@ public class EmployeeControllerTest extends BaseUnitTest {
         Date dataOfBirth = new Date();
         Long employeeId = 12345l;
 
+        Long addressId = 5678l;
         String houseNumber = "50";
         String addressFirstLine = "Test Driven Way";
         String addressSecondLine = "Domain Court";
         String townCity = "Progammer City";
         String postCode = "AB1 CDXY";
 
-        AddressViewBean address = new AddressViewBean(houseNumber, addressFirstLine, addressSecondLine, townCity, postCode);
-        return new EmployeeViewBean(firstName, lastName, dataOfBirth, employeeId, address);
+        AddressViewBean address = new AddressViewBean(addressId,houseNumber, addressFirstLine, addressSecondLine, townCity, postCode);
+        return new EmployeeViewBean(employeeId,firstName, lastName, dataOfBirth, address);
     }
 
     @Test
@@ -57,7 +63,7 @@ public class EmployeeControllerTest extends BaseUnitTest {
 
         Assert.assertEquals(employee.getFirstName(), actual.getFirstName());
         Assert.assertEquals(employee.getLastName(), actual.getLastName());
-        Assert.assertEquals(employee.getStaffNumber(), actual.getStaffNumber());
+        Assert.assertEquals(employee.getEmployeeId(), actual.getEmployeeId());
         Assert.assertEquals(employee.getDateOfBirth(), actual.getDateOfBirth());
 
         AddressViewBean expectedAddress = employee.getAddress();
@@ -72,7 +78,21 @@ public class EmployeeControllerTest extends BaseUnitTest {
 
     @Test
     public void clearEmployeeViewBean_setsModel_asExpected() {
-        employeeController.clearEmployeeViewBean();
+        employeeController.clearEmployee();
         verify(employeeModel, times(1)).setEmployee(Matchers.<EmployeeViewBean>anyObject());
+    }
+
+    @Test
+    public void saveEmployee_savesEmployee_asExpected() {
+        employeeController.saveEmployee();
+        verify(employeeModel, times(1)).getEmployee();
+        verify(humanResourcesService, times(1)).saveEmployeeDetails(Matchers.<EmployeeDTO>anyObject());
+    }
+
+    @Test
+    public void updateEmployee_savesEmployee_asExpected() {
+        employeeController.updateEmployee();
+        verify(employeeModel, times(1)).getEmployee();
+        verify(humanResourcesService, times(1)).updateEmployeeDetails(Matchers.<EmployeeDTO>anyObject());
     }
 }

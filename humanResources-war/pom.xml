@@ -176,6 +176,13 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
+            <groupId>humanResources-app</groupId>
+            <artifactId>humanResources-ejb</artifactId>
+            <version>1.0</version>
+            <type>jar</type>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
             <scope>provided</scope>

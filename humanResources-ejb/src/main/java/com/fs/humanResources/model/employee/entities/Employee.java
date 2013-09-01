@@ -17,7 +17,6 @@ public class Employee extends BaseEntity {
     private String firstName;
     private String lastName;
     private Date dateOfBirth;
-    private Long staffNumber;
 
     @OneToMany(mappedBy="employee",cascade=CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Address> addressList;
@@ -42,10 +41,6 @@ public class Employee extends BaseEntity {
         this.dateOfBirth = dateOfBirth;
     }
 
-    public void setStaffNumber(Long employeeId) {
-        this.staffNumber = employeeId;
-    }
-
     public void setAddressList(List<Address> address) {
         this.addressList = address;
     }
@@ -60,10 +55,6 @@ public class Employee extends BaseEntity {
 
     public Date getDateOfBirth() {
         return dateOfBirth;
-    }
-
-    public Long getStaffNumber() {
-        return staffNumber;
     }
 
     public List<Address> getAddressList() {

@@ -38,6 +38,10 @@
             <url>http://repository.primefaces.org</url>
             <layout>default</layout>
         </repository>
+        <repository>
+            <id>glassfish-repository</id>
+            <url>http://download.java.net/maven/glassfish</url>
+        </repository>
     </repositories>
     <pluginRepositories>
         <pluginRepository>
@@ -140,13 +144,6 @@
     <dependencyManagement>
         <dependencies>
             <dependency>
-                <groupId>org.richfaces</groupId>
-                <artifactId>richfaces-bom</artifactId>
-                <version>${org.richfaces.bom.version}</version>
-                <scope>import</scope>
-                <type>pom</type>
-            </dependency>
-            <dependency>
                 <groupId>org.jboss.spec</groupId>
                 <artifactId>jboss-javaee-web-6.0</artifactId>
                 <version>2.0.0.Final</version>
@@ -157,19 +154,11 @@
     </dependencyManagement>
 
     <dependencies>
-        <dependency>
-            <groupId>org.richfaces.ui</groupId>
-            <artifactId>richfaces-components-ui</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.richfaces.core</groupId>
-            <artifactId>richfaces-core-impl</artifactId>
-        </dependency>
-        <dependency>
+       <!-- <dependency>
             <groupId>javax.faces</groupId>
             <artifactId>javax.faces-api</artifactId>
             <scope>provided</scope>
-        </dependency>
+        </dependency>      -->
         <dependency>
             <groupId>org.glassfish</groupId>
             <artifactId>javax.faces</artifactId>
@@ -191,6 +180,12 @@
             <groupId>javax.servlet.jsp</groupId>
             <artifactId>jsp-api</artifactId>
             <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.glassfish</groupId>
+            <artifactId>javax.servlet</artifactId>
+            <version>3.0</version>
+            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>javax.el</groupId>

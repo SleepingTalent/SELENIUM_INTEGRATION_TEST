@@ -52,6 +52,7 @@ public class EmployeeController {
             employeeModel.setEmployee(new EmployeeViewBean(employeeDTO));
 
         } catch (EmployeeNotFoundException e) {
+            log.error("Employee not found!");
             FacesContext.getCurrentInstance().addMessage(
                     null, new FacesMessage(FacesMessage.SEVERITY_ERROR,
                     "Find Error", "Employee Id (" + employeeModel.getEmployee().getEmployeeId() + ") not found!"));

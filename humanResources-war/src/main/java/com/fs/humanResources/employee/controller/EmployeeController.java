@@ -7,6 +7,7 @@ import com.fs.humanResources.service.HumanResourcesService;
 import com.fs.humanResources.service.exception.EmployeeNotFoundException;
 import org.apache.log4j.Logger;
 
+import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;

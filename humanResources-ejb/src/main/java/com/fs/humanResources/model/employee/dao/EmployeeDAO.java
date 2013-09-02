@@ -3,11 +3,13 @@ package com.fs.humanResources.model.employee.dao;
 import com.fs.humanResources.model.common.dao.BaseDAO;
 import com.fs.humanResources.model.employee.entities.Employee;
 
+import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.Query;
 
 
+@Named
 public class EmployeeDAO extends BaseDAO<Employee> {
 
     public EmployeeDAO() {

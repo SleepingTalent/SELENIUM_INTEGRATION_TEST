@@ -52,7 +52,7 @@ public class AddressViewBean {
         return postCode;
     }
 
-    public Long geId() {
+    public Long getId() {
         return id;
     }
 }

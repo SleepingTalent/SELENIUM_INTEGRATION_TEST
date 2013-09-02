@@ -8,6 +8,8 @@ import com.fs.humanResources.service.exception.EmployeeNotFoundException;
 import org.apache.log4j.Logger;
 
 import javax.enterprise.context.RequestScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -29,7 +31,7 @@ public class EmployeeController {
     }
 
     public void clearEmployee() {
-         employeeModel.setEmployee(new EmployeeViewBean());
+        employeeModel.setEmployee(new EmployeeViewBean());
     }
 
     public void saveEmployee() {
@@ -45,12 +47,14 @@ public class EmployeeController {
     public void findEmployee() {
         try {
 
-        Long staffNumber = employeeModel.getEmployee().getEmployeeId();
-        EmployeeDTO employeeDTO = humanResourcesService.getEmployeeDetails(staffNumber);
-        employeeModel.setEmployee(new EmployeeViewBean(employeeDTO));
+            Long staffNumber = employeeModel.getEmployee().getEmployeeId();
+            EmployeeDTO employeeDTO = humanResourcesService.getEmployeeDetails(staffNumber);
+            employeeModel.setEmployee(new EmployeeViewBean(employeeDTO));
 
         } catch (EmployeeNotFoundException e) {
-          //TODO: Add Growl Message...
+            FacesContext.getCurrentInstance().addMessage(
+                    null, new FacesMessage(FacesMessage.SEVERITY_ERROR,
+                    "Find Error", "Employee Id (" + employeeModel.getEmployee().getEmployeeId() + ") not found!"));
         }
     }
 }

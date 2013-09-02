@@ -63,7 +63,7 @@ public class EmployeeViewBean {
     }
 
     public EmployeeDTO getDTO() {
-        AddressDTO addressDTO = new AddressDTO(address.geId(),address.getHouseNumber(),address.getAddressFirstLine(),address.getAddressSecondLine(),address.getTownCity(),address.getPostCode(),true);
+        AddressDTO addressDTO = new AddressDTO(address.getId(),address.getHouseNumber(),address.getAddressFirstLine(),address.getAddressSecondLine(),address.getTownCity(),address.getPostCode(),true);
 
         return new EmployeeDTO(getEmployeeId(),
                 getFirstName(),getFirstName(),getDateOfBirth(),addressDTO);

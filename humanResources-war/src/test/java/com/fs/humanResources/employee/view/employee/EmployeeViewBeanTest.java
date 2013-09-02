@@ -2,6 +2,8 @@ package com.fs.humanResources.employee.view.employee;
 
 
 import com.fs.common.BaseUnitTest;
+import com.fs.humanResources.dto.address.AddressDTO;
+import com.fs.humanResources.dto.employee.EmployeeDTO;
 import com.fs.humanResources.employee.view.address.AddressViewBean;
 import org.junit.Assert;
 import org.junit.Before;
@@ -67,5 +69,25 @@ public class EmployeeViewBeanTest extends BaseUnitTest {
     @Test
     public void addressSetAsExpected() {
         Assert.assertEquals(address, employeeViewBean.getAddress());
+    }
+
+    @Test
+    public void dtoConstructorSetAsExpected() {
+        AddressDTO addressDTO = new AddressDTO(addressId,houseNumber,addressFirstLine,addressSecondLine,townCity,postCode,true);
+        EmployeeDTO employeeDTO = new EmployeeDTO(employeeId,firstName,lastName,dataOfBirth,addressDTO);
+
+        EmployeeViewBean employeeView = new EmployeeViewBean(employeeDTO);
+
+        Assert.assertEquals(employeeId, employeeView.getEmployeeId());
+        Assert.assertEquals(firstName, employeeView.getFirstName());
+        Assert.assertEquals(lastName, employeeView.getLastName());
+        Assert.assertEquals(dataOfBirth, employeeView.getDateOfBirth());
+
+        Assert.assertEquals(addressId, employeeView.getAddress().getId());
+        Assert.assertEquals(houseNumber, employeeView.getAddress().getHouseNumber());
+        Assert.assertEquals(addressFirstLine, employeeView.getAddress().getAddressFirstLine());
+        Assert.assertEquals(addressSecondLine, employeeView.getAddress().getAddressSecondLine());
+        Assert.assertEquals(townCity, employeeView.getAddress().getTownCity());
+        Assert.assertEquals(postCode, employeeView.getAddress().getPostCode());
     }
 }

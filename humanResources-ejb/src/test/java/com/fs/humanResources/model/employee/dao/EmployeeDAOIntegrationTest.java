@@ -106,15 +106,15 @@ public class EmployeeDAOIntegrationTest extends BaseDAOTest {
         newAddress.setTownCity("Meanwhile City");
         newAddress.setPostCode("AB1 CD4");
         newAddress.setPrimaryAddress(true);
-        newAddress.setEmployee(employee);
 
-        addressDAO.create(newAddress);
+        Assert.assertEquals(0, employee.getAddressList().size());
 
-        Assert.assertNull("Expected Address List to be null", employee.getAddressList());
+        employee.addAddress(newAddress);
+
+        employeeDAO.update(employee);
 
         getEntityManager().refresh(employee);
 
-        Assert.assertNotNull("Expected Address List to be not null", employee.getAddressList());
         Assert.assertEquals(1, employee.getAddressList().size());
         Assert.assertEquals(1, addressDAO.getEmployeeAddressList(employee).size());
 

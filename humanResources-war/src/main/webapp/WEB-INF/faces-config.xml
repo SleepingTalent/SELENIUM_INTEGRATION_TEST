@@ -4,7 +4,7 @@
 
    <!--
     <navigation-rule>
-        <from-view-id>/index.xhtml</from-view-id>
+        <from-view-id>/admin.xhtml</from-view-id>
         <navigation-case>
             <from-action>#{navigationController.navigateToAddEmployee}</from-action>
             <from-outcome>addEmployee</from-outcome>

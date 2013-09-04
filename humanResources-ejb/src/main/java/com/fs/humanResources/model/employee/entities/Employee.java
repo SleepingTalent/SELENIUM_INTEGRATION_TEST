@@ -4,6 +4,7 @@ import com.fs.humanResources.model.address.entities.Address;
 import com.fs.humanResources.model.common.entities.BaseEntity;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -19,7 +20,7 @@ public class Employee extends BaseEntity {
     private Date dateOfBirth;
 
     @OneToMany(mappedBy="employee",cascade=CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Address> addressList;
+    private List<Address> addressList = new ArrayList();
 
     public void setId(Long id) {
         this.id = id;
@@ -59,5 +60,12 @@ public class Employee extends BaseEntity {
 
     public List<Address> getAddressList() {
         return addressList;
+    }
+
+    public void addAddress(Address address) {
+        addressList.add(address);
+        if(address.getEmployee() != this) {
+           address.setEmployee(this);
+        }
     }
 }

@@ -3,16 +3,51 @@ package com.fs.humanResources.admin;
 import com.fs.domain.page.admin.EditEmployeeDialog;
 import com.fs.domain.page.admin.FindEmployeeDialog;
 import com.fs.humanResources.common.BaseSeleniumTest;
+import com.fs.humanResources.dto.address.AddressDTO;
+import com.fs.humanResources.dto.employee.EmployeeDTO;
+import com.fs.humanResources.model.address.entities.Address;
+import com.fs.humanResources.model.address.helper.AddressHelper;
+import com.fs.humanResources.model.employee.entities.Employee;
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+
+import javax.persistence.PersistenceException;
+import java.util.Date;
 
 public class EditEmployeeDialogTest extends BaseSeleniumTest {
 
     EditEmployeeDialog editEmployeeDialog;
 
+    Employee employee;
+
+    Address address;
+
     @Before
     public void setUp() {
+        address = new Address();
+        address.setHouseNumber("50");
+        address.setAddressFirstLine("Test Driven Way");
+        address.setAddressSecondLine("Domain Court");
+        address.setTownCity("Progammer City");
+        address.setPostCode("AB1 CDXY");
+        address.setPrimaryAddress(true);
+
+        AddressHelper addressHelper = new AddressHelper();
+
+        employee = new Employee();
+        employee.setFirstName("James");
+        employee.setLastName("Jones");
+        employee.setDateOfBirth(new Date());
+        employee.addAddress(address);
+
+        persitenceHelper.beginTransaction();
+
+        persitenceHelper.persistNewEmployee(employee);
+        persitenceHelper.addDeletionCandidate(employee);
+        persitenceHelper.commitTransaction();
+
         humanResourcesTool.openHomePage();
         humanResourcesTool.assertPageIsPresent();
 
@@ -22,10 +57,16 @@ public class EditEmployeeDialogTest extends BaseSeleniumTest {
         FindEmployeeDialog findEmployeeDialog = humanResourcesTool.clickEditEmployeeMenuItem();
         findEmployeeDialog.assertDialogIsPresent();
 
-        findEmployeeDialog.setEmployeeId("12345");
+        findEmployeeDialog.setEmployeeId(employee.getId() + "");
         editEmployeeDialog = findEmployeeDialog.clickFindEmployeeBtn();
 
         editEmployeeDialog.assertDialogIsPresent();
+    }
+
+    @After
+    public void tearDown() {
+        persitenceHelper.deleteCandidates();
+        super.tearDown();
     }
 
     @Test

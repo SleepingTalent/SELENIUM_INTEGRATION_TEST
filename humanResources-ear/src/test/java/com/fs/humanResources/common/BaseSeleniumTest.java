@@ -1,11 +1,15 @@
 package com.fs.humanResources.common;
 
 import com.fs.domain.page.HumanResourcesTool;
+import com.fs.helper.EntityManagerHelper;
+import com.fs.helper.PersitenceHelper;
 import org.apache.log4j.Logger;
 import org.junit.After;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.htmlunit.HtmlUnitDriver;
+
+import javax.persistence.EntityManager;
 
 public abstract class BaseSeleniumTest {
 
@@ -15,9 +19,14 @@ public abstract class BaseSeleniumTest {
 
     protected HumanResourcesTool humanResourcesTool;
 
+    protected PersitenceHelper persitenceHelper;
+
+    private static EntityManager entityManager = EntityManagerHelper.getEntityManagerFactory().createEntityManager();
+
     protected BaseSeleniumTest() {
         driver = initialiseDriver();
         humanResourcesTool = new HumanResourcesTool(driver);
+        persitenceHelper = new PersitenceHelper(entityManager);
     }
 
     @After

@@ -4,10 +4,7 @@ package com.fs.humanResources.model.address.entities;
 import com.fs.humanResources.model.common.entities.BaseEntity;
 import com.fs.humanResources.model.employee.entities.Employee;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 @Entity
 public class Address extends BaseEntity {
@@ -22,7 +19,7 @@ public class Address extends BaseEntity {
     private String townCity;
     private String postCode;
 
-    @ManyToOne
+    @ManyToOne(cascade= {CascadeType.PERSIST,CascadeType.REFRESH,CascadeType.MERGE})
     private Employee employee;
 
     private boolean primaryAddress;

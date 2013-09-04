@@ -13,17 +13,9 @@ public class NavigationController implements Serializable {
 
     Logger log = Logger.getLogger(NavigationController.class);
 
-    public String navigateToEditEmployee() {
-        return NavigationOutcomes.EDIT_EMPLOYEE.getOutcome();
-    }
-
-    public String navigateToAddEmployee() {
-        log.info("Navigating to addEmployee page.");
-        return NavigationOutcomes.ADD_EMPLOYEE.getOutcome();
-    }
-
-    public String navigateToDeleteEmployee() {
-        return NavigationOutcomes.DELETE_EMPLOYEE.getOutcome();
+    public String navigateToAdmin() {
+        log.info("Navigating to admin page.");
+        return NavigationOutcomes.ADMIN.getOutcome();
     }
 
     public String navigateToBrowseEmployees() {

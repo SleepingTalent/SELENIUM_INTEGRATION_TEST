@@ -2,11 +2,9 @@ package com.fs.humanResources.navigation.outcome;
 
 public enum NavigationOutcomes {
 
-    ADD_EMPLOYEE("addEmployee"),
-    EDIT_EMPLOYEE("editEmployee"),
-    DELETE_EMPLOYEE("deleteEmployee"),
     BROWSE_TO_EMPLOYEE("browseToEmployee"),
-    SEARCH_FOR_EMPLOYEE("searchForEmployee");
+    SEARCH_FOR_EMPLOYEE("searchForEmployee"),
+    ADMIN("admin");
 
     private String outcome;
 

@@ -11,20 +11,9 @@ public class NavigationControllerTest extends BaseUnitTest {
     @InjectMocks
     NavigationController navigationController;
 
-
     @Test
-    public void navigateToEditEmployee_returnsExpectedOutcome() {
-        Assert.assertEquals("editEmployee",navigationController.navigateToEditEmployee());
-    }
-
-    @Test
-    public void navigateToAddEmployee_returnsExpectedOutcome() {
-        Assert.assertEquals("addEmployee",navigationController.navigateToAddEmployee());
-    }
-
-    @Test
-    public void navigateToDeleteEmployee_returnsExpectedOutcome() {
-        Assert.assertEquals("deleteEmployee",navigationController.navigateToDeleteEmployee());
+    public void navigateToAdmin_returnsExpectedOutcome() {
+        Assert.assertEquals("admin",navigationController.navigateToAdmin());
     }
 
     @Test

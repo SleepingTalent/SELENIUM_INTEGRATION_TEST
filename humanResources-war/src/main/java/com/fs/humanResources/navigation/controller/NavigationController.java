@@ -13,6 +13,11 @@ public class NavigationController implements Serializable {
 
     Logger log = Logger.getLogger(NavigationController.class);
 
+    public String navigateToHome() {
+        log.info("Navigating to home page.");
+        return NavigationOutcomes.HOME.getOutcome();
+    }
+
     public String navigateToAdmin() {
         log.info("Navigating to admin page.");
         return NavigationOutcomes.ADMIN.getOutcome();

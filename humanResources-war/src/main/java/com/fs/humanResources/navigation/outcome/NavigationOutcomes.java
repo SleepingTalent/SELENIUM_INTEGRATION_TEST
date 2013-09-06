@@ -4,7 +4,7 @@ public enum NavigationOutcomes {
 
     BROWSE_TO_EMPLOYEE("browseToEmployee"),
     SEARCH_FOR_EMPLOYEE("searchForEmployee"),
-    ADMIN("admin");
+    ADMIN("admin"), HOME("home");
 
     private String outcome;
 

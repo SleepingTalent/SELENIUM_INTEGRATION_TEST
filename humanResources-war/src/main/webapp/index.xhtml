@@ -15,49 +15,19 @@
     <ui:define name="title">Human Resources Home</ui:define>
 
     <ui:define name="body">
-        <h:form id="adminTool">
-            <p:panel id="contentPanel" header="Human Resources Admin Tool" footer="Fairbairn Solutions LTD">
+        <h:form id="login">
+            <p:panel id="contentPanel" header="Human Resources Home" footer="Fairbairn Solutions LTD">
 
-                <p:layout styleClass="adminToolLayout" id="adminToolLayout">
-                    <p:layoutUnit position="west" resizable="true" size="500">
-                        <p:panelMenu styleClass="adminMenu" autoDisplay="false">
-                            <p:submenu label="Employee Admin" icon="ui-icon-gear">
-                                <p:menuitem id="addEmployee" value="Add Employee"
-                                            actionListener="#{employeeController.clearEmployee()}"
-                                            oncomplete="_addEmployeeDialog.show()" icon="ui-icon-disk"/>
-                                <p:menuitem id="editEmployee" value="Edit Employee"
-                                            actionListener="#{employeeController.clearEmployee()}"
-                                            oncomplete="_findEmployeeDialog.show()" icon="ui-icon-pencil"/>
-                                <p:menuitem id="deleteEmployee" value="Delete Employee"
-                                            actionListener="#{employeeController.clearEmployee()}"
-                                            oncomplete="_findEmployeeDialog.show()" icon="ui-icon-close"/>
-                            </p:submenu>
-                            <p:submenu label="Browse" icon="ui-icon-folder-collapsed">
-                                <p:menuitem id="browseEmployees" value="Browse Employees"
-                                            action="#{navigationController.navigateToBrowseEmployees}" ajax="false"
-                                            icon="ui-icon-folder-open"/>
-                            </p:submenu>
-                            <p:submenu label="Search" icon="ui-icon-search">
-                                <p:menuitem id="searchEmployees" value="Search Employees"
-                                            action="#{navigationController.navigateToBrowseEmployees}" ajax="false"
-                                            icon="ui-icon-search"/>
-                            </p:submenu>
-                        </p:panelMenu>
-                    </p:layoutUnit>
+                <p:layout styleClass="homeLayout" id="homeLayout">
 
                     <p:layoutUnit position="center" size="200">
-                        <p:panel id="newsPanel" header="Latest News">
-                            Welcome to the Human Resources Admin Tool.
-                        </p:panel>
+                            <p:commandButton id="loginBtn" ajax="false" value="Login" actionListener="#{authController.login}" action="#{navigationController.navigateToAdmin}"/>
                     </p:layoutUnit>
                 </p:layout>
 
             </p:panel>
         </h:form>
 
-        <ui:include src="admin/employee/addEmployeeDialog.xhtml"/>
-        <ui:include src="admin/employee/findEmployeeDialog.xhtml"/>
-        <ui:include src="admin/employee/editEmployeeDialog.xhtml"/>
     </ui:define>
 </ui:composition>
 

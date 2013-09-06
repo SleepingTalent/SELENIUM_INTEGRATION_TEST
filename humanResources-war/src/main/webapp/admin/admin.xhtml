@@ -12,7 +12,7 @@
                 xmlns:p="http://primefaces.org/ui"
                 template="/templates/template.xhtml">
 
-    <ui:define name="title">Human Resources Home</ui:define>
+    <ui:define name="title">Human Resources Admin</ui:define>
 
     <ui:define name="body">
         <h:form id="adminTool">
@@ -49,6 +49,10 @@
                         <p:panel id="newsPanel" header="Latest News">
                             Welcome to the Human Resources Admin Tool.
                         </p:panel>
+                    </p:layoutUnit>
+
+                    <p:layoutUnit position="south" size="100">
+                            <p:commandButton id="logoutBtn" value="Logout" actionListener="#{authController.login}" action="#{navigationController.navigateToHome}"/>
                     </p:layoutUnit>
                 </p:layout>
 

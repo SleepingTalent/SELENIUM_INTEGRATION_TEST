@@ -1,6 +1,7 @@
-package com.fs.domain.page.admin;
+package com.fs.domain.page.admin.dialog;
 
 import com.fs.domain.common.page.PageObject;
+import com.fs.domain.page.admin.dialog.EditEmployeeDialog;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 

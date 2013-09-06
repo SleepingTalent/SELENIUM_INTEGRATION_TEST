@@ -1,6 +1,7 @@
 package com.fs.humanResources.admin;
 
-import com.fs.domain.page.admin.AddEmployeeDialog;
+import com.fs.domain.page.admin.AdminPage;
+import com.fs.domain.page.admin.dialog.AddEmployeeDialog;
 import com.fs.humanResources.common.BaseSeleniumTest;
 import org.junit.Assert;
 import org.junit.Before;
@@ -8,18 +9,21 @@ import org.junit.Test;
 
 public class AddEmployeeDialogTest extends BaseSeleniumTest {
 
+    AdminPage adminPage;
+
     AddEmployeeDialog addEmployeeDialog;
 
     @Before
     public void setUp() {
-        humanResourcesTool.openHomePage();
-        humanResourcesTool.assertPageIsPresent();
+        humanResourcesHome.openHomePage();
+        humanResourcesHome.assertPageIsPresent();
 
-        humanResourcesTool.assertEmployeeAdminMenuDisplayed().click();
-        humanResourcesTool.assertAddEmployeeMenuItemDisplayed();
+        adminPage = humanResourcesHome.clickLoginBtn();
+        adminPage.assertPageIsPresent();
 
-        addEmployeeDialog = humanResourcesTool.clickAddEmployeeMenuItem();
+        adminPage.assertEmployeeAdminMenuDisplayed().click();
 
+        addEmployeeDialog = adminPage.clickAddEmployeeMenuItem();
         addEmployeeDialog.assertDialogIsPresent();
     }
 

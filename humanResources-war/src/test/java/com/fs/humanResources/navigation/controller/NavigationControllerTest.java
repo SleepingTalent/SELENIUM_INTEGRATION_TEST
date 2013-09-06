@@ -12,6 +12,11 @@ public class NavigationControllerTest extends BaseUnitTest {
     NavigationController navigationController;
 
     @Test
+    public void navigateToHome_returnsExpectedOutcome() {
+        Assert.assertEquals("home",navigationController.navigateToHome());
+    }
+
+    @Test
     public void navigateToAdmin_returnsExpectedOutcome() {
         Assert.assertEquals("admin",navigationController.navigateToAdmin());
     }

@@ -1,13 +1,13 @@
-package com.fs.domain.page.admin;
+package com.fs.domain.page.admin.dialog;
 
 import com.fs.domain.common.page.PageObject;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public class AddEmployeeDialog extends PageObject {
+public class EditEmployeeDialog extends PageObject {
 
-    private static final String FORM = "addEmployee";
-    private static final String ADD_EMPLOYEE_DIALOG = "addEmployeeDialog";
+    private static final String FORM = "editEmployee";
+    private static final String EDIT_EMPLOYEE_DIALOG = "editEmployeeDialog";
 
     private static final String FIRSTNAME_INPUT_ID = "firstName";
     private static final String LASTNAME_INPUT_ID = "lastName";
@@ -27,14 +27,26 @@ public class AddEmployeeDialog extends PageObject {
     private static final String TOWN_CITY_LABEL_ID = "townCitylbl";
     private static final String POSTCODE_LABEL_ID = "postCodelbl";
 
-    private static final String ADD_EMPLOYEE_BTN = "addEmployeeBtn";
+    private static final String EMPLOYEE_ID = "employeeId";
+    private static final String EMPLOYEE_ID_LABEL = "employeeIdlbl";
 
-    public AddEmployeeDialog(WebDriver driver) {
+
+    private static final String EDIT_EMPLOYEE_BTN = "editEmployeeBtn";
+
+    public EditEmployeeDialog(WebDriver driver) {
         super(driver);
     }
 
     public void assertDialogIsPresent() {
-        findElementById(ADD_EMPLOYEE_DIALOG);
+        findElementById(EDIT_EMPLOYEE_DIALOG);
+    }
+
+    public WebElement employeeIdInputDisplayed() {
+        return findFormElementById(FORM, EMPLOYEE_ID);
+    }
+
+    public WebElement employeeIdLabelDisplayed() {
+        return findFormElementById(FORM, EMPLOYEE_ID_LABEL);
     }
 
     public WebElement firstNameInputDisplayed() {
@@ -102,7 +114,7 @@ public class AddEmployeeDialog extends PageObject {
     }
 
     public void clickAddEmployeeBtn() {
-        findFormElementById(FORM, ADD_EMPLOYEE_BTN).click();
+        findFormElementById(FORM, EDIT_EMPLOYEE_BTN).click();
     }
 
     public void setDateOfBirth(String dateOfBirth) {

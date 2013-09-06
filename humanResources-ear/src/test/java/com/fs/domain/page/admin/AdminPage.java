@@ -1,37 +1,24 @@
-package com.fs.domain.page;
+package com.fs.domain.page.admin;
 
 
 import com.fs.domain.common.page.PageObject;
-import com.fs.domain.page.admin.AddEmployeeDialog;
-import com.fs.domain.page.admin.FindEmployeeDialog;
+import com.fs.domain.page.admin.dialog.AddEmployeeDialog;
+import com.fs.domain.page.admin.dialog.FindEmployeeDialog;
 import org.apache.log4j.Logger;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public class HumanResourcesTool extends PageObject {
+public class AdminPage extends PageObject {
 
-    Logger log = Logger.getLogger(HumanResourcesTool.class);
+    Logger log = Logger.getLogger(AdminPage.class);
 
     private static final String FORM = "adminTool";
     private static final String CONTENT_PANEL_ID = "contentPanel";
     private static final String LATEST_NEWS_PANEL_ID = "newsPanel";
 
-    //public static final String MENU_LABEL_CLASS = "ui-menuitem-text";
-    //public static final String MENU_LABEL_CLASS = "ui-panelmenu-panel";
-
-    public HumanResourcesTool(WebDriver driver) {
+    public AdminPage(WebDriver driver) {
         super(driver);
-    }
-
-    public void openHomePage() {
-        openHomePage("http://localhost:8181/humanResources/");
-        getDriver().manage().window().maximize();
-        assertHomePageDisplayed();
-    }
-
-    private void assertHomePageDisplayed() {
-        Assert.assertEquals("Human Resources Home", getDriver().getTitle());
     }
 
     public void assertPageIsPresent() {
@@ -75,7 +62,6 @@ public class HumanResourcesTool extends PageObject {
     }
 
     private WebElement assertMenuDisplayed(String labelText) {
-        //return findElementByClassWithText(MENU_LABEL_CLASS, labelText);
         return findLinkByText(labelText);
     }
 

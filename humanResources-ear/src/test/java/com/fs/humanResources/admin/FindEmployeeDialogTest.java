@@ -1,43 +1,43 @@
 package com.fs.humanResources.admin;
 
-import com.fs.domain.page.admin.FindEmployeeDialog;
+import com.fs.domain.page.admin.AdminPage;
+import com.fs.domain.page.admin.dialog.FindEmployeeDialog;
 import com.fs.humanResources.common.BaseSeleniumTest;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-
-import java.util.List;
 
 public class FindEmployeeDialogTest extends BaseSeleniumTest {
+
+    AdminPage adminPage;
 
     FindEmployeeDialog findEmployeeDialog;
 
     @Before
     public void setUp() {
-        humanResourcesTool.openHomePage();
-        humanResourcesTool.assertPageIsPresent();
+        humanResourcesHome.openHomePage();
+        humanResourcesHome.assertPageIsPresent();
 
-        humanResourcesTool.assertEmployeeAdminMenuDisplayed().click();
-        humanResourcesTool.assertEditEmployeeMenuItemDisplayed();
+        adminPage = humanResourcesHome.clickLoginBtn();
+        adminPage.assertPageIsPresent();
 
-        findEmployeeDialog = humanResourcesTool.clickEditEmployeeMenuItem();
+        adminPage.assertEmployeeAdminMenuDisplayed().click();
+
+        adminPage.assertEditEmployeeMenuItemDisplayed();
+        findEmployeeDialog = adminPage.clickEditEmployeeMenuItem();
+
         findEmployeeDialog.assertDialogIsPresent();
     }
 
     @Test
     public void findEmployeeFormElements_displayedAsExpected() {
-       // Assert.assertEquals("Staff Number:", findEmployeeDialog.employeeIdLabelDisplayed().getText());
-       // findEmployeeDialog.employeeInputDisplayed();
+        Assert.assertEquals("Employee Id:", findEmployeeDialog.employeeIdLabelDisplayed().getText());
+        findEmployeeDialog.employeeInputDisplayed();
     }
 
     @Test
     public void validationMessages_displayedAsExpected() {
-       // findEmployeeDialog.setEmployeeId("12345");
-
-      //  findEmployeeDialog.employeeInputDisplayed().clear();
-      //  findEmployeeDialog.assertGrowlMessageDisplayed("Staff Number is required");
-      //  findEmployeeDialog.closeGrowlMessage();
+        findEmployeeDialog.clickFindEmployeeBtn();
+        findEmployeeDialog.assertGrowlMessageDisplayed("Employee Id is required");
     }
 }

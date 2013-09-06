@@ -1,10 +1,9 @@
 package com.fs.humanResources.admin;
 
-import com.fs.domain.page.admin.EditEmployeeDialog;
-import com.fs.domain.page.admin.FindEmployeeDialog;
+import com.fs.domain.page.admin.AdminPage;
+import com.fs.domain.page.admin.dialog.EditEmployeeDialog;
+import com.fs.domain.page.admin.dialog.FindEmployeeDialog;
 import com.fs.humanResources.common.BaseSeleniumTest;
-import com.fs.humanResources.dto.address.AddressDTO;
-import com.fs.humanResources.dto.employee.EmployeeDTO;
 import com.fs.humanResources.model.address.entities.Address;
 import com.fs.humanResources.model.address.helper.AddressHelper;
 import com.fs.humanResources.model.employee.entities.Employee;
@@ -13,10 +12,11 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import javax.persistence.PersistenceException;
 import java.util.Date;
 
 public class EditEmployeeDialogTest extends BaseSeleniumTest {
+
+    AdminPage adminPage;
 
     EditEmployeeDialog editEmployeeDialog;
 
@@ -48,13 +48,15 @@ public class EditEmployeeDialogTest extends BaseSeleniumTest {
         persitenceHelper.addDeletionCandidate(employee);
         persitenceHelper.commitTransaction();
 
-        humanResourcesTool.openHomePage();
-        humanResourcesTool.assertPageIsPresent();
+        humanResourcesHome.openHomePage();
+        humanResourcesHome.assertPageIsPresent();
 
-        humanResourcesTool.assertEmployeeAdminMenuDisplayed().click();
-        humanResourcesTool.assertAddEmployeeMenuItemDisplayed();
+        adminPage = humanResourcesHome.clickLoginBtn();
+        adminPage.assertPageIsPresent();
 
-        FindEmployeeDialog findEmployeeDialog = humanResourcesTool.clickEditEmployeeMenuItem();
+        adminPage.assertEmployeeAdminMenuDisplayed().click();
+
+        FindEmployeeDialog findEmployeeDialog = adminPage.clickEditEmployeeMenuItem();
         findEmployeeDialog.assertDialogIsPresent();
 
         findEmployeeDialog.setEmployeeId(employee.getId() + "");

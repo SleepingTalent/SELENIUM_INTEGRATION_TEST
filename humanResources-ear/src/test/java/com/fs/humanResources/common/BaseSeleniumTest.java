@@ -1,13 +1,12 @@
 package com.fs.humanResources.common;
 
-import com.fs.domain.page.HumanResourcesTool;
+import com.fs.domain.page.HumanResourcesHome;
 import com.fs.helper.EntityManagerHelper;
 import com.fs.helper.PersitenceHelper;
 import org.apache.log4j.Logger;
 import org.junit.After;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 
 import javax.persistence.EntityManager;
 
@@ -17,7 +16,7 @@ public abstract class BaseSeleniumTest {
 
     private WebDriver driver;
 
-    protected HumanResourcesTool humanResourcesTool;
+    protected HumanResourcesHome humanResourcesHome;
 
     protected PersitenceHelper persitenceHelper;
 
@@ -25,7 +24,7 @@ public abstract class BaseSeleniumTest {
 
     protected BaseSeleniumTest() {
         driver = initialiseDriver();
-        humanResourcesTool = new HumanResourcesTool(driver);
+        humanResourcesHome = new HumanResourcesHome(driver);
         persitenceHelper = new PersitenceHelper(entityManager);
     }
 

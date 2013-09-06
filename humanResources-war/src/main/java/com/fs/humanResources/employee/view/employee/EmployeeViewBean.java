@@ -15,29 +15,28 @@ public class EmployeeViewBean {
 
     public EmployeeViewBean(Long id, String firstName, String lastName, Date dateOfBirth, AddressViewBean address) {
         this(id, firstName,lastName, dateOfBirth);
-
-        this.address = address;
+        setAddress(address);
     }
 
     public EmployeeViewBean(Long id, String firstName, String lastName, Date dateOfBirth) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.dateOfBirth = dateOfBirth;
-        this.id = id;
+        setFirstName(firstName);
+        setLastName(lastName);
+        setDateOfBirth(dateOfBirth);
+        setEmployeeId(id);
     }
 
     public EmployeeViewBean() {
-        address = new AddressViewBean();
+        setAddress(new AddressViewBean());
     }
 
     public EmployeeViewBean(EmployeeDTO employeeDTO) {
-        this.firstName = employeeDTO.getFirstName();
-        this.lastName = employeeDTO.getLastName();
-        this.dateOfBirth = employeeDTO.getDateOfBirth();
-        this.id = employeeDTO.getId();
+        setFirstName(employeeDTO.getFirstName());
+        setLastName(employeeDTO.getLastName());
+        setDateOfBirth(employeeDTO.getDateOfBirth());
+        setEmployeeId(employeeDTO.getId());
 
         if(employeeDTO.getAddress() != null) {
-            address = new AddressViewBean(employeeDTO.getAddress());
+            setAddress(new AddressViewBean(employeeDTO.getAddress()));
         }
 
     }
@@ -60,6 +59,26 @@ public class EmployeeViewBean {
 
     public AddressViewBean getAddress() {
         return address;
+    }
+
+    public void setEmployeeId(Long id) {
+        this.id = id;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public void setDateOfBirth(Date dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
+    }
+
+    public void setAddress(AddressViewBean address) {
+        this.address = address;
     }
 
     public EmployeeDTO getDTO() {

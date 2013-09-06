@@ -136,7 +136,8 @@ public class EmployeeControllerTest extends BaseUnitTest {
     @Test
     public void findEmployee_findsEmployee_asExpected() throws EmployeeNotFoundException {
         employeeController.findEmployee();
-        verify(employeeModel, times(1)).getEmployee();
+
+        verify(employeeModel, times(2)).getEmployee();
         verify(humanResourcesService, times(1)).getEmployeeDetails(eq(employee.getEmployeeId()));
         verify(employeeModel, times(1)).setEmployee(Matchers.<EmployeeViewBean>anyObject());
     }

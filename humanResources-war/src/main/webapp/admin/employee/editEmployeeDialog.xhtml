@@ -25,7 +25,9 @@
                     <h:outputText id="dateOfBirthlbl" value="DOB (dd/mm/yyyy):"/>
                     <p:inputMask id="dateOfBirth" required="true"
                                  value="#{employeeController.employee.dateOfBirth}"
-                                 requiredMessage="Date Of Birth is required" mask="99/99/9999"/>
+                                 requiredMessage="Date Of Birth is required" mask="99/99/9999">
+                        <f:convertDateTime pattern="dd/MM/yyyy" />
+                            </p:inputMask>
 
                     <h:outputText id="houseNumberlbl" value="House No:"/>
                     <p:inputText label="houseNumber" id="houseNumber" required="true"
@@ -47,7 +49,7 @@
                     <h:outputText id="postCodelbl" value="Postcode:"/>
                     <p:inputMask label="postCode" id="postCode" required="true"
                                  value="#{employeeController.employee.address.postCode}"
-                                 requiredMessage="Postcode is required" mask="a*9-9a*"/>
+                                 requiredMessage="Postcode is required" mask="***-***"/>
 
                     <f:facet name="footer">
                         <p:commandButton id="editEmployeeBtn" value="Edit Employee" actionListener="#{employeeController.updateEmployee}"

@@ -113,7 +113,7 @@ public class EditEmployeeDialog extends PageObject {
         return findFormElementById(FORM, POSTCODE_LABEL_ID);
     }
 
-    public void clickAddEmployeeBtn() {
+    public void clickEditEmployeeBtn() {
         findFormElementById(FORM, EDIT_EMPLOYEE_BTN).click();
     }
 

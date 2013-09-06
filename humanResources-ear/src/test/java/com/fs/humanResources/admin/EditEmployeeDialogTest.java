@@ -12,10 +12,13 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class EditEmployeeDialogTest extends BaseSeleniumTest {
 
+    public static final String DATE_FORMATE_STR = "dd/MM/yyyy";
     AdminPage adminPage;
 
     EditEmployeeDialog editEmployeeDialog;
@@ -25,21 +28,22 @@ public class EditEmployeeDialogTest extends BaseSeleniumTest {
     Address address;
 
     @Before
-    public void setUp() {
+    public void setUp() throws ParseException {
         address = new Address();
         address.setHouseNumber("50");
         address.setAddressFirstLine("Test Driven Way");
         address.setAddressSecondLine("Domain Court");
         address.setTownCity("Progammer City");
-        address.setPostCode("AB1 CDXY");
+        address.setPostCode("AB1CDX");
         address.setPrimaryAddress(true);
-
-        AddressHelper addressHelper = new AddressHelper();
 
         employee = new Employee();
         employee.setFirstName("James");
         employee.setLastName("Jones");
-        employee.setDateOfBirth(new Date());
+
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(DATE_FORMATE_STR);
+        employee.setDateOfBirth(simpleDateFormat.parse("15/07/1976"));
+
         employee.addAddress(address);
 
         persitenceHelper.beginTransaction();
@@ -100,48 +104,78 @@ public class EditEmployeeDialogTest extends BaseSeleniumTest {
 
     @Test
     public void validationMessages_displayedAsExpected() {
-        editEmployeeDialog.setFirstName("James");
-        editEmployeeDialog.setLastName("Smith");
-        editEmployeeDialog.setDateOfBirth("26122008");
-
-        editEmployeeDialog.setHouseNumber("55");
-        editEmployeeDialog.setAddressFirstLine("Maple Grove");
-        editEmployeeDialog.setAddressSecondLine("Main Street");
-        editEmployeeDialog.setTownCity("Meanwhile City");
-        editEmployeeDialog.setPostcode("AB12CD");
-
         editEmployeeDialog.firstNameInputDisplayed().clear();
-        editEmployeeDialog.clickAddEmployeeBtn();
+        editEmployeeDialog.clickEditEmployeeBtn();
         editEmployeeDialog.assertGrowlMessageDisplayed("Firstname is required");
 
-        editEmployeeDialog.setFirstName("James");
+        editEmployeeDialog.setFirstName(employee.getFirstName());
 
         editEmployeeDialog.lastNameInputDisplayed().clear();
-        editEmployeeDialog.clickAddEmployeeBtn();
+        editEmployeeDialog.clickEditEmployeeBtn();
         editEmployeeDialog.assertGrowlMessageDisplayed("Lastname is required");
 
-        editEmployeeDialog.setLastName("Smith");
+        editEmployeeDialog.setLastName(employee.getLastName());
 
         editEmployeeDialog.houseNumberInputDisplayed().clear();
-        editEmployeeDialog.clickAddEmployeeBtn();
+        editEmployeeDialog.clickEditEmployeeBtn();
         editEmployeeDialog.assertGrowlMessageDisplayed("House No is required");
 
-        editEmployeeDialog.setHouseNumber("55");
+        editEmployeeDialog.setHouseNumber(employee.getAddressList().get(0).getHouseNumber());
 
         editEmployeeDialog.postCodeInputDisplayed().clear();
-        editEmployeeDialog.clickAddEmployeeBtn();
+        editEmployeeDialog.clickEditEmployeeBtn();
         editEmployeeDialog.assertGrowlMessageDisplayed("Postcode is required");
 
-        editEmployeeDialog.setPostcode("AB12CD");
+        editEmployeeDialog.setPostcode(employee.getAddressList().get(0).getPostCode());
 
         editEmployeeDialog.dateOfBirthInputDisplayed().clear();
-        editEmployeeDialog.clickAddEmployeeBtn();
+        editEmployeeDialog.clickEditEmployeeBtn();
         editEmployeeDialog.assertGrowlMessageDisplayed("Date Of Birth is required");
     }
 
     @Test
-    public void employeeDetailsDisplayedAsExpected() {
-        Assert.assertEquals(employee.getId(),editEmployeeDialog.employeeIdInputDisplayed().getText());
-        Assert.assertEquals(employee.getFirstName(),editEmployeeDialog.firstNameInputDisplayed().getText());
+    public void employeeDetails_displayedAsExpected() {
+        Assert.assertEquals(employee.getId()+"",editEmployeeDialog.employeeIdInputDisplayed().getAttribute("value"));
+        Assert.assertEquals(employee.getFirstName(),editEmployeeDialog.firstNameInputDisplayed().getAttribute("value"));
+        Assert.assertEquals(employee.getLastName(),editEmployeeDialog.lastNameInputDisplayed().getAttribute("value"));
+        Assert.assertEquals(formateDate(employee.getDateOfBirth(),DATE_FORMATE_STR),editEmployeeDialog.dateOfBirthInputDisplayed().getAttribute("value"));
+
+        Assert.assertEquals(employee.getAddressList().get(0).getHouseNumber(),editEmployeeDialog.houseNumberInputDisplayed().getAttribute("value"));
+        Assert.assertEquals(employee.getAddressList().get(0).getAddressFirstLine(),editEmployeeDialog.addressFirstLineInputDisplayed().getAttribute("value"));
+        Assert.assertEquals(employee.getAddressList().get(0).getAddressSecondLine(),editEmployeeDialog.addressSecondLineInputDisplayed().getAttribute("value"));
+        Assert.assertEquals(employee.getAddressList().get(0).getTownCity(),editEmployeeDialog.townCityInputDisplayed().getAttribute("value"));
+        Assert.assertEquals("AB1-CDX",editEmployeeDialog.postCodeInputDisplayed().getAttribute("value"));
+    }
+
+    @Test
+    public void employeeDetails_updatedAsExpected() {
+        editEmployeeDialog.setFirstName(employee.getFirstName()+"-upt");
+        editEmployeeDialog.setLastName(employee.getLastName()+"-upt");
+
+        editEmployeeDialog.setHouseNumber(employee.getAddressList().get(0).getHouseNumber()+"-upt");
+
+        editEmployeeDialog.clickEditEmployeeBtn();
+
+        adminPage.assertPageIsPresent();
+
+        FindEmployeeDialog findEmployeeDialog = adminPage.clickEditEmployeeMenuItem();
+        findEmployeeDialog.assertDialogIsPresent();
+
+        findEmployeeDialog.setEmployeeId(employee.getId() + "");
+        editEmployeeDialog = findEmployeeDialog.clickFindEmployeeBtn();
+
+        editEmployeeDialog.assertDialogIsPresent();
+
+        Assert.assertEquals(employee.getId()+"",editEmployeeDialog.employeeIdInputDisplayed().getAttribute("value"));
+        Assert.assertEquals(employee.getFirstName()+"-upt",editEmployeeDialog.firstNameInputDisplayed().getAttribute("value"));
+        Assert.assertEquals(employee.getLastName()+"-upt",editEmployeeDialog.lastNameInputDisplayed().getAttribute("value"));
+
+        Assert.assertEquals(employee.getAddressList().get(0).getHouseNumber()+"-upt",editEmployeeDialog.houseNumberInputDisplayed().getAttribute("value"));
+    }
+
+    private String formateDate(Date date, String formatString) {
+        SimpleDateFormat simpleDateFormat =
+                new SimpleDateFormat(formatString);
+        return simpleDateFormat.format(date);
     }
 }

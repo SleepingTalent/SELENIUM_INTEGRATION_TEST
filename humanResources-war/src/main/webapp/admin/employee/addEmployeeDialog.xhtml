@@ -20,7 +20,9 @@
                     <h:outputText id="dateOfBirthlbl" value="DOB (dd/mm/yyyy):"/>
                     <p:inputMask id="dateOfBirth" required="true"
                                  value="#{employeeController.employee.dateOfBirth}"
-                                 requiredMessage="Date Of Birth is required" mask="99/99/9999"/>
+                                 requiredMessage="Date Of Birth is required" mask="99/99/9999">
+                        <f:convertDateTime pattern="dd/MM/yyyy" />
+                    </p:inputMask>
 
                     <h:outputText id="houseNumberlbl" value="House No:"/>
                     <p:inputText label="houseNumber" id="houseNumber" required="true"

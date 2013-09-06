@@ -27,7 +27,6 @@ public class EmployeeController {
     HumanResourcesService humanResourcesService;
 
     public EmployeeViewBean getEmployee() {
-        log.info("Getting Employee Details");
         return employeeModel.getEmployee();
     }
 
@@ -46,18 +45,22 @@ public class EmployeeController {
     }
 
     public void findEmployee() {
+        log.info("Find Employee with Id : "+getEmployee().getEmployeeId());
+
         try {
 
-            Long staffNumber = employeeModel.getEmployee().getEmployeeId();
-            EmployeeDTO employeeDTO = humanResourcesService.getEmployeeDetails(staffNumber);
+            EmployeeDTO employeeDTO = humanResourcesService.getEmployeeDetails(getEmployee().getEmployeeId());
+
             log.info(employeeDTO+" returned");
             employeeModel.setEmployee(new EmployeeViewBean(employeeDTO));
 
         } catch (EmployeeNotFoundException e) {
+
             log.error("Employee not found!");
             FacesContext.getCurrentInstance().addMessage(
                     null, new FacesMessage(FacesMessage.SEVERITY_ERROR,
                     "Find Error", "Employee Id (" + employeeModel.getEmployee().getEmployeeId() + ") not found!"));
+
         }
     }
 }

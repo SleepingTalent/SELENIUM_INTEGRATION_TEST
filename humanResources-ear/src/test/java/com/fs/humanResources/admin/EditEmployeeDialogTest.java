@@ -31,7 +31,7 @@ public class EditEmployeeDialogTest extends BaseSeleniumTest {
     public void setUp() throws ParseException {
         address = new Address();
         address.setHouseNumber("50");
-        address.setAddressFirstLine("Test Driven Way");
+        address.setAddressFirstLine(persitenceHelper.getUniqueString(8));
         address.setAddressSecondLine("Domain Court");
         address.setTownCity("Progammer City");
         address.setPostCode("AB1CDX");
@@ -39,7 +39,7 @@ public class EditEmployeeDialogTest extends BaseSeleniumTest {
 
         employee = new Employee();
         employee.setFirstName("James");
-        employee.setLastName("Jones");
+        employee.setLastName(persitenceHelper.getUniqueString(8));
 
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat(DATE_FORMATE_STR);
         employee.setDateOfBirth(simpleDateFormat.parse("15/07/1976"));

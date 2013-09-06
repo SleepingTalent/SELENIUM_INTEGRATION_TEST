@@ -13,13 +13,18 @@ import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.Query;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.eq;
 import static org.mockito.Mockito.*;
 
 public class EmployeeDAOTest extends BaseUnitTest {
 
-    public static final String COUNT_QUERY = "SELECT count(o) from Employee o ";
+    private static final String COUNT_QUERY = "SELECT count(o) from Employee o ";
+
+    private static final String FIND_EMPLOYEE_BY_LASTNAME = "select e from Employee e where e.lastName = :thisLastName";
 
     @InjectMocks
     EmployeeDAO employeeDAO;
@@ -33,9 +38,15 @@ public class EmployeeDAOTest extends BaseUnitTest {
     @Mock
     Query employeeIdQuery;
 
+    @Mock
+    Query findByLastnameQuery;
+
     Long expectedCount;
 
     Employee employee;
+
+    List<Employee> employeeList;
+
 
     @Before
     public void setUp() {
@@ -43,8 +54,15 @@ public class EmployeeDAOTest extends BaseUnitTest {
         employee = new Employee();
         employee.setId(1234l);
 
+        employeeList = new ArrayList<Employee>();
+        employeeList.add(employee);
+
         when(entityManager.createQuery(eq(COUNT_QUERY))).thenReturn(countQuery);
         when(countQuery.getSingleResult()).thenReturn(expectedCount);
+
+        when(entityManager.createQuery(eq(FIND_EMPLOYEE_BY_LASTNAME))).thenReturn(findByLastnameQuery);
+        when(findByLastnameQuery.getResultList()).thenReturn(employeeList);
+
 
         when(entityManager.find(eq(Employee.class),eq(employee.getId()))).thenReturn(employee);
     }
@@ -111,6 +129,29 @@ public class EmployeeDAOTest extends BaseUnitTest {
         Assert.assertEquals(employee.getId(), actualEmployee.getId());
 
         verify(entityManager, times(1)).find(eq(Employee.class),eq(employee.getId()));
+    }
+
+    @Test(expected = NoResultException.class)
+    public void getEmployeesByLastname_throws_noResultsException_whenNullReturned() {
+        when(findByLastnameQuery.getResultList()).thenReturn(null);
+        employeeDAO.getEmployeesByLastname("notFound");
+    }
+
+    @Test(expected = NoResultException.class)
+    public void getEmployeesByLastname_throws_noResultsException_whenEmptyListReturned() {
+        when(findByLastnameQuery.getResultList()).thenReturn(new ArrayList<Employee>());
+        employeeDAO.getEmployeesByLastname("notFound");
+    }
+
+    @Test
+    public void getEmployeesByLastname_returns_expected_employee() {
+        List<Employee> actualEmployeeList = employeeDAO.getEmployeesByLastname("lastName");
+
+        Assert.assertEquals(1, actualEmployeeList.size());
+        Assert.assertEquals(employee.getId(), actualEmployeeList.get(0).getId());
+
+        verify(entityManager, times(1)).createQuery(eq(FIND_EMPLOYEE_BY_LASTNAME));
+        verify(findByLastnameQuery,times(1)).getResultList();
     }
 
 }

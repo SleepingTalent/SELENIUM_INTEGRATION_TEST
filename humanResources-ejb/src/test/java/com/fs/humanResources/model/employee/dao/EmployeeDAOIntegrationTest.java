@@ -11,6 +11,7 @@ import org.junit.Test;
 
 import javax.persistence.NoResultException;
 import java.util.Date;
+import java.util.List;
 
 public class EmployeeDAOIntegrationTest extends BaseDAOTest {
 
@@ -24,7 +25,7 @@ public class EmployeeDAOIntegrationTest extends BaseDAOTest {
 
         employee = new Employee();
         employee.setFirstName("Dave");
-        employee.setLastName("Smith");
+        employee.setLastName(persitenceHelper.getUniqueString(8));
         employee.setDateOfBirth(new Date());
 
         beginTransaction();
@@ -83,6 +84,17 @@ public class EmployeeDAOIntegrationTest extends BaseDAOTest {
         Assert.assertEquals(employee.getFirstName(), actual.getFirstName());
         Assert.assertEquals(employee.getLastName(), actual.getLastName());
         Assert.assertEquals(employee.getDateOfBirth(), actual.getDateOfBirth());
+    }
+
+    @Test
+    public void getEmployeesByLastname_returns_AsExpected() {
+        List<Employee> actual = employeeDAO.getEmployeesByLastname(employee.getLastName());
+
+        Assert.assertEquals(1, actual.size());
+        Assert.assertEquals(employee.getId(), actual.get(0).getId());
+        Assert.assertEquals(employee.getFirstName(), actual.get(0).getFirstName());
+        Assert.assertEquals(employee.getLastName(), actual.get(0).getLastName());
+        Assert.assertEquals(employee.getDateOfBirth(), actual.get(0).getDateOfBirth());
     }
 
     @Test

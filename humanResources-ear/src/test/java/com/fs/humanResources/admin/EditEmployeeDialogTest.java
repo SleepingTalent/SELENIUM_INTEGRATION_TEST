@@ -138,4 +138,10 @@ public class EditEmployeeDialogTest extends BaseSeleniumTest {
         editEmployeeDialog.clickAddEmployeeBtn();
         editEmployeeDialog.assertGrowlMessageDisplayed("Date Of Birth is required");
     }
+
+    @Test
+    public void employeeDetailsDisplayedAsExpected() {
+        Assert.assertEquals(employee.getId(),editEmployeeDialog.employeeIdInputDisplayed().getText());
+        Assert.assertEquals(employee.getFirstName(),editEmployeeDialog.firstNameInputDisplayed().getText());
+    }
 }

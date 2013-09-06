@@ -16,11 +16,12 @@ public class EmployeeModel implements Serializable {
     private EmployeeViewBean employee;
 
     public EmployeeViewBean getEmployee() {
-        log.info("Get Employee");
+        log.info("Getting "+employee);
         return employee;
     }
 
     public void setEmployee(EmployeeViewBean employee) {
+        log.info("Setting "+employee);
         this.employee = employee;
     }
 

@@ -90,4 +90,9 @@ public class EmployeeDTOTest extends BaseUnitTest {
             Assert.assertTrue("Expected Primary Address Set to True!",address1.isPrimaryAddress());
         }
     }
+
+    @Test
+    public void toString_returnsAsExpected() {
+        Assert.assertEquals("EmployeeDTO{id="+employeeDTO.getId()+", firstName='"+employeeDTO.getFirstName()+"', lastName='"+employeeDTO.getLastName()+"', dateOfBirth="+employeeDTO.getDateOfBirth()+"}",employeeDTO.toString());
+    }
 }

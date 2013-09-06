@@ -50,6 +50,7 @@ public class EmployeeController {
 
             Long staffNumber = employeeModel.getEmployee().getEmployeeId();
             EmployeeDTO employeeDTO = humanResourcesService.getEmployeeDetails(staffNumber);
+            log.info(employeeDTO+" returned");
             employeeModel.setEmployee(new EmployeeViewBean(employeeDTO));
 
         } catch (EmployeeNotFoundException e) {

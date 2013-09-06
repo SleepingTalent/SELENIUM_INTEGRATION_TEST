@@ -67,4 +67,14 @@ public class EmployeeDTO {
         employee.setAddressList(addressHelper.convertDTOToEntityList(getAddress()));
         return employee;
     }
+
+    @Override
+    public String toString() {
+        return "EmployeeDTO{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", dateOfBirth=" + dateOfBirth +
+                '}';
+    }
 }

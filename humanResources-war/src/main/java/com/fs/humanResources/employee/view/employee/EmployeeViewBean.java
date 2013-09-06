@@ -68,4 +68,14 @@ public class EmployeeViewBean {
         return new EmployeeDTO(getEmployeeId(),
                 getFirstName(),getFirstName(),getDateOfBirth(),addressDTO);
     }
+
+    @Override
+    public String toString() {
+        return "EmployeeViewBean{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", dateOfBirth=" + dateOfBirth +
+                '}';
+    }
 }

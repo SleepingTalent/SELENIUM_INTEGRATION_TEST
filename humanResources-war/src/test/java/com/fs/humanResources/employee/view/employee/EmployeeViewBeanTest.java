@@ -90,4 +90,10 @@ public class EmployeeViewBeanTest extends BaseUnitTest {
         Assert.assertEquals(townCity, employeeView.getAddress().getTownCity());
         Assert.assertEquals(postCode, employeeView.getAddress().getPostCode());
     }
+
+
+    @Test
+    public void toString_returnsAsExpected() {
+        Assert.assertEquals("EmployeeViewBean{id="+employeeViewBean.getEmployeeId()+", firstName='"+employeeViewBean.getFirstName()+"', lastName='"+employeeViewBean.getLastName()+"', dateOfBirth="+employeeViewBean.getDateOfBirth()+"}",employeeViewBean.toString());
+    }
 }

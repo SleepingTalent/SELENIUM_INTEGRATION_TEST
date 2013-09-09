@@ -9,6 +9,7 @@ import com.fs.humanResources.view.helper.FacesHelper;
 import org.apache.log4j.Logger;
 
 import javax.ejb.EJB;
+import javax.ejb.EJBException;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
@@ -59,14 +60,8 @@ public class EmployeeController {
             log.info(employeeDTO + " returned");
             employeeModel.setEmployee(new EmployeeViewBean(employeeDTO));
 
-        } catch (EmployeeNotFoundException ene) {
-            log.error("Employee not found!", ene);
-            FacesHelper helper = new FacesHelper();
-            helper.addErrorMessage("Employee Id (" + employeeModel.getEmployee().getEmployeeId() + ") not found!","");
-            helper.failValidation();
-
-        } catch (Exception ex) {
-            log.error("Unexpected Exception!", ex);
+        } catch (EJBException ene) {
+            log.error("Employee Id (" + employeeModel.getEmployee().getEmployeeId() + ") not found!");
             FacesHelper helper = new FacesHelper();
             helper.addErrorMessage("Employee Id (" + employeeModel.getEmployee().getEmployeeId() + ") not found!","");
             helper.failValidation();

@@ -18,6 +18,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Matchers;
 import org.mockito.Mock;
 
+import javax.ejb.EJBException;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.persistence.NoResultException;
@@ -144,21 +145,7 @@ public class EmployeeControllerTest extends BaseUnitTest {
 
     @Test
     public void findEmployee_logsExpectedMessage_whenIdNotFound() throws EmployeeNotFoundException {
-        when(humanResourcesService.getEmployeeDetails(anyLong())).thenThrow(new EmployeeNotFoundException(new NoResultException()));
-
-        employeeController.findEmployee();
-
-        verify(facesContext, times(1)).addMessage(stringArgumentCaptor.capture(),facesMessageArgumentCaptor.capture());
-        verify(facesContext, times(1)).validationFailed();
-
-        Assert.assertEquals(null, stringArgumentCaptor.getValue());
-        Assert.assertEquals("Employee Id (12345) not found!", facesMessageArgumentCaptor.getValue().getSummary());
-        Assert.assertEquals("", facesMessageArgumentCaptor.getValue().getDetail());
-    }
-
-    @Test
-    public void findEmployee_logsExpectedMessage_whenUnexpectedExceptionThrown() throws EmployeeNotFoundException {
-        when(humanResourcesService.getEmployeeDetails(anyLong())).thenThrow(new NoResultException());
+        when(humanResourcesService.getEmployeeDetails(anyLong())).thenThrow(new EJBException());
 
         employeeController.findEmployee();
 

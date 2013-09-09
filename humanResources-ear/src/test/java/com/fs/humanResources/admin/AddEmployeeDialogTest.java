@@ -7,10 +7,7 @@ import com.fs.domain.page.admin.dialog.FindEmployeeDialog;
 import com.fs.humanResources.common.BaseSeleniumTest;
 import com.fs.humanResources.model.address.entities.Address;
 import com.fs.humanResources.model.employee.entities.Employee;
-import org.junit.After;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.*;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -63,6 +60,7 @@ public class AddEmployeeDialogTest extends BaseSeleniumTest {
     }
 
     @Test
+    @Ignore
     public void employeeAddedAsExpected() {
         addEmployeeDialog.setFirstName(employee.getFirstName());
         addEmployeeDialog.setLastName(employee.getLastName());

@@ -5,6 +5,7 @@ import com.fs.humanResources.employee.model.EmployeeModel;
 import com.fs.humanResources.employee.view.employee.EmployeeViewBean;
 import com.fs.humanResources.service.HumanResourcesService;
 import com.fs.humanResources.service.exception.EmployeeNotFoundException;
+import com.fs.humanResources.view.helper.FacesHelper;
 import org.apache.log4j.Logger;
 
 import javax.ejb.EJB;
@@ -36,31 +37,39 @@ public class EmployeeController {
 
     public void saveEmployee() {
         EmployeeDTO employeeDTO = employeeModel.getEmployee().getDTO();
+
+        log.info("Saving : " + employeeDTO);
         humanResourcesService.saveEmployeeDetails(employeeDTO);
     }
 
     public void updateEmployee() {
         EmployeeDTO employeeDTO = employeeModel.getEmployee().getDTO();
+
+        log.info("Updating : " + employeeDTO);
         humanResourcesService.updateEmployeeDetails(employeeDTO);
     }
 
     public void findEmployee() {
-        log.info("Find Employee with Id : "+getEmployee().getEmployeeId());
+        log.info("Find Employee with Id : " + getEmployee().getEmployeeId());
 
         try {
 
             EmployeeDTO employeeDTO = humanResourcesService.getEmployeeDetails(getEmployee().getEmployeeId());
 
-            log.info(employeeDTO+" returned");
+            log.info(employeeDTO + " returned");
             employeeModel.setEmployee(new EmployeeViewBean(employeeDTO));
 
-        } catch (EmployeeNotFoundException e) {
+        } catch (EmployeeNotFoundException ene) {
+            log.error("Employee not found!", ene);
+            FacesHelper helper = new FacesHelper();
+            helper.addErrorMessage("Employee Id (" + employeeModel.getEmployee().getEmployeeId() + ") not found!","");
+            helper.failValidation();
 
-            log.error("Employee not found!");
-            FacesContext.getCurrentInstance().addMessage(
-                    null, new FacesMessage(FacesMessage.SEVERITY_ERROR,
-                    "Find Error", "Employee Id (" + employeeModel.getEmployee().getEmployeeId() + ") not found!"));
-
+        } catch (Exception ex) {
+            log.error("Unexpected Exception!", ex);
+            FacesHelper helper = new FacesHelper();
+            helper.addErrorMessage("Employee Id (" + employeeModel.getEmployee().getEmployeeId() + ") not found!","");
+            helper.failValidation();
         }
     }
 }

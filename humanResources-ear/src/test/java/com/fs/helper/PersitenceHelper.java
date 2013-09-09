@@ -10,6 +10,7 @@ import org.junit.Assert;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
+import java.util.List;
 
 public class PersitenceHelper {
 
@@ -80,7 +81,14 @@ public class PersitenceHelper {
         return address;
     }
 
+    public List<Employee> findEmployeesByLastname(String lastName) {
+        EmployeeDAO employeeDAO = new EmployeeDAO(entityManager);
+        return employeeDAO.getEmployeesByLastname(lastName);
+    }
+
     public String getUniqueString(int length) {
         return RandomStringUtils.random(length, true, true);
     }
+
+
 }

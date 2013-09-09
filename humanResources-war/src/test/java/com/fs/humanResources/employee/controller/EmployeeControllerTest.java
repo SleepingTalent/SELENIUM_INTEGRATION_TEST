@@ -149,8 +149,24 @@ public class EmployeeControllerTest extends BaseUnitTest {
         employeeController.findEmployee();
 
         verify(facesContext, times(1)).addMessage(stringArgumentCaptor.capture(),facesMessageArgumentCaptor.capture());
+        verify(facesContext, times(1)).validationFailed();
+
         Assert.assertEquals(null, stringArgumentCaptor.getValue());
-        Assert.assertEquals("Find Error", facesMessageArgumentCaptor.getValue().getSummary());
-        Assert.assertEquals("Employee Id (12345) not found!", facesMessageArgumentCaptor.getValue().getDetail());
+        Assert.assertEquals("Employee Id (12345) not found!", facesMessageArgumentCaptor.getValue().getSummary());
+        Assert.assertEquals("", facesMessageArgumentCaptor.getValue().getDetail());
+    }
+
+    @Test
+    public void findEmployee_logsExpectedMessage_whenUnexpectedExceptionThrown() throws EmployeeNotFoundException {
+        when(humanResourcesService.getEmployeeDetails(anyLong())).thenThrow(new NoResultException());
+
+        employeeController.findEmployee();
+
+        verify(facesContext, times(1)).addMessage(stringArgumentCaptor.capture(),facesMessageArgumentCaptor.capture());
+        verify(facesContext, times(1)).validationFailed();
+
+        Assert.assertEquals(null, stringArgumentCaptor.getValue());
+        Assert.assertEquals("Employee Id (12345) not found!", facesMessageArgumentCaptor.getValue().getSummary());
+        Assert.assertEquals("", facesMessageArgumentCaptor.getValue().getDetail());
     }
 }

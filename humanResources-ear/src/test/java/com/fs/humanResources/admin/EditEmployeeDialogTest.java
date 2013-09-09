@@ -18,7 +18,6 @@ import java.util.Date;
 
 public class EditEmployeeDialogTest extends BaseSeleniumTest {
 
-    public static final String DATE_FORMATE_STR = "dd/MM/yyyy";
     AdminPage adminPage;
 
     EditEmployeeDialog editEmployeeDialog;
@@ -41,7 +40,6 @@ public class EditEmployeeDialogTest extends BaseSeleniumTest {
         employee.setFirstName("James");
         employee.setLastName(persitenceHelper.getUniqueString(8));
 
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(DATE_FORMATE_STR);
         employee.setDateOfBirth(simpleDateFormat.parse("15/07/1976"));
 
         employee.addAddress(address);
@@ -138,7 +136,7 @@ public class EditEmployeeDialogTest extends BaseSeleniumTest {
         Assert.assertEquals(employee.getId()+"",editEmployeeDialog.employeeIdInputDisplayed().getAttribute("value"));
         Assert.assertEquals(employee.getFirstName(),editEmployeeDialog.firstNameInputDisplayed().getAttribute("value"));
         Assert.assertEquals(employee.getLastName(),editEmployeeDialog.lastNameInputDisplayed().getAttribute("value"));
-        Assert.assertEquals(formateDate(employee.getDateOfBirth(),DATE_FORMATE_STR),editEmployeeDialog.dateOfBirthInputDisplayed().getAttribute("value"));
+        Assert.assertEquals(formateDate(employee.getDateOfBirth()),editEmployeeDialog.dateOfBirthInputDisplayed().getAttribute("value"));
 
         Assert.assertEquals(employee.getAddressList().get(0).getHouseNumber(),editEmployeeDialog.houseNumberInputDisplayed().getAttribute("value"));
         Assert.assertEquals(employee.getAddressList().get(0).getAddressFirstLine(),editEmployeeDialog.addressFirstLineInputDisplayed().getAttribute("value"));
@@ -171,11 +169,5 @@ public class EditEmployeeDialogTest extends BaseSeleniumTest {
         Assert.assertEquals(employee.getLastName()+"-upt",editEmployeeDialog.lastNameInputDisplayed().getAttribute("value"));
 
         Assert.assertEquals(employee.getAddressList().get(0).getHouseNumber()+"-upt",editEmployeeDialog.houseNumberInputDisplayed().getAttribute("value"));
-    }
-
-    private String formateDate(Date date, String formatString) {
-        SimpleDateFormat simpleDateFormat =
-                new SimpleDateFormat(formatString);
-        return simpleDateFormat.format(date);
     }
 }

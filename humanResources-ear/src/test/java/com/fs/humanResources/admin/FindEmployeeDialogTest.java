@@ -40,4 +40,13 @@ public class FindEmployeeDialogTest extends BaseSeleniumTest {
         findEmployeeDialog.clickFindEmployeeBtn();
         findEmployeeDialog.assertGrowlMessageDisplayed("Employee Id is required");
     }
+
+    @Test
+    public void validationMessages_displayedAsExpected_whenIdNotFound() {
+        String unknownId = "68785959";
+
+        findEmployeeDialog.setEmployeeId(unknownId);
+        findEmployeeDialog.clickFindEmployeeBtn();
+        findEmployeeDialog.assertGrowlMessageDisplayed("Employee Id ("+unknownId+") not found!");
+    }
 }

@@ -7,10 +7,7 @@ import com.fs.humanResources.common.BaseSeleniumTest;
 import com.fs.humanResources.model.address.entities.Address;
 import com.fs.humanResources.model.address.helper.AddressHelper;
 import com.fs.humanResources.model.employee.entities.Employee;
-import org.junit.After;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.*;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -146,6 +143,7 @@ public class EditEmployeeDialogTest extends BaseSeleniumTest {
     }
 
     @Test
+    @Ignore
     public void employeeDetails_updatedAsExpected() {
         editEmployeeDialog.setFirstName(employee.getFirstName() + "-upt");
         editEmployeeDialog.setLastName(employee.getLastName() + "-upt");

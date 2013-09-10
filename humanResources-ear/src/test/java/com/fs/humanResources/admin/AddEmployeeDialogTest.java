@@ -60,7 +60,6 @@ public class AddEmployeeDialogTest extends BaseSeleniumTest {
     }
 
     @Test
-    @Ignore
     public void employeeAddedAsExpected() {
         addEmployeeDialog.setFirstName(employee.getFirstName());
         addEmployeeDialog.setLastName(employee.getLastName());
@@ -74,19 +73,13 @@ public class AddEmployeeDialogTest extends BaseSeleniumTest {
         addEmployeeDialog.clickAddEmployeeBtn();
         addEmployeeDialog.assertDialogIsNotPresent();
 
-        List<Employee> employeeList = persitenceHelper.findEmployeesByLastname(employee.getLastName());
-        Assert.assertEquals(1,employeeList.size());
-        Assert.assertEquals(employee.getLastName(),employeeList.get(0).getLastName());
-        employee = employeeList.get(0);
+        refreshEmployeeWithEntity();
 
-        persitenceHelper.addDeletionCandidate(employeeList.get(0));
-
-        adminPage.assertEmployeeAdminMenuDisplayed().click();
-
+        adminPage.moveToEditEmployeeMenuItem();
         FindEmployeeDialog findEmployeeDialog = adminPage.clickEditEmployeeMenuItem();
         findEmployeeDialog.assertDialogIsPresent();
 
-        findEmployeeDialog.setEmployeeId(employeeList.get(0).getId() + "");
+        findEmployeeDialog.setEmployeeId(employee.getId() + "");
         EditEmployeeDialog editEmployeeDialog = findEmployeeDialog.clickFindEmployeeBtn();
         findEmployeeDialog.assertDialogIsNotPresent();
 
@@ -102,6 +95,15 @@ public class AddEmployeeDialogTest extends BaseSeleniumTest {
         Assert.assertEquals(employee.getAddressList().get(0).getAddressSecondLine(),editEmployeeDialog.addressSecondLineInputDisplayed().getAttribute("value"));
         Assert.assertEquals(employee.getAddressList().get(0).getTownCity(),editEmployeeDialog.townCityInputDisplayed().getAttribute("value"));
         Assert.assertEquals("AB1-CDX",editEmployeeDialog.postCodeInputDisplayed().getAttribute("value"));
+    }
+
+    private void refreshEmployeeWithEntity() {
+        List<Employee> employeeList = persitenceHelper.findEmployeesByLastname(employee.getLastName());
+        Assert.assertEquals(1, employeeList.size());
+        Assert.assertEquals(employee.getLastName(),employeeList.get(0).getLastName());
+
+        employee = employeeList.get(0);
+        persitenceHelper.addDeletionCandidate(employee);
     }
 
     @Test

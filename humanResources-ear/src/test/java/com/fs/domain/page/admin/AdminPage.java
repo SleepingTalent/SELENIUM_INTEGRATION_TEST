@@ -8,6 +8,7 @@ import org.apache.log4j.Logger;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 
 public class AdminPage extends PageObject {
 
@@ -73,5 +74,13 @@ public class AdminPage extends PageObject {
     public FindEmployeeDialog clickEditEmployeeMenuItem() {
         assertEditEmployeeMenuItemDisplayed().click();
         return new FindEmployeeDialog(getDriver());
+    }
+
+    public void moveToEditEmployeeMenuItem() {
+        new Actions(getDriver()).moveToElement(assertEditEmployeeMenuItemDisplayed()).perform();
+    }
+
+    public void moveToAddEmployeeMenuItem() {
+        new Actions(getDriver()).moveToElement(assertAddEmployeeMenuItemDisplayed()).perform();
     }
 }

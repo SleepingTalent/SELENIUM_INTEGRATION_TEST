@@ -8,6 +8,7 @@ import com.fs.humanResources.model.address.entities.Address;
 import com.fs.humanResources.model.address.helper.AddressHelper;
 import com.fs.humanResources.model.employee.entities.Employee;
 import org.junit.*;
+import org.openqa.selenium.interactions.Actions;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -143,7 +144,6 @@ public class EditEmployeeDialogTest extends BaseSeleniumTest {
     }
 
     @Test
-    @Ignore
     public void employeeDetails_updatedAsExpected() {
         editEmployeeDialog.setFirstName(employee.getFirstName() + "-upt");
         editEmployeeDialog.setLastName(employee.getLastName() + "-upt");
@@ -153,8 +153,7 @@ public class EditEmployeeDialogTest extends BaseSeleniumTest {
         editEmployeeDialog.clickEditEmployeeBtn();
         editEmployeeDialog.assertDialogIsNotPresent();
 
-        adminPage.assertEmployeeAdminMenuDisplayed().click();
-
+        adminPage.moveToEditEmployeeMenuItem();
         FindEmployeeDialog findEmployeeDialog = adminPage.clickEditEmployeeMenuItem();
         findEmployeeDialog.assertDialogIsPresent();
 

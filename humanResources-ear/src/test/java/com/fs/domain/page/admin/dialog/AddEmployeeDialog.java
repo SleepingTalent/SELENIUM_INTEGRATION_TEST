@@ -29,12 +29,20 @@ public class AddEmployeeDialog extends PageObject {
 
     private static final String ADD_EMPLOYEE_BTN = "addEmployeeBtn";
 
+    private static final String DIALOG_VISIBLE_CLASS = "ui-overlay-visible";
+    private static final String DIALOG_NOT_VISIBLE_CLASS = "ui-overlay-hidden";
+
     public AddEmployeeDialog(WebDriver driver) {
         super(driver);
     }
 
+
     public void assertDialogIsPresent() {
-        findElementById(ADD_EMPLOYEE_DIALOG);
+
+    }
+
+    public void assertDialogIsNotPresent() {
+
     }
 
     public WebElement firstNameInputDisplayed() {

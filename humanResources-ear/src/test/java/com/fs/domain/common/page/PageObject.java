@@ -49,6 +49,24 @@ public abstract class PageObject {
         }
     }
 
+    protected WebElement findElementByIdAndClass(String id, String cssClass) {
+        try {
+            return elementHelper.findByIdAndClass(id, cssClass, true);
+        } catch (SeleniumTimeoutException se) {
+            log.info("Timed out trying to find element (" + id + ") retrying!");
+            return elementHelper.findByIdAndClass(id, cssClass, false);
+        }
+    }
+
+    protected WebElement findElementByIdAndAttribute(String id, String attributeName, String attributeValue) {
+        try {
+            return elementHelper.findByIdAndAttribute(id, attributeName, attributeValue, true);
+        } catch (SeleniumTimeoutException se) {
+            log.info("Timed out trying to find element (" + id + ") with Attr (@"+attributeName+"=\""+attributeValue+"\") retrying!");
+            return elementHelper.findByIdAndAttribute(id, attributeName, attributeValue, true);
+        }
+    }
+
     protected WebElement findElementByClassWithText(String className, String text) {
         try {
             return elementHelper.findElementsByClassContainingText(className, text, true);

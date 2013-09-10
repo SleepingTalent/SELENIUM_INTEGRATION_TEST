@@ -133,41 +133,43 @@ public class EditEmployeeDialogTest extends BaseSeleniumTest {
 
     @Test
     public void employeeDetails_displayedAsExpected() {
-        Assert.assertEquals(employee.getId()+"",editEmployeeDialog.employeeIdInputDisplayed().getAttribute("value"));
-        Assert.assertEquals(employee.getFirstName(),editEmployeeDialog.firstNameInputDisplayed().getAttribute("value"));
-        Assert.assertEquals(employee.getLastName(),editEmployeeDialog.lastNameInputDisplayed().getAttribute("value"));
-        Assert.assertEquals(formateDate(employee.getDateOfBirth()),editEmployeeDialog.dateOfBirthInputDisplayed().getAttribute("value"));
+        Assert.assertEquals(employee.getId() + "", editEmployeeDialog.employeeIdInputDisplayed().getAttribute("value"));
+        Assert.assertEquals(employee.getFirstName(), editEmployeeDialog.firstNameInputDisplayed().getAttribute("value"));
+        Assert.assertEquals(employee.getLastName(), editEmployeeDialog.lastNameInputDisplayed().getAttribute("value"));
+        Assert.assertEquals(formateDate(employee.getDateOfBirth()), editEmployeeDialog.dateOfBirthInputDisplayed().getAttribute("value"));
 
-        Assert.assertEquals(employee.getAddressList().get(0).getHouseNumber(),editEmployeeDialog.houseNumberInputDisplayed().getAttribute("value"));
-        Assert.assertEquals(employee.getAddressList().get(0).getAddressFirstLine(),editEmployeeDialog.addressFirstLineInputDisplayed().getAttribute("value"));
-        Assert.assertEquals(employee.getAddressList().get(0).getAddressSecondLine(),editEmployeeDialog.addressSecondLineInputDisplayed().getAttribute("value"));
-        Assert.assertEquals(employee.getAddressList().get(0).getTownCity(),editEmployeeDialog.townCityInputDisplayed().getAttribute("value"));
-        Assert.assertEquals("AB1-CDX",editEmployeeDialog.postCodeInputDisplayed().getAttribute("value"));
+        Assert.assertEquals(employee.getAddressList().get(0).getHouseNumber(), editEmployeeDialog.houseNumberInputDisplayed().getAttribute("value"));
+        Assert.assertEquals(employee.getAddressList().get(0).getAddressFirstLine(), editEmployeeDialog.addressFirstLineInputDisplayed().getAttribute("value"));
+        Assert.assertEquals(employee.getAddressList().get(0).getAddressSecondLine(), editEmployeeDialog.addressSecondLineInputDisplayed().getAttribute("value"));
+        Assert.assertEquals(employee.getAddressList().get(0).getTownCity(), editEmployeeDialog.townCityInputDisplayed().getAttribute("value"));
+        Assert.assertEquals("AB1-CDX", editEmployeeDialog.postCodeInputDisplayed().getAttribute("value"));
     }
 
     @Test
     public void employeeDetails_updatedAsExpected() {
-        editEmployeeDialog.setFirstName(employee.getFirstName()+"-upt");
-        editEmployeeDialog.setLastName(employee.getLastName()+"-upt");
+        editEmployeeDialog.setFirstName(employee.getFirstName() + "-upt");
+        editEmployeeDialog.setLastName(employee.getLastName() + "-upt");
 
-        editEmployeeDialog.setHouseNumber(employee.getAddressList().get(0).getHouseNumber()+"-upt");
+        editEmployeeDialog.setHouseNumber(employee.getAddressList().get(0).getHouseNumber() + "-upt");
 
         editEmployeeDialog.clickEditEmployeeBtn();
+        editEmployeeDialog.assertDialogIsNotPresent();
 
-        adminPage.assertPageIsPresent();
+        adminPage.assertEmployeeAdminMenuDisplayed().click();
 
         FindEmployeeDialog findEmployeeDialog = adminPage.clickEditEmployeeMenuItem();
         findEmployeeDialog.assertDialogIsPresent();
 
         findEmployeeDialog.setEmployeeId(employee.getId() + "");
         editEmployeeDialog = findEmployeeDialog.clickFindEmployeeBtn();
+        findEmployeeDialog.assertDialogIsNotPresent();
 
         editEmployeeDialog.assertDialogIsPresent();
 
-        Assert.assertEquals(employee.getId()+"",editEmployeeDialog.employeeIdInputDisplayed().getAttribute("value"));
-        Assert.assertEquals(employee.getFirstName()+"-upt",editEmployeeDialog.firstNameInputDisplayed().getAttribute("value"));
-        Assert.assertEquals(employee.getLastName()+"-upt",editEmployeeDialog.lastNameInputDisplayed().getAttribute("value"));
+        Assert.assertEquals(employee.getId() + "", editEmployeeDialog.employeeIdInputDisplayed().getAttribute("value"));
+        Assert.assertEquals(employee.getFirstName() + "-upt", editEmployeeDialog.firstNameInputDisplayed().getAttribute("value"));
+        Assert.assertEquals(employee.getLastName() + "-upt", editEmployeeDialog.lastNameInputDisplayed().getAttribute("value"));
 
-        Assert.assertEquals(employee.getAddressList().get(0).getHouseNumber()+"-upt",editEmployeeDialog.houseNumberInputDisplayed().getAttribute("value"));
+        Assert.assertEquals(employee.getAddressList().get(0).getHouseNumber() + "-upt", editEmployeeDialog.houseNumberInputDisplayed().getAttribute("value"));
     }
 }

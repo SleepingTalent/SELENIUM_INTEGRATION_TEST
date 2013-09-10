@@ -72,13 +72,14 @@ public class AddEmployeeDialogTest extends BaseSeleniumTest {
         addEmployeeDialog.setTownCity(employee.getAddressList().get(0).getTownCity());
         addEmployeeDialog.setPostcode(employee.getAddressList().get(0).getPostCode());
         addEmployeeDialog.clickAddEmployeeBtn();
+        addEmployeeDialog.assertDialogIsNotPresent();
 
         List<Employee> employeeList = persitenceHelper.findEmployeesByLastname(employee.getLastName());
         Assert.assertEquals(1,employeeList.size());
         Assert.assertEquals(employee.getLastName(),employeeList.get(0).getLastName());
+        employee = employeeList.get(0);
 
         persitenceHelper.addDeletionCandidate(employeeList.get(0));
-
 
         adminPage.assertEmployeeAdminMenuDisplayed().click();
 
@@ -87,10 +88,11 @@ public class AddEmployeeDialogTest extends BaseSeleniumTest {
 
         findEmployeeDialog.setEmployeeId(employeeList.get(0).getId() + "");
         EditEmployeeDialog editEmployeeDialog = findEmployeeDialog.clickFindEmployeeBtn();
+        findEmployeeDialog.assertDialogIsNotPresent();
 
         editEmployeeDialog.assertDialogIsPresent();
 
-        Assert.assertEquals(employee.getId()+"",editEmployeeDialog.employeeIdInputDisplayed().getAttribute("value"));
+        Assert.assertNotNull(employee.getId()+"",editEmployeeDialog.employeeIdInputDisplayed().getAttribute("value"));
         Assert.assertEquals(employee.getFirstName(),editEmployeeDialog.firstNameInputDisplayed().getAttribute("value"));
         Assert.assertEquals(employee.getLastName(),editEmployeeDialog.lastNameInputDisplayed().getAttribute("value"));
         Assert.assertEquals(formateDate(employee.getDateOfBirth()),editEmployeeDialog.dateOfBirthInputDisplayed().getAttribute("value"));

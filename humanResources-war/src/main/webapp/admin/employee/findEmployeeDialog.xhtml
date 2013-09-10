@@ -14,8 +14,11 @@
                                  requiredMessage="Employee Id is required"/>
 
                     <f:facet name="footer">
-                        <p:commandButton id="findEmployeeBtn" process="employeeId @this" value="Find Employee" actionListener="#{employeeController.findEmployee}"
-                                         oncomplete="handleDialogSubmitAndNextDialog(xhr, status, args, _findEmployeeDialog, _editEmployeeDialog)" update=":growl"/>
+                        <h:commandButton id="findEmployeeBtn" value="Find Employee"
+                                         actionListener="#{employeeController.findEmployee}"
+                                         action="#{navigationController.showEditEmployeeDialog}">
+                            <f:ajax execute="employeeId" render=":growl"/>
+                        </h:commandButton>
                     </f:facet>
                 </p:panelGrid>
         </h:form>

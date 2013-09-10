@@ -47,8 +47,11 @@
                                  requiredMessage="Postcode is required" mask="***-***"/>
 
                     <f:facet name="footer">
-                        <p:commandButton id="addEmployeeBtn" process="firstName lastName dateOfBirth houseNumber addressFirstLine addressSecondLine townCity postCode @this" value="Add Employee" actionListener="#{employeeController.saveEmployee}"
-                                         oncomplete="handleDialogSubmit(xhr, status, args, _addEmployeeDialog)" update=":growl"/>
+                        <h:commandButton id="addEmployeeBtn" value="Add Employee"
+                                         actionListener="#{employeeController.saveEmployee}"
+                                          action="#{navigationController.hideAddEmployeeDialog}">
+                            <f:ajax execute="@form" render=":growl" />
+                        </h:commandButton>
                     </f:facet>
                 </p:panelGrid>
         </h:form>

@@ -15,12 +15,19 @@ public class FindEmployeeDialog extends PageObject {
 
     private static final String FIND_EMPLOYEE_BTN = "findEmployeeBtn";
 
+    private static final String DIALOG_VISIBLE_CLASS = "ui-overlay-visible";
+    private static final String DIALOG_NOT_VISIBLE_CLASS = "ui-overlay-hidden";
+
     public FindEmployeeDialog(WebDriver driver) {
         super(driver);
     }
 
     public void assertDialogIsPresent() {
-        findElementById(FIND_EMPLOYEE_DIALOG);
+
+    }
+
+    public void assertDialogIsNotPresent() {
+
     }
 
     public WebElement employeeInputDisplayed() {

@@ -32,14 +32,4 @@ public class AddressHelper {
 
         return addressList;
     }
-
-    public List<Address> convertDTOToEntityList(AddressDTO... addressDTO) {
-        List<Address> addressList = new ArrayList();
-
-        for(AddressDTO address : addressDTO ) {
-            addressList.add(address.getEntity());
-        }
-
-        return addressList;
-    }
 }

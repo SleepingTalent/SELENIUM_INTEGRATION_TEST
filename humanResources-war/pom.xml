@@ -114,7 +114,7 @@
                                         <limit>
                                             <counter>INSTRUCTION</counter>
                                             <value>COVEREDRATIO</value>
-                                            <minimum>0.95</minimum>
+                                            <minimum>0.93</minimum>
                                         </limit>
                                         <limit>
                                             <counter>CLASS</counter>
@@ -125,6 +125,10 @@
                                 </rule>
                                 <rule>
                                     <element>CLASS</element>
+                                    <excludes>
+                                        <exclude>*DialogHelper</exclude>
+                                        <exclude>*Dialogs</exclude>
+                                    </excludes>
                                     <limits>
                                         <limit>
                                             <counter>LINE</counter>

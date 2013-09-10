@@ -2,8 +2,7 @@ package com.fs.humanResources.authentication.controller;
 
 
 import com.fs.common.BaseUnitTest;
-import com.fs.common.ContextMocker;
-import org.junit.Assert;
+import com.fs.common.FacesContextMocker;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;
@@ -38,7 +37,7 @@ public class AuthControllerTest extends BaseUnitTest {
 
     @Before
     public void setUp() {
-        facesContext = ContextMocker.mockFacesContext();
+        facesContext = FacesContextMocker.mockFacesContext();
         when(facesContext.getExternalContext()).thenReturn(externalContext);
         when(externalContext.getRequest()).thenReturn(request);
         when(request.getSession()).thenReturn(session);

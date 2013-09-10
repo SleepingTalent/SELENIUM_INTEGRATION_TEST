@@ -10,7 +10,7 @@ import javax.persistence.*;
 public class Address extends BaseEntity {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected Long id;
 
     private String houseNumber;

@@ -30,7 +30,6 @@ public class EditEmployeeDialog extends PageObject {
     private static final String EMPLOYEE_ID = "employeeId";
     private static final String EMPLOYEE_ID_LABEL = "employeeIdlbl";
 
-
     private static final String EDIT_EMPLOYEE_BTN = "editEmployeeBtn";
 
     public EditEmployeeDialog(WebDriver driver) {
@@ -38,7 +37,11 @@ public class EditEmployeeDialog extends PageObject {
     }
 
     public void assertDialogIsPresent() {
-        findElementById(EDIT_EMPLOYEE_DIALOG);
+
+    }
+
+    public void assertDialogIsNotPresent() {
+
     }
 
     public WebElement employeeIdInputDisplayed() {

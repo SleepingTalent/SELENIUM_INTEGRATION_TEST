@@ -12,7 +12,7 @@ import java.util.List;
 public class Employee extends BaseEntity {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected Long id;
 
     private String firstName;

@@ -12,6 +12,14 @@ public class FindByHelper {
         return By.xpath("//*[contains(@class,'"+cssClass+"')][normalize-space(text())='"+text+"']");
     }
 
+    public static By findByIdAndClass(String id, String cssClass) {
+        return By.xpath("//*[(@id='"+id+"') and contains(@class,'"+cssClass+"')]");
+    }
+
+    public static By findByIdAndAttributeValue(String id, String attributeName, String attributeValue) {
+        return By.xpath("//*[(@id='"+id+"') and (@"+attributeName+"='"+attributeValue+"')");
+    }
+
     public static By findByClass(String cssClass) {
         return By.className(cssClass);
     }

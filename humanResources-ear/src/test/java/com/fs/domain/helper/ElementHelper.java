@@ -33,6 +33,14 @@ public class ElementHelper {
         return waitUntilConditionReturnElement(ExpectedConditions.visibilityOfElementLocated(FindByHelper.findByClass(cssClass)), reThrowError);
     }
 
+    public WebElement findByIdAndClass(String id, String cssClass, boolean reThrowError) {
+        return waitUntilConditionReturnElement(ExpectedConditions.visibilityOfElementLocated(FindByHelper.findByIdAndClass(id,cssClass)), reThrowError);
+    }
+
+    public WebElement findByIdAndAttribute(String id, String attributeName, String attributeValue, boolean reThrowError) {
+        return waitUntilConditionReturnElement(ExpectedConditions.visibilityOfElementLocated(FindByHelper.findByIdAndAttributeValue(id,attributeName,attributeValue)), reThrowError);
+    }
+
     public WebElement findByLinkText(String linkText, boolean reThrowError) {
         return waitUntilConditionReturnElement(ExpectedConditions.visibilityOfElementLocated(FindByHelper.findByLinkText(linkText)), reThrowError);
     }

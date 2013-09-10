@@ -6,9 +6,9 @@ import org.mockito.stubbing.Answer;
 
 import javax.faces.context.FacesContext;
 
-public abstract class ContextMocker extends FacesContext {
+public abstract class FacesContextMocker extends FacesContext {
 
-    private ContextMocker() {
+    private FacesContextMocker() {
     }
 
     private static final Release RELEASE = new Release();

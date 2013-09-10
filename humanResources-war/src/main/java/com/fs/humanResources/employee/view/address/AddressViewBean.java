@@ -12,24 +12,22 @@ public class AddressViewBean {
     private Long id;
 
     public AddressViewBean(Long id, String houseNumber, String addressFirstLine, String addressSecondLine, String townCity, String postCode) {
-        this.id = id;
-        this.houseNumber = houseNumber;
-        this.addressFirstLine = addressFirstLine;
-        this.addressSecondLine = addressSecondLine;
-        this.townCity = townCity;
-        this.postCode = postCode;
+        setId(id);
+        setHouseNumber(houseNumber);
+        setAddressFirstLine(addressFirstLine);
+        setAddressSecondLine(addressSecondLine);
+        setTownCity(townCity);
+        setPostCode(postCode);
     }
 
     public AddressViewBean() {
     }
 
     public AddressViewBean(AddressDTO addressDTO) {
-        this.id = addressDTO.getId();
-        this.houseNumber = addressDTO.getHouseNumber();
-        this.addressFirstLine = addressDTO.getAddressFirstLine();
-        this.addressSecondLine = addressDTO.getAddressSecondLine();
-        this.townCity = addressDTO.getTownCity();
-        this.postCode = addressDTO.getPostCode();
+        this(addressDTO.getId(),addressDTO.getHouseNumber(),
+                addressDTO.getAddressFirstLine(),
+                addressDTO.getAddressSecondLine(),
+                addressDTO.getTownCity(),addressDTO.getPostCode());
     }
 
     public String getHouseNumber() {
@@ -54,5 +52,29 @@ public class AddressViewBean {
 
     public Long getId() {
         return id;
+    }
+
+    public void setHouseNumber(String houseNumber) {
+        this.houseNumber = houseNumber;
+    }
+
+    public void setAddressFirstLine(String addressFirstLine) {
+        this.addressFirstLine = addressFirstLine;
+    }
+
+    public void setAddressSecondLine(String addressSecondLine) {
+        this.addressSecondLine = addressSecondLine;
+    }
+
+    public void setTownCity(String townCity) {
+        this.townCity = townCity;
+    }
+
+    public void setPostCode(String postCode) {
+        this.postCode = postCode;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }

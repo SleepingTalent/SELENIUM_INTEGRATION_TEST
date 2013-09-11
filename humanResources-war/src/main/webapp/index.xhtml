@@ -16,12 +16,11 @@
 
     <ui:define name="body">
         <h:form id="login">
-            <p:panel id="contentPanel" header="Human Resources Home" footer="Fairbairn Solutions LTD">
+            <p:panel id="contentPanel" header="Human Resources Home">
 
                 <p:layout styleClass="homeLayout" id="homeLayout">
-
                     <p:layoutUnit position="center" size="200">
-                            <p:commandButton id="loginBtn" ajax="false" value="Login" actionListener="#{authController.login}" action="#{navigationController.navigateToAdmin}"/>
+                            <h:commandButton id="loginBtn" value="Login" actionListener="#{authController.login}" action="#{navigationController.navigateToAdmin}"/>
                     </p:layoutUnit>
                 </p:layout>
 

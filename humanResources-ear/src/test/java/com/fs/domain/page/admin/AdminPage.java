@@ -2,6 +2,7 @@ package com.fs.domain.page.admin;
 
 
 import com.fs.domain.common.page.PageObject;
+import com.fs.domain.page.HumanResourcesHome;
 import com.fs.domain.page.admin.dialog.AddEmployeeDialog;
 import com.fs.domain.page.admin.dialog.FindEmployeeDialog;
 import org.apache.log4j.Logger;
@@ -66,6 +67,10 @@ public class AdminPage extends PageObject {
         return findLinkByText(labelText);
     }
 
+    public WebElement assertLogoutLinkDisplayed() {
+        return findFormElementById(FORM,"logoutLnk");
+    }
+
     public AddEmployeeDialog clickAddEmployeeMenuItem() {
         assertAddEmployeeMenuItemDisplayed().click();
         return new AddEmployeeDialog(getDriver());
@@ -84,4 +89,10 @@ public class AdminPage extends PageObject {
     public void moveToAddEmployeeMenuItem() {
         new Actions(getDriver()).moveToElement(assertAddEmployeeMenuItemDisplayed()).perform();
     }
+
+    public HumanResourcesHome clickLogoutLink() {
+        assertLogoutLinkDisplayed().click();
+        return new HumanResourcesHome(getDriver());
+    }
+
 }

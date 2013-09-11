@@ -85,7 +85,7 @@ public class AddressDAOIntegrationTest extends BaseDAOTest {
 
     @Test
     public void countAll_returns_AsExpected() {
-        Assert.assertEquals(2, addressDAO.countAll());
+        Assert.assertTrue("Expected at least 2 results",addressDAO.countAll() >= 2);
     }
 
     @Test

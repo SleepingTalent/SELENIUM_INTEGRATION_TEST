@@ -19,6 +19,12 @@ public class AdminPageTest extends BaseSeleniumTest {
     }
 
     @Test
+    public void logoutLink_logsOutAsExpected() {
+        adminPage.clickLogoutLink();
+        humanResourcesHome.assertPageIsPresent();
+    }
+
+    @Test
     public void menusDisplayed_asExpected() {
         adminPage.assertEmployeeAdminMenuDisplayed().click();
         adminPage.assertEditEmployeeMenuItemDisplayed();

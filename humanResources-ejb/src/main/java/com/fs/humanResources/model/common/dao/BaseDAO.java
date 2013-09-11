@@ -4,6 +4,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import java.util.List;
 
 public abstract class BaseDAO<T> {
 
@@ -56,4 +57,19 @@ public abstract class BaseDAO<T> {
     public T update(final T entity) {
         return entityManager.merge(entity);
     }
+
+    public List<T> findAll(int first, int pageSize) {
+        final StringBuffer queryString = new StringBuffer(
+                "SELECT o from ");
+
+        queryString.append(entityClass.getSimpleName()).append(" o ");
+
+        Query query = entityManager.createQuery(queryString.toString());
+
+        query.setFirstResult(first);
+        query.setMaxResults(pageSize);
+
+        return query.getResultList();
+    }
+
 }

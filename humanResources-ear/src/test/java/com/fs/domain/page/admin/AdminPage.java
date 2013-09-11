@@ -39,9 +39,6 @@ public class AdminPage extends PageObject {
         return assertMenuDisplayed("Browse");
     }
 
-    public WebElement assertSearchMenuDisplayed() {
-        return assertMenuDisplayed("Search");
-    }
 
     public WebElement assertEditEmployeeMenuItemDisplayed() {
         return findFormElementById(FORM,"editEmployee");
@@ -59,16 +56,16 @@ public class AdminPage extends PageObject {
         return findFormElementById(FORM,"browseEmployees");
     }
 
-    public WebElement assertSearchForEmployeeMenuItemDisplayed() {
-        return findFormElementById(FORM,"searchEmployees");
+    public WebElement assertSearchBtnDisplayed() {
+        return findFormElementById(FORM,"searchBtn");
     }
 
     private WebElement assertMenuDisplayed(String labelText) {
         return findLinkByText(labelText);
     }
 
-    public WebElement assertLogoutLinkDisplayed() {
-        return findFormElementById(FORM,"logoutLnk");
+    public WebElement assertLogoutBtnDisplayed() {
+        return findFormElementById(FORM,"logoutBtn");
     }
 
     public AddEmployeeDialog clickAddEmployeeMenuItem() {
@@ -86,12 +83,8 @@ public class AdminPage extends PageObject {
         new Actions(getDriver()).moveToElement(assertEditEmployeeMenuItemDisplayed()).perform();
     }
 
-    public void moveToAddEmployeeMenuItem() {
-        new Actions(getDriver()).moveToElement(assertAddEmployeeMenuItemDisplayed()).perform();
-    }
-
-    public HumanResourcesHome clickLogoutLink() {
-        assertLogoutLinkDisplayed().click();
+    public HumanResourcesHome clickLogoutBtn() {
+        assertLogoutBtnDisplayed().click();
         return new HumanResourcesHome(getDriver());
     }
 

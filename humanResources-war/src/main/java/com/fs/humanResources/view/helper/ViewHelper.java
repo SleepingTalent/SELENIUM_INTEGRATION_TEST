@@ -42,6 +42,10 @@ public class ViewHelper {
         dialogHelper.showDialog(Dialogs.ADD_EMPLOYEE);
     }
 
+    public void showBrowseEmployeesDialog() {
+        dialogHelper.showDialog(Dialogs.BROWSE_EMPLOYEES);
+    }
+
     public void hideFindEmployeeDialog() {
         dialogHelper.hideDialog(Dialogs.FIND_EMPLOYEE);
     }

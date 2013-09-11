@@ -10,10 +10,13 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.persistence.NoResultException;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 @Named
 @Stateless
-public class HumanResourcesService {
+public class HumanResourcesService implements Serializable {
 
     Logger log = Logger.getLogger(HumanResourcesService.class);
 
@@ -29,6 +32,19 @@ public class HumanResourcesService {
         } catch (NoResultException e) {
             throw new EmployeeNotFoundException(e);
         }
+    }
+
+    public List<EmployeeDTO> findEmployees(int first, int pageSize)  {
+            log.info("Getting Employees "+first+" to "+pageSize);
+
+            List<EmployeeDTO> employeeDTOList = new ArrayList();
+            List<Employee> employeeList = employeeDAO.findAll(first, pageSize);
+
+            for(Employee employee : employeeList) {
+                 employeeDTOList.add(new EmployeeDTO(employee));
+            }
+
+        return employeeDTOList;
     }
 
     public void saveEmployeeDetails(EmployeeDTO employeeDTO) {

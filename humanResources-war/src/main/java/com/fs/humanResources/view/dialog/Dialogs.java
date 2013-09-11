@@ -4,7 +4,8 @@ public enum Dialogs {
 
     FIND_EMPLOYEE("_findEmployeeDialog"),
     ADD_EMPLOYEE("_addEmployeeDialog"),
-    EDIT_EMPLOYEE("_editEmployeeDialog");
+    EDIT_EMPLOYEE("_editEmployeeDialog"),
+    BROWSE_EMPLOYEES("_browseEmployeesDialog");
 
     private final String dialogWidgetVar;
 

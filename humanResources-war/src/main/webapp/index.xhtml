@@ -2,7 +2,8 @@
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:ui="http://java.sun.com/jsf/facelets">
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core">
 
 <body>
 
@@ -16,13 +17,27 @@
 
     <ui:define name="body">
         <h:form id="login">
-            <p:panel id="contentPanel" header="Human Resources Home">
+            <p:panel id="contentPanel">
 
-                <p:layout styleClass="homeLayout" id="homeLayout">
+                <f:facet name="header">
+                    <h:outputText value="Human Resources Home"/>
+                    <h:commandButton id="loginBtn" value="Login" actionListener="#{authController.login}"
+                                     action="#{navigationController.navigateToAdmin}" style="float :right"/>
+                </f:facet>
+
+                <p:layout>
                     <p:layoutUnit position="center" size="200">
-                            <h:commandButton id="loginBtn" value="Login" actionListener="#{authController.login}" action="#{navigationController.navigateToAdmin}"/>
+                        <p:panel id="homePanel" header="Human Resources">
+                            Welcome to the Human Resources Admin Tool.
+                            <p:imageSwitch effect="fade">
+                                <ui:repeat value="#{imageController.newsImages}" var="image">
+                                    <p:graphicImage value="/images/#{image}"/>
+                                </ui:repeat>
+                            </p:imageSwitch>
+                        </p:panel>
                     </p:layoutUnit>
                 </p:layout>
+
 
             </p:panel>
         </h:form>

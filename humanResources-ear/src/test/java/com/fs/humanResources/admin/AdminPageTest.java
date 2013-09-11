@@ -19,8 +19,8 @@ public class AdminPageTest extends BaseSeleniumTest {
     }
 
     @Test
-    public void logoutLink_logsOutAsExpected() {
-        adminPage.clickLogoutLink();
+    public void logoutBtn_logsOutAsExpected() {
+        adminPage.clickLogoutBtn();
         humanResourcesHome.assertPageIsPresent();
     }
 
@@ -33,9 +33,11 @@ public class AdminPageTest extends BaseSeleniumTest {
 
         adminPage.assertBrowseMenuDisplayed().click();
         adminPage.assertBrowseEmployeeMenuItemDisplayed();
+    }
 
-        adminPage.assertSearchMenuDisplayed().click();
-        adminPage.assertSearchForEmployeeMenuItemDisplayed();
+    @Test
+    public void searchButtonDisplayed_asExpected() {
+        adminPage.assertSearchBtnDisplayed();
     }
 
     @Test

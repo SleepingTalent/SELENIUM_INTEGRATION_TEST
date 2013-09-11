@@ -17,10 +17,18 @@
 
     <ui:define name="body">
         <h:form id="adminTool">
-            <p:panel id="contentPanel" header="Human Resources Admin Tool">
+            <p:panel id="contentPanel">
+
+                <f:facet name="header">
+                    <h:outputText value="Human Resources Admin Tool"/>
+                    <h:commandButton id="logoutBtn" value="Logout" style="float :right"
+                                     actionListener="#{authController.logout}"
+                                     action="#{navigationController.navigateToHome}"/>
+                    <h:commandButton id="searchBtn" value="Search" style="float :right"/>
+                </f:facet>
 
                 <p:layout styleClass="adminToolLayout" id="adminToolLayout">
-                    <p:layoutUnit position="west" resizable="true" size="500">
+                    <p:layoutUnit position="west" resizable="true" size="300">
                         <p:panelMenu styleClass="adminMenu" autoDisplay="false">
                             <p:submenu label="Employee Admin" icon="ui-icon-gear">
                                 <p:menuitem id="addEmployee" value="Add Employee"
@@ -28,34 +36,32 @@
                                             action="#{navigationController.showAddEmployeeDialog}" icon="ui-icon-disk"/>
                                 <p:menuitem id="editEmployee" value="Edit Employee"
                                             actionListener="#{employeeController.clearEmployee}"
-                                            action="#{navigationController.showFindEmployeeDialog}" icon="ui-icon-pencil"/>
+                                            action="#{navigationController.showFindEmployeeDialog}"
+                                            icon="ui-icon-pencil"/>
                                 <p:menuitem id="deleteEmployee" value="Delete Employee"
                                             actionListener="#{employeeController.clearEmployee}"
                                             icon="ui-icon-close"/>
                             </p:submenu>
                             <p:submenu label="Browse" icon="ui-icon-folder-collapsed">
                                 <p:menuitem id="browseEmployees" value="Browse Employees"
-                                            action="#{navigationController.navigateToBrowseEmployees}" ajax="false"
+                                            action="#{navigationController.showBrowseEmployeesDialog}"
                                             icon="ui-icon-folder-open"/>
-                            </p:submenu>
-                            <p:submenu label="Search" icon="ui-icon-search">
-                                <p:menuitem id="searchEmployees" value="Search Employees"
-                                            action="#{navigationController.navigateToBrowseEmployees}" ajax="false"
-                                            icon="ui-icon-search"/>
                             </p:submenu>
                         </p:panelMenu>
                     </p:layoutUnit>
 
                     <p:layoutUnit position="center" size="200">
-                        <p:panel id="newsPanel" header="Latest News">
+                        <p:panel id="newsPanel" header="Latest News" styleClass="newsPanel">
                             Welcome to the Human Resources Admin Tool.
+                            <p:imageSwitch effect="fade">
+                                <ui:repeat value="#{imageController.newsImages}" var="image">
+                                    <p:graphicImage value="/images/#{image}"/>
+                                </ui:repeat>
+                            </p:imageSwitch>
                         </p:panel>
                     </p:layoutUnit>
                 </p:layout>
 
-                <f:facet name="footer">
-                    <h:commandLink id="logoutLnk" value="Logout" actionListener="#{authController.logout}" action="#{navigationController.navigateToHome}"/>
-                </f:facet>
 
             </p:panel>
         </h:form>
@@ -63,6 +69,7 @@
         <ui:include src="employee/addEmployeeDialog.xhtml"/>
         <ui:include src="employee/findEmployeeDialog.xhtml"/>
         <ui:include src="employee/editEmployeeDialog.xhtml"/>
+        <ui:include src="browse/browseEmployeeDialog.xhtml"/>
     </ui:define>
 </ui:composition>
 

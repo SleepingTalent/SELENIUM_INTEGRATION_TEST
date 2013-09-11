@@ -132,4 +132,10 @@ public class EmployeeDAOIntegrationTest extends BaseDAOTest {
 
     }
 
+    @Test
+    public void findAll_returns_AsExpected() {
+        List<Employee> actual = employeeDAO.findAll(0,10);
+        Assert.assertTrue("Expected at least 1 result", actual.size() >= 1);
+    }
+
 }

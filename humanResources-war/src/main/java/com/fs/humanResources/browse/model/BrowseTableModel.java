@@ -4,6 +4,7 @@ import com.fs.humanResources.browse.view.BrowseViewBean;
 import com.fs.humanResources.dto.employee.EmployeeDTO;
 import com.fs.humanResources.employee.view.employee.EmployeeViewBean;
 import com.fs.humanResources.service.HumanResourcesService;
+import org.apache.log4j.Logger;
 import org.primefaces.model.LazyDataModel;
 import org.primefaces.model.SortOrder;
 
@@ -18,7 +19,9 @@ import java.util.Map;
 
 @Stateful
 @SessionScoped
-public class BrowseTableModel implements Serializable{
+public class BrowseTableModel implements Serializable {
+
+    Logger log = Logger.getLogger(BrowseTableModel.class);
 
     @Inject
     private HumanResourcesService humanResourcesService;
@@ -60,13 +63,16 @@ public class BrowseTableModel implements Serializable{
 
             @Override
             public List<BrowseViewBean> load(int first, int pageSize, String sortField, SortOrder sortOrder, Map<String, String> filters) {
-                List<EmployeeDTO> employeeDTOList =humanResourcesService.findEmployees(first, pageSize);
+                List<EmployeeDTO> employeeDTOList = humanResourcesService.findEmployees(first, pageSize);
 
                 for(EmployeeDTO employeeDTO : employeeDTOList) {
+                    log.info("adding "+employeeDTO);
                     EmployeeViewBean employeeViewBean = new EmployeeViewBean(employeeDTO);
                     BrowseViewBean browseViewBean = new BrowseViewBean(employeeViewBean);
                     lazyLoadedData.add(browseViewBean);
                 }
+
+                setRowCount(lazyLoadedData.size());
 
                 return lazyLoadedData;
             }

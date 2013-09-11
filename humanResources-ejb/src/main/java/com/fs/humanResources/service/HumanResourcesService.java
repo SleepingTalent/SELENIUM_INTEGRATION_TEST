@@ -25,7 +25,7 @@ public class HumanResourcesService implements Serializable {
 
     public EmployeeDTO getEmployeeDetails(Long employeeId) throws EmployeeNotFoundException {
         try {
-            log.info("Getting Employee Details for EmployeeId :"+employeeId);
+            log.info("Getting Employee Details for EmployeeId :" + employeeId);
             Employee employee = employeeDAO.getEmployeeDetails(employeeId);
             return new EmployeeDTO(employee);
 
@@ -34,15 +34,15 @@ public class HumanResourcesService implements Serializable {
         }
     }
 
-    public List<EmployeeDTO> findEmployees(int first, int pageSize)  {
-            log.info("Getting Employees "+first+" to "+pageSize);
+    public List<EmployeeDTO> findEmployees(int first, int pageSize) {
+        log.info("Getting Employees " + first + " to " + pageSize);
 
-            List<EmployeeDTO> employeeDTOList = new ArrayList();
-            List<Employee> employeeList = employeeDAO.findAll(first, pageSize);
+        List<EmployeeDTO> employeeDTOList = new ArrayList();
+        List<Employee> employeeList = employeeDAO.findAll(first, pageSize);
 
-            for(Employee employee : employeeList) {
-                 employeeDTOList.add(new EmployeeDTO(employee));
-            }
+        for (Employee employee : employeeList) {
+            employeeDTOList.add(new EmployeeDTO(employee));
+        }
 
         return employeeDTOList;
     }

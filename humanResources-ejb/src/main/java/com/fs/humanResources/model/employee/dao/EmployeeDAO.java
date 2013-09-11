@@ -40,7 +40,4 @@ public class EmployeeDAO extends BaseDAO<Employee> {
         return resultList;
     }
 
-    public List<Employee> findAll(int first, int page) {
-        return findAll(first, page);
-    }
 }

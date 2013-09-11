@@ -28,7 +28,7 @@
                 </f:facet>
 
                 <p:layout styleClass="adminToolLayout" id="adminToolLayout">
-                    <p:layoutUnit position="west" resizable="true" size="300">
+                    <p:layoutUnit position="west" resizable="true">
                         <p:panelMenu styleClass="adminMenu" autoDisplay="false">
                             <p:submenu label="Employee Admin" icon="ui-icon-gear">
                                 <p:menuitem id="addEmployee" value="Add Employee"
@@ -50,8 +50,8 @@
                         </p:panelMenu>
                     </p:layoutUnit>
 
-                    <p:layoutUnit position="center" size="200">
-                        <p:panel id="newsPanel" header="Latest News" styleClass="newsPanel">
+                    <p:layoutUnit position="center">
+                        <p:panel id="newsPanel" header="Latest News">
                             Welcome to the Human Resources Admin Tool.
                             <p:imageSwitch effect="fade">
                                 <ui:repeat value="#{imageController.newsImages}" var="image">

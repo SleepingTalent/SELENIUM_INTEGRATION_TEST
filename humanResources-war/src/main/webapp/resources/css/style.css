@@ -8,17 +8,22 @@
 }
 
 .adminToolLayout {
-    min-width:400px;
-    min-height:400px;
+    min-width:300px;
+    min-height:300px;
 }
 
 .newsPanel {
-    min-width:250px;
-    min-height:250px;
+    min-width:100px;
+    min-height:100px;
 }
 
 .adminMenu {
     width:250px;
+}
+
+.browseTable {
+    width:600px;
+    min-height:200px;
 }
 
 .addEmployeePanel {

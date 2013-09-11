@@ -4,10 +4,35 @@
                 xmlns:f="http://java.sun.com/jsf/core"
                 xmlns:p="http://primefaces.org/ui">
 
-    <p:dialog id="browseEmployeesDialog" widgetVar="_browseEmployeesDialog" header="Browse Employees" modal="true" dynamic="true" resizable="false" closable="true">
+    <p:dialog id="browseEmployeesDialog" widgetVar="_browseEmployeesDialog" styleClass="browseEmployeesDialog" header="Browse Employees" modal="true"
+              dynamic="true" resizable="false" closable="true">
 
         <h:form id="browseEmployees">
-                    <h:outputText id="blahlbl" value="TODO ADD PAGINATED TABLE"/>
+            <p:dataTable styleClass="browseTable" var="row" value="#{browseTableController.lazyModel}" paginator="true" rows="10"
+                         paginatorTemplate="{FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
+                         rowsPerPageTemplate="5,10,15" selectionMode="single" selection="#{browseTableController.selectedEmployee}"
+                         id="browseTable" lazy="true">
+
+                <p:column headerText="Employee Id">
+                    <h:outputText value="#{row.employee.employeeId}"/>
+                </p:column>
+
+                <p:column headerText="First Name">
+                    <h:outputText value="#{row.employee.firstName}"/>
+                </p:column>
+
+                <p:column headerText="Last Name">
+                    <h:outputText value="#{row.employee.lastName}"/>
+                </p:column>
+
+                <p:column>
+                    <p:commandButton icon="ui-icon-pencil"/>
+                </p:column>
+
+                <p:column>
+                    <p:commandButton icon="ui-icon-close"/>
+                </p:column>
+            </p:dataTable>
         </h:form>
     </p:dialog>
 </ui:composition>

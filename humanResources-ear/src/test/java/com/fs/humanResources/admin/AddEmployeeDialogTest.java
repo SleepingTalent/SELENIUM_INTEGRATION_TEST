@@ -75,7 +75,7 @@ public class AddEmployeeDialogTest extends BaseSeleniumTest {
 
         refreshEmployeeWithEntity();
 
-        adminPage.moveToEditEmployeeMenuItem();
+
         FindEmployeeDialog findEmployeeDialog = adminPage.clickEditEmployeeMenuItem();
         findEmployeeDialog.assertDialogIsPresent();
 

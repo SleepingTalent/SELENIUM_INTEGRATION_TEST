@@ -72,11 +72,12 @@ public class AdminPage extends PageObject {
     }
 
     public FindEmployeeDialog clickEditEmployeeMenuItem() {
+        moveToEditEmployeeMenuItem();
         assertEditEmployeeMenuItemDisplayed().click();
         return new FindEmployeeDialog(getDriver());
     }
 
-    public void moveToEditEmployeeMenuItem() {
+    private void moveToEditEmployeeMenuItem() {
         new Actions(getDriver()).moveToElement(assertEditEmployeeMenuItemDisplayed()).perform();
     }
 

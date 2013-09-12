@@ -3,6 +3,8 @@ package com.fs.humanResources.admin.browse;
 import com.fs.domain.page.admin.AdminPage;
 import com.fs.domain.page.browse.BrowseEmployeesPage;
 import com.fs.humanResources.common.BaseSeleniumTest;
+import com.fs.humanResources.model.address.entities.Address;
+import com.fs.humanResources.model.employee.entities.Employee;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -19,7 +21,7 @@ public class BrowseEmployeesDialogTest extends BaseSeleniumTest {
 
     @Before
     public void setUp() throws ParseException {
-    /*
+
         persitenceHelper.beginTransaction();
 
         for (int i = 0; i < EMPLOYEES_TO_ADD; i++) {
@@ -44,7 +46,7 @@ public class BrowseEmployeesDialogTest extends BaseSeleniumTest {
         }
 
         persitenceHelper.commitTransaction();
-       */
+
         humanResourcesHome.openHomePage();
         humanResourcesHome.assertPageIsPresent();
 
@@ -58,7 +60,7 @@ public class BrowseEmployeesDialogTest extends BaseSeleniumTest {
 
     @After
     public void tearDown() {
-        //persitenceHelper.deleteCandidates();
+        persitenceHelper.deleteCandidates();
         super.tearDown();
     }
 

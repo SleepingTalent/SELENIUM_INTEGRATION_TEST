@@ -96,6 +96,12 @@ public class HumanResourcesServiceTest extends BaseUnitTest {
     }
 
     @Test
+    public void findTotalEmployeeCount_verify_expected_methods_called() throws NoResultException, EmployeeNotFoundException {
+        humanResourcesService.findTotalEmployeeCount();
+        verify(employeeDAO,times(1)).countAll();
+    }
+
+    @Test
     public void findEmployeess_returns_expected_employee() throws NoResultException, EmployeeNotFoundException {
         List<EmployeeDTO> actual = humanResourcesService.findEmployees(0,0);
 

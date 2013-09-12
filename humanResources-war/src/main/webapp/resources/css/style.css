@@ -7,11 +7,6 @@
     padding: 5px;
 }
 
-.adminToolLayout {
-    min-width:300px;
-    min-height:300px;
-}
-
 .newsPanel {
     min-width:100px;
     min-height:100px;
@@ -30,3 +25,8 @@
    min-width:450px;
    min-height:510px;
 }
+
+.contentPanel {
+    height: 800px;
+}
+

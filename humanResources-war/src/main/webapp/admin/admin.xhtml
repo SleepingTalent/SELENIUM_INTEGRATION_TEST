@@ -17,7 +17,7 @@
 
     <ui:define name="body">
         <h:form id="adminTool">
-            <p:panel id="contentPanel">
+            <p:panel id="contentPanel" styleClass="contentPanel">
 
                 <f:facet name="header">
                     <h:outputText value="Human Resources Admin Tool"/>
@@ -27,43 +27,42 @@
                     <h:commandButton id="searchBtn" value="Search" style="float :right"/>
                 </f:facet>
 
-                <p:layout styleClass="adminToolLayout" id="adminToolLayout">
-                    <p:layoutUnit position="west" resizable="true">
-                        <p:panelMenu styleClass="adminMenu" autoDisplay="false">
-                            <p:submenu label="Employee Admin" icon="ui-icon-gear">
-                                <p:menuitem id="addEmployee" value="Add Employee"
-                                            actionListener="#{employeeController.clearEmployee}"
-                                            action="#{navigationController.showAddEmployeeDialog}" icon="ui-icon-disk"/>
-                                <p:menuitem id="editEmployee" value="Edit Employee"
-                                            actionListener="#{employeeController.clearEmployee}"
-                                            action="#{navigationController.showFindEmployeeDialog}"
-                                            icon="ui-icon-pencil"/>
-                                <p:menuitem id="deleteEmployee" value="Delete Employee"
-                                            actionListener="#{employeeController.clearEmployee}"
-                                            icon="ui-icon-close"/>
-                            </p:submenu>
-                            <p:submenu label="Browse" icon="ui-icon-folder-collapsed">
-                                <p:menuitem id="browseEmployees" value="Browse Employees"
-                                            action="#{navigationController.showBrowseEmployeesDialog}"
-                                            icon="ui-icon-folder-open"/>
-                            </p:submenu>
-                        </p:panelMenu>
-                    </p:layoutUnit>
+                    <p:layout id="adminToolLayout">
+                        <p:layoutUnit position="west" resizable="true">
+                            <p:panelMenu styleClass="adminMenu" autoDisplay="false">
+                                <p:submenu label="Employee Admin" icon="ui-icon-gear">
+                                    <p:menuitem id="addEmployee" value="Add Employee"
+                                                actionListener="#{employeeController.clearEmployee}"
+                                                action="#{navigationController.showAddEmployeeDialog}"
+                                                icon="ui-icon-disk"/>
+                                    <p:menuitem id="editEmployee" value="Edit Employee"
+                                                actionListener="#{employeeController.clearEmployee}"
+                                                action="#{navigationController.showFindEmployeeDialog}"
+                                                icon="ui-icon-pencil"/>
+                                    <p:menuitem id="deleteEmployee" value="Delete Employee"
+                                                actionListener="#{employeeController.clearEmployee}"
+                                                icon="ui-icon-close"/>
+                                </p:submenu>
+                                <p:submenu label="Browse" icon="ui-icon-folder-collapsed">
+                                    <p:menuitem id="browseEmployees" value="Browse Employees"
+                                                action="#{navigationController.showBrowseEmployeesDialog}"
+                                                icon="ui-icon-folder-open"/>
+                                </p:submenu>
+                            </p:panelMenu>
+                        </p:layoutUnit>
 
-                    <p:layoutUnit position="center">
-                        <p:panel id="newsPanel" header="Latest News">
-                            Welcome to the Human Resources Admin Tool.
-                            <p:imageSwitch effect="fade">
-                                <ui:repeat value="#{imageController.newsImages}" var="image">
-                                    <p:graphicImage value="/images/#{image}"/>
-                                </ui:repeat>
-                            </p:imageSwitch>
-                        </p:panel>
-                    </p:layoutUnit>
-                </p:layout>
-
-
-            </p:panel>
+                        <p:layoutUnit position="center">
+                            <p:panel id="newsPanel" header="Latest News">
+                                Welcome to the Human Resources Admin Tool.
+                                <p:imageSwitch effect="fade">
+                                    <ui:repeat value="#{imageController.newsImages}" var="image">
+                                        <p:graphicImage value="/images/#{image}"/>
+                                    </ui:repeat>
+                                </p:imageSwitch>
+                            </p:panel>
+                        </p:layoutUnit>
+                    </p:layout>
+                </p:panel>
         </h:form>
 
         <ui:include src="employee/addEmployeeDialog.xhtml"/>

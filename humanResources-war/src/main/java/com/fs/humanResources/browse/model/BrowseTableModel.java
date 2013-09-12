@@ -31,7 +31,7 @@ public class BrowseTableModel implements Serializable {
     private LazyDataModel<BrowseViewBean> dataModel;
 
     @PostConstruct
-    public void postContruct() {
+    public void postConstruct() {
         lazyLoadedData = new ArrayList<BrowseViewBean>();
         dataModel = buildDataModel();
     }

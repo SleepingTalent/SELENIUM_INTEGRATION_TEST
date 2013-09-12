@@ -77,6 +77,13 @@ public class ViewHelperTest extends BaseUnitTest {
         verify(dialogHelper, times(1)).showDialog(eq(Dialogs.EDIT_EMPLOYEE));
     }
 
+
+    @Test
+    public void showBrowseEmployeesDialog_callsExpectedMethod() {
+        viewHelper.showBrowseEmployeesDialog();
+        verify(dialogHelper, times(1)).showDialog(eq(Dialogs.BROWSE_EMPLOYEES));
+    }
+
     @Test
     public void hideFindEmployeeDialog_callsExpectedMethod() {
         viewHelper.hideFindEmployeeDialog();

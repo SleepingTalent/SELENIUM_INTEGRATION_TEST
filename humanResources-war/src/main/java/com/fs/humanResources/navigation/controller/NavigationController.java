@@ -32,10 +32,6 @@ public class NavigationController implements Serializable {
         return NavigationOutcomes.ADMIN.getOutcome();
     }
 
-    public String navigateToBrowseEmployees() {
-        return NavigationOutcomes.BROWSE_TO_EMPLOYEE.getOutcome();
-    }
-
     public String navigateToSearchForEmployees() {
         return NavigationOutcomes.SEARCH_FOR_EMPLOYEE.getOutcome();
     }

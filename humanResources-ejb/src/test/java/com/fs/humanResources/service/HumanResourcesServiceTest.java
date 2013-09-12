@@ -15,7 +15,9 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 
 import javax.persistence.NoResultException;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import static org.mockito.Matchers.anyLong;
 import static org.mockito.Mockito.*;
@@ -37,6 +39,8 @@ public class HumanResourcesServiceTest extends BaseUnitTest {
     @Mock
     EmployeeDTO employeeDTO;
 
+    List<Employee> employeeList;
+
     @Before
     public void setUp() throws NoResultException {
         foundEmployeeId = 12345l;
@@ -44,10 +48,15 @@ public class HumanResourcesServiceTest extends BaseUnitTest {
 
         employee = createEmployee();
 
+        employeeList = new ArrayList<Employee>();
+        employeeList.add(employee);
+
         when(employeeDTO.getEntity()).thenReturn(employee);
 
         when(employeeDAO.getEmployeeDetails(eq(foundEmployeeId))).thenReturn(employee);
         when(employeeDAO.getEmployeeDetails(eq(notFoundEmployeeId))).thenThrow(new NoResultException());
+
+        when(employeeDAO.findAll(anyInt(),anyInt())).thenReturn(employeeList);
     }
 
     @Test
@@ -65,8 +74,6 @@ public class HumanResourcesServiceTest extends BaseUnitTest {
         Assert.assertEquals(employee.getId(), actual.getId());
         Assert.assertEquals(employee.getDateOfBirth(), actual.getDateOfBirth());
 
-        Assert.assertEquals(employee.getAddressList().size(), 1);
-
         Address expectedAddress = employee.getAddressList().get(0);
         AddressDTO actualAddress = actual.getAddress();
 
@@ -80,6 +87,32 @@ public class HumanResourcesServiceTest extends BaseUnitTest {
     @Test(expected = EmployeeNotFoundException.class)
     public void getEmployeeDetails_throws_exception_when_employee_not_found() throws NoResultException, EmployeeNotFoundException {
         humanResourcesService.getEmployeeDetails(notFoundEmployeeId);
+    }
+
+    @Test
+    public void findEmployees_verify_expected_methods_called() throws NoResultException, EmployeeNotFoundException {
+        humanResourcesService.findEmployees(anyInt(), anyInt());
+        verify(employeeDAO,times(1)).findAll(anyInt(), anyInt());
+    }
+
+    @Test
+    public void findEmployeess_returns_expected_employee() throws NoResultException, EmployeeNotFoundException {
+        List<EmployeeDTO> actual = humanResourcesService.findEmployees(0,0);
+
+        Assert.assertEquals(1,actual.size());
+        Assert.assertEquals(employee.getFirstName(), actual.get(0).getFirstName());
+        Assert.assertEquals(employee.getLastName(), actual.get(0).getLastName());
+        Assert.assertEquals(employee.getId(), actual.get(0).getId());
+        Assert.assertEquals(employee.getDateOfBirth(), actual.get(0).getDateOfBirth());
+
+        Address expectedAddress = employee.getAddressList().get(0);
+        AddressDTO actualAddress = actual.get(0).getAddress();
+
+        Assert.assertEquals(expectedAddress.getHouseNumber(), actualAddress.getHouseNumber());
+        Assert.assertEquals(expectedAddress.getAddressFirstLine(), actualAddress.getAddressFirstLine());
+        Assert.assertEquals(expectedAddress.getAddressSecondLine(), actualAddress.getAddressSecondLine());
+        Assert.assertEquals(expectedAddress.getTownCity(), actualAddress.getTownCity());
+        Assert.assertEquals(expectedAddress.getPostCode(), actualAddress.getPostCode());
     }
 
     @Test

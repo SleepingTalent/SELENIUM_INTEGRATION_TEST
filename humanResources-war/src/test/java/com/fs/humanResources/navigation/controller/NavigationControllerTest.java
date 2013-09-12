@@ -30,11 +30,6 @@ public class NavigationControllerTest extends BaseUnitTest {
     }
 
     @Test
-    public void navigateToBrowseEmployee_returnsExpectedOutcome() {
-        Assert.assertEquals("browseToEmployee",navigationController.navigateToBrowseEmployees());
-    }
-
-    @Test
     public void navigateToSearchForEmployee_returnsExpectedOutcome() {
         Assert.assertEquals("searchForEmployee",navigationController.navigateToSearchForEmployees());
     }
@@ -73,6 +68,12 @@ public class NavigationControllerTest extends BaseUnitTest {
     public void showFindEmployeeDialog_callsExpectedMethod() {
         navigationController.showFindEmployeeDialog();
         verify(viewHelper, times(1)).showFindEmployeeDialog();
+    }
+
+    @Test
+    public void showBrowseEmployeesDialog_callsExpectedMethod() {
+        navigationController.showBrowseEmployeesDialog();
+        verify(viewHelper, times(1)).showBrowseEmployeesDialog();
     }
 }
 

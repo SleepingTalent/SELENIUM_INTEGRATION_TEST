@@ -63,6 +63,8 @@ public class BrowseTableModel implements Serializable {
 
             @Override
             public List<BrowseViewBean> load(int first, int pageSize, String sortField, SortOrder sortOrder, Map<String, String> filters) {
+                lazyLoadedData.clear();
+
                 List<EmployeeDTO> employeeDTOList = humanResourcesService.findEmployees(first, pageSize);
 
                 for(EmployeeDTO employeeDTO : employeeDTOList) {
@@ -72,7 +74,7 @@ public class BrowseTableModel implements Serializable {
                     lazyLoadedData.add(browseViewBean);
                 }
 
-                setRowCount(lazyLoadedData.size());
+                setRowCount(humanResourcesService.findTotalEmployeeCount());
 
                 return lazyLoadedData;
             }

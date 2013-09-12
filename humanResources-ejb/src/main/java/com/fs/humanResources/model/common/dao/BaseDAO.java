@@ -63,6 +63,7 @@ public abstract class BaseDAO<T> {
                 "SELECT o from ");
 
         queryString.append(entityClass.getSimpleName()).append(" o ");
+        queryString.append(" ORDER BY o.id ");
 
         Query query = entityManager.createQuery(queryString.toString());
 

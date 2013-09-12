@@ -1,4 +1,4 @@
-package com.fs.humanResources.admin;
+package com.fs.humanResources.admin.employee;
 
 import com.fs.domain.page.admin.AdminPage;
 import com.fs.domain.page.admin.dialog.EditEmployeeDialog;

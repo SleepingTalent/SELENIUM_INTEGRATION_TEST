@@ -49,6 +49,11 @@ public class ElementHelper {
         return waitUntilConditionReturnElement(ExpectedConditions.visibilityOfElementLocated(FindByHelper.findByClassAndText(cssClass,text)), reThrowError);
     }
 
+    public WebElement findTableDataWithText(String text, boolean reThrowError) {
+        return waitUntilConditionReturnElement(ExpectedConditions.visibilityOfElementLocated(FindByHelper.findTableDataWithText(text)), reThrowError);
+    }
+
+
     private WebElement waitUntilConditionReturnElement(ExpectedCondition<WebElement> condition, boolean reThrowError) {
         WebElement webElement = null;
 

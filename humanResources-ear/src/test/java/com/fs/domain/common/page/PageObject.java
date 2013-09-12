@@ -63,7 +63,16 @@ public abstract class PageObject {
             return elementHelper.findByIdAndAttribute(id, attributeName, attributeValue, true);
         } catch (SeleniumTimeoutException se) {
             log.info("Timed out trying to find element (" + id + ") with Attr (@"+attributeName+"=\""+attributeValue+"\") retrying!");
-            return elementHelper.findByIdAndAttribute(id, attributeName, attributeValue, true);
+            return elementHelper.findByIdAndAttribute(id, attributeName, attributeValue, false);
+        }
+    }
+
+    protected WebElement findTableDataWithText(String text) {
+        try {
+            return elementHelper.findTableDataWithText(text, true);
+        } catch (SeleniumTimeoutException se) {
+            log.info("Timed out trying to find td with (" + text + ") retrying!");
+            return elementHelper.findTableDataWithText(text, false);
         }
     }
 
@@ -72,7 +81,16 @@ public abstract class PageObject {
             return elementHelper.findElementsByClassContainingText(className, text, true);
         } catch (SeleniumTimeoutException se) {
             log.info("Timed out trying to find element with class (" + className + ") containing text (" + text + ") retrying!");
-            return elementHelper.findElementsByClassContainingText(className, text, true);
+            return elementHelper.findElementsByClassContainingText(className, text, false);
+        }
+    }
+
+    protected WebElement findElementByClass(String className) {
+        try {
+            return elementHelper.findByClass(className, true);
+        } catch (SeleniumTimeoutException se) {
+            log.info("Timed out trying to find element with class (" + className + ") retrying!");
+            return elementHelper.findByClass(className, false);
         }
     }
 

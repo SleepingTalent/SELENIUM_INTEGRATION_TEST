@@ -5,8 +5,8 @@ import com.fs.domain.common.page.PageObject;
 import com.fs.domain.page.HumanResourcesHome;
 import com.fs.domain.page.admin.dialog.AddEmployeeDialog;
 import com.fs.domain.page.admin.dialog.FindEmployeeDialog;
+import com.fs.domain.page.browse.BrowseEmployeesPage;
 import org.apache.log4j.Logger;
-import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -77,6 +77,11 @@ public class AdminPage extends PageObject {
         moveToEditEmployeeMenuItem();
         assertEditEmployeeMenuItemDisplayed().click();
         return new FindEmployeeDialog(getDriver());
+    }
+
+    public BrowseEmployeesPage clickBrowseEmployeesMenuItem() {
+        assertBrowseEmployeeMenuItemDisplayed().click();
+        return new BrowseEmployeesPage(getDriver());
     }
 
     private void moveToEditEmployeeMenuItem() {

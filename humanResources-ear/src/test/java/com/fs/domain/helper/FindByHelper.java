@@ -27,4 +27,8 @@ public class FindByHelper {
     public static By findByLinkText(String linkText) {
         return By.linkText(linkText);
     }
+
+    public static By findTableDataWithText(String text) {
+       return By.xpath("//td[text()='"+text+"']");
+    }
 }

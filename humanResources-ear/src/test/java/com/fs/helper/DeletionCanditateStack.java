@@ -1,10 +1,14 @@
 package com.fs.helper;
 
+import org.apache.log4j.Logger;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import java.util.Stack;
 
 public class DeletionCanditateStack {
+
+    Logger log = Logger.getLogger(DeletionCanditateStack.class);
 
     private Stack deletionCandidates;
 
@@ -21,6 +25,7 @@ public class DeletionCanditateStack {
     }
 
     public void push(Object candidate) {
+        log.info("Adding Deletion Candidate :"+candidate);
         deletionCandidates.push(candidate);
     }
 
@@ -30,6 +35,7 @@ public class DeletionCanditateStack {
 
         while(!deletionCandidates.empty()) {
             Object deletionCandidate = deletionCandidates.pop();
+            log.info("Deleting Candidate :"+deletionCandidate);
             entityManager.remove(deletionCandidate);
         }
 

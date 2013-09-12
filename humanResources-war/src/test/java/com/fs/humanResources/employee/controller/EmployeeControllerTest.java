@@ -18,6 +18,7 @@ import org.mockito.Matchers;
 import org.mockito.Mock;
 
 import javax.ejb.EJBException;
+import javax.faces.event.AbortProcessingException;
 import java.util.Date;
 
 import static org.mockito.Matchers.anyLong;
@@ -51,12 +52,12 @@ public class EmployeeControllerTest extends BaseUnitTest {
     public void setUp() throws EmployeeNotFoundException {
         employee = createEmployee();
 
-        addressDTO = new AddressDTO(employee.getAddress().getId(),employee.getAddress().getHouseNumber(),
-                employee.getAddress().getAddressFirstLine(),employee.getAddress().getAddressSecondLine(),
-                employee.getAddress().getTownCity(),employee.getAddress().getPostCode(),true);
+        addressDTO = new AddressDTO(employee.getAddress().getId(), employee.getAddress().getHouseNumber(),
+                employee.getAddress().getAddressFirstLine(), employee.getAddress().getAddressSecondLine(),
+                employee.getAddress().getTownCity(), employee.getAddress().getPostCode(), true);
 
-        employeeDTO = new EmployeeDTO(employee.getEmployeeId(),employee.getFirstName()
-                ,employee.getLastName(),employee.getDateOfBirth(),addressDTO);
+        employeeDTO = new EmployeeDTO(employee.getEmployeeId(), employee.getFirstName()
+                , employee.getLastName(), employee.getDateOfBirth(), addressDTO);
 
         when(employeeModel.getEmployee()).thenReturn(employee);
         when(humanResourcesService.getEmployeeDetails(eq(employee.getEmployeeId()))).thenReturn(employeeDTO);
@@ -75,10 +76,9 @@ public class EmployeeControllerTest extends BaseUnitTest {
         String townCity = "Progammer City";
         String postCode = "AB1 CDXY";
 
-        AddressViewBean address = new AddressViewBean(addressId,houseNumber, addressFirstLine, addressSecondLine, townCity, postCode);
-        return new EmployeeViewBean(employeeId,firstName, lastName, dataOfBirth, address);
+        AddressViewBean address = new AddressViewBean(addressId, houseNumber, addressFirstLine, addressSecondLine, townCity, postCode);
+        return new EmployeeViewBean(employeeId, firstName, lastName, dataOfBirth, address);
     }
-
 
 
     @Test
@@ -132,13 +132,22 @@ public class EmployeeControllerTest extends BaseUnitTest {
     @Test
     public void findEmployee_logsExpectedMessage_whenIdNotFound() {
         when(humanResourcesService.getEmployeeDetails(anyLong())).thenThrow(new EJBException());
+        try {
+            employeeController.findEmployee();
+        } catch (AbortProcessingException ape) {
 
-        employeeController.findEmployee();
+        }
 
-        verify(viewHelper, times(1)).addErrorMessage(stringArgumentCaptor.capture(),eq(""));
+        verify(viewHelper, times(1)).addErrorMessage(stringArgumentCaptor.capture(), eq(""));
         verify(viewHelper, times(1)).failValidation();
 
         Assert.assertEquals("Employee Id (12345) not found!", stringArgumentCaptor.getValue());
+    }
+
+    @Test(expected = AbortProcessingException.class)
+    public void findEmployee_throwsAbortProcessingException_whenIdNotFound() {
+        when(humanResourcesService.getEmployeeDetails(anyLong())).thenThrow(new EJBException());
+        employeeController.findEmployee();
     }
 
     @Test
@@ -146,30 +155,51 @@ public class EmployeeControllerTest extends BaseUnitTest {
         doThrow(new EJBException()).when(
                 humanResourcesService).saveEmployeeDetails(Matchers.<EmployeeDTO>anyObject());
 
+        try {
         employeeController.saveEmployee();
+        } catch (AbortProcessingException abe) {
 
-        verify(viewHelper, times(1)).addErrorMessage(stringArgumentCaptor.capture(),eq(""));
+        }
+
+        verify(viewHelper, times(1)).addErrorMessage(stringArgumentCaptor.capture(), eq(""));
         verify(viewHelper, times(1)).failValidation();
 
         Assert.assertEquals("Error Saving : Joe Smith", stringArgumentCaptor.getValue());
+    }
+
+    @Test(expected = AbortProcessingException.class)
+    public void saveEmployee_throwsAbortProcessingException_whenSaveFails() {
+        doThrow(new EJBException()).when(
+                humanResourcesService).saveEmployeeDetails(Matchers.<EmployeeDTO>anyObject());
+
+        employeeController.saveEmployee();
     }
 
     @Test
     public void updateEmployee_logsExpectedMessage_whenSaveFails() {
         doThrow(new EJBException()).when(
                 humanResourcesService).updateEmployeeDetails(Matchers.<EmployeeDTO>anyObject());
-
+        try {
         employeeController.updateEmployee();
+        } catch (AbortProcessingException abe) {}
 
-        verify(viewHelper, times(1)).addErrorMessage(stringArgumentCaptor.capture(),eq(""));
+        verify(viewHelper, times(1)).addErrorMessage(stringArgumentCaptor.capture(), eq(""));
         verify(viewHelper, times(1)).failValidation();
 
         Assert.assertEquals("Error Updating : Joe Smith", stringArgumentCaptor.getValue());
     }
 
+    @Test(expected = AbortProcessingException.class)
+    public void updateEmployee_throwsAbortProcessingException_whenSaveFails() {
+        doThrow(new EJBException()).when(
+                humanResourcesService).updateEmployeeDetails(Matchers.<EmployeeDTO>anyObject());
+
+        employeeController.updateEmployee();
+    }
+
     @Test
     public void postContruct_createsViewHelperInstance() {
         employeeController.postContruct();
-        Assert.assertEquals("com.fs.humanResources.view.helper.ViewHelper",employeeController.viewHelper.getClass().getName());
+        Assert.assertEquals("com.fs.humanResources.view.helper.ViewHelper", employeeController.viewHelper.getClass().getName());
     }
 }

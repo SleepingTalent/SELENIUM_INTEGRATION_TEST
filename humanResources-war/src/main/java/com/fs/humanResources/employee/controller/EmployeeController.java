@@ -11,6 +11,7 @@ import org.apache.log4j.Logger;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJBException;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.event.AbortProcessingException;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -49,6 +50,7 @@ public class EmployeeController {
             humanResourcesService.saveEmployeeDetails(employeeDTO);
         } catch (EJBException ejbe) {
             handleErrors("Error Saving : " + employeeDTO.getFirstName()+" "+employeeDTO.getLastName());
+            throw new AbortProcessingException();
         }
     }
 
@@ -60,6 +62,7 @@ public class EmployeeController {
             humanResourcesService.updateEmployeeDetails(employeeDTO);
         } catch (EJBException ejbe) {
             handleErrors("Error Updating : " + employeeDTO.getFirstName()+" "+employeeDTO.getLastName());
+            throw new AbortProcessingException();
         }
     }
 
@@ -73,6 +76,7 @@ public class EmployeeController {
             employeeModel.setEmployee(new EmployeeViewBean(employeeDTO));
         } catch (EJBException ejbe) {
             handleErrors("Employee Id (" + employeeModel.getEmployee().getEmployeeId() + ") not found!");
+            throw new AbortProcessingException();
         }
     }
 

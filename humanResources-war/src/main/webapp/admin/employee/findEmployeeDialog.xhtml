@@ -16,7 +16,7 @@
                     <f:facet name="footer">
                         <h:commandButton id="findEmployeeBtn" value="Find Employee"
                                          actionListener="#{employeeController.findEmployee}"
-                                         action="#{navigationController.showEditEmployeeDialog}">
+                                         action="#{navigationController[showDialogAction]}">
                             <f:ajax execute="employeeId" render=":growl"/>
                         </h:commandButton>
                     </f:facet>

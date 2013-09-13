@@ -48,8 +48,17 @@ public class BrowseTableModelTest extends BaseUnitTest {
     }
 
     @Test
-    public void postConstruction_buildsDataModel_asExpected() {
+    public void init_buildsDataModel_asExpected() {
         browseTableModel.init();
+        LazyDataModel<BrowseViewBean> lazyDataModel = browseTableModel.getDataModel();
+
+        Assert.assertEquals(1,lazyDataModel.load(0,0,"",null,null).size());
+        Assert.assertEquals(employee.getId(),lazyDataModel.load(0,0,"",null,null).get(0).getEmployee().getEmployeeId());
+    }
+
+    @Test
+    public void clearDataModel_buildsDataModel_asExpected() {
+        browseTableModel.clearDataModel();
         LazyDataModel<BrowseViewBean> lazyDataModel = browseTableModel.getDataModel();
 
         Assert.assertEquals(1,lazyDataModel.load(0,0,"",null,null).size());

@@ -34,4 +34,11 @@ public class BrowseTableControllerTest extends BaseUnitTest {
         browseTableController.getLazyModel();
         verify(browseTableModel, times(1)).getDataModel();
     }
+
+
+    @Test
+    public void clearDataModel_callExpectedMethod() {
+        browseTableController.clearDataModel();
+        verify(browseTableModel, times(1)).clearDataModel();
+    }
 }

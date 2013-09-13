@@ -61,11 +61,7 @@ public class EmployeeDTO {
         employee.setFirstName(getFirstName());
         employee.setLastName(getLastName());
         employee.setDateOfBirth(getDateOfBirth());
-
-        //AddressHelper addressHelper = new AddressHelper();
-
         employee.addAddress(getAddress().getEntity());
-        //employee.setAddressList(addressHelper.convertDTOToEntityList(getAddress()));
         return employee;
     }
 

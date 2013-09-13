@@ -1,6 +1,5 @@
 package com.fs.humanResources.model.address.helper;
 
-import com.fs.humanResources.dto.address.AddressDTO;
 import com.fs.humanResources.model.address.entities.Address;
 
 import java.util.ArrayList;
@@ -9,7 +8,6 @@ import java.util.List;
 public class AddressHelper {
 
     public AddressHelper() {
-
     }
 
     public Address findPrimaryAddress(List<Address> addressList) {

@@ -34,20 +34,21 @@
                                     <p:menuitem id="addEmployee" value="Add Employee"
                                                 actionListener="#{employeeController.clearEmployee}"
                                                 action="#{navigationController.showAddEmployeeDialog}"
-                                                icon="ui-icon-disk"/>
+                                                icon="ui-icon-disk" update=":addEmployee"/>
                                     <p:menuitem id="editEmployee" value="Edit Employee"
                                                 actionListener="#{employeeController.clearEmployee}"
                                                 action="#{navigationController.showFindEmployeeDialogForEdit}"
-                                                icon="ui-icon-pencil"/>
+                                                icon="ui-icon-pencil" update=":findEmployeeForEdit"/>
                                     <p:menuitem id="deleteEmployee" value="Delete Employee"
                                                 actionListener="#{employeeController.clearEmployee}"
                                                 action="#{navigationController.showFindEmployeeDialogForDelete}"
-                                                icon="ui-icon-close"/>
+                                                icon="ui-icon-close" update=":findEmployeeForDelete"/>
                                 </p:submenu>
                                 <p:submenu label="Browse" icon="ui-icon-folder-collapsed">
                                     <p:menuitem id="browseEmployees" value="Browse Employees"
+                                                actionListener="#{browseTableController.clearDataModel}"
                                                 action="#{navigationController.showBrowseEmployeesDialog}"
-                                                icon="ui-icon-folder-open"/>
+                                                icon="ui-icon-folder-open" update=":browseEmployees"/>
                                 </p:submenu>
                             </p:panelMenu>
                         </p:layoutUnit>

@@ -29,4 +29,8 @@ public class BrowseTableController {
         return browseTableModel.getDataModel();
     }
 
+    public void clearDataModel() {
+        browseTableModel.clearDataModel();
+    }
+
 }

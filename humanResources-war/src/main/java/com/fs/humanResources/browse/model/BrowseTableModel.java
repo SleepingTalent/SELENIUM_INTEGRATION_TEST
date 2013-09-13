@@ -36,6 +36,10 @@ public class BrowseTableModel implements Serializable {
         dataModel = buildDataModel();
     }
 
+    public void clearDataModel() {
+       init();
+    }
+
     public LazyDataModel<BrowseViewBean> getDataModel(){
         return dataModel;
     }

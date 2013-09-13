@@ -73,4 +73,8 @@ public class ViewHelper {
     public void hideDeleteEmployeeDialog() {
         dialogHelper.hideDialog(Dialogs.DELETE_EMPLOYEE);
     }
+
+    public void hideBrowseEmployeesDialog() {
+        dialogHelper.hideDialog(Dialogs.BROWSE_EMPLOYEES);
+    }
 }

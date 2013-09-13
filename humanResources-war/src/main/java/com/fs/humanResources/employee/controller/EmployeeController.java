@@ -34,16 +34,20 @@ public class EmployeeController {
         viewHelper = new ViewHelper();
     }
 
+    public EmployeeModel getEmployeeModel() {
+        return employeeModel;
+    }
+
     public EmployeeViewBean getEmployee() {
-        return employeeModel.getEmployee();
+        return getEmployeeModel().getEmployee();
     }
 
     public void clearEmployee() {
-        employeeModel.setEmployee(new EmployeeViewBean());
+        getEmployeeModel().setEmployee(new EmployeeViewBean());
     }
 
     public void saveEmployee() {
-        EmployeeDTO employeeDTO = employeeModel.getEmployee().getDTO();
+        EmployeeDTO employeeDTO = getEmployeeModel().getEmployee().getDTO();
 
         try {
             log.info("Saving : " + employeeDTO);
@@ -55,7 +59,7 @@ public class EmployeeController {
     }
 
     public void updateEmployee() {
-        EmployeeDTO employeeDTO = employeeModel.getEmployee().getDTO();
+        EmployeeDTO employeeDTO = getEmployeeModel().getEmployee().getDTO();
 
         try {
             log.info("Updating : " + employeeDTO);
@@ -67,7 +71,7 @@ public class EmployeeController {
     }
 
     public void deleteEmployee() {
-        EmployeeDTO employeeDTO = employeeModel.getEmployee().getDTO();
+        EmployeeDTO employeeDTO = getEmployeeModel().getEmployee().getDTO();
 
         try {
             log.info("Deleting : " + employeeDTO);
@@ -87,7 +91,7 @@ public class EmployeeController {
             log.info(employeeDTO + " returned");
             employeeModel.setEmployee(new EmployeeViewBean(employeeDTO));
         } catch (EJBException ejbe) {
-            handleErrors("Employee Id (" + employeeModel.getEmployee().getEmployeeId() + ") not found!");
+            handleErrors("Employee Id (" + getEmployeeModel().getEmployee().getEmployeeId() + ") not found!");
             throw new AbortProcessingException();
         }
     }

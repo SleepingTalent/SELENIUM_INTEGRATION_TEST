@@ -70,6 +70,16 @@ public class NavigationController implements Serializable {
         viewHelper.showDeleteEmployeeDialog();
     }
 
+    public void showDeleteEmployeeDialogFromBrowse() {
+        viewHelper.hideBrowseEmployeesDialog();
+        viewHelper.showDeleteEmployeeDialog();
+    }
+
+    public void showEditEmployeeDialogFromBrowse() {
+        viewHelper.hideBrowseEmployeesDialog();
+        viewHelper.showEditEmployeeDialog();
+    }
+
     public void hideDeleteEmployeeDialog() {
         viewHelper.hideDeleteEmployeeDialog();
     }

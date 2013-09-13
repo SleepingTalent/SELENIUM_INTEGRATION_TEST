@@ -11,7 +11,7 @@
             <p:dataTable styleClass="browseTable" var="row" value="#{browseTableController.lazyModel}" paginator="true" rows="10"
                          paginatorTemplate="{FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
                          rowsPerPageTemplate="5,10,15" selectionMode="single" selection="#{browseTableController.selectedEmployee}"
-                         id="browseTable" lazy="true">
+                         id="browseTable" lazy="true" rowKey="#{row.employee.employeeId}">
 
                 <p:column headerText="Employee Id">
                     <h:outputText value="#{row.employee.employeeId}"/>
@@ -25,14 +25,14 @@
                     <h:outputText value="#{row.employee.lastName}"/>
                 </p:column>
 
-                <p:column>
-                    <p:commandButton icon="ui-icon-pencil"/>
-                </p:column>
-
-                <p:column>
-                    <p:commandButton icon="ui-icon-close"/>
-                </p:column>
             </p:dataTable>
+
+            <p:contextMenu id="browseTableContext" for="browseTable">
+                <p:menuitem value="Edit" icon="ui-icon-pencil" actionListener="#{browseTableController.loadEmployee}"
+                            action="#{navigationController.showEditEmployeeDialogFromBrowse}"/>
+                <p:menuitem value="Delete" icon="ui-icon-close"  actionListener="#{browseTableController.loadEmployee}"
+                            action="#{navigationController.showDeleteEmployeeDialogFromBrowse}"/>
+            </p:contextMenu>
         </h:form>
     </p:dialog>
 </ui:composition>

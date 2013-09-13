@@ -70,6 +70,7 @@ public class AdminPage extends PageObject {
     }
 
     public AddEmployeeDialog clickAddEmployeeMenuItem() {
+        moveToAddEmployeeMenuItem();
         assertAddEmployeeMenuItemDisplayed().click();
         return new AddEmployeeDialog(getDriver());
     }
@@ -89,12 +90,21 @@ public class AdminPage extends PageObject {
         new Actions(getDriver()).moveToElement(assertEditEmployeeMenuItemDisplayed()).perform();
     }
 
+    private void moveToDeleteEmployeeMenuItem() {
+        new Actions(getDriver()).moveToElement(assertDeleteEmployeeMenuItemDisplayed()).perform();
+    }
+
+    private void moveToAddEmployeeMenuItem() {
+        new Actions(getDriver()).moveToElement(assertDeleteEmployeeMenuItemDisplayed()).perform();
+    }
+
     public HumanResourcesHome clickLogoutBtn() {
         assertLogoutBtnDisplayed().click();
         return new HumanResourcesHome(getDriver());
     }
 
     public FindEmployeeDialogForDelete clickDeleteEmployeeMenuItem() {
+        moveToDeleteEmployeeMenuItem();
         assertDeleteEmployeeMenuItemDisplayed().click();
         return new FindEmployeeDialogForDelete(getDriver());
     }

@@ -21,6 +21,8 @@ public class DeleteEmployeeDialogTest extends BaseSeleniumTest {
 
     Address address;
 
+    private boolean deletedBySelenium = false;
+
     @Before
     public void setUp() throws ParseException {
         address = new Address();
@@ -64,7 +66,9 @@ public class DeleteEmployeeDialogTest extends BaseSeleniumTest {
 
     @After
     public void tearDown() {
-        persitenceHelper.deleteCandidates();
+        if(!deletedBySelenium) {
+            persitenceHelper.deleteCandidates();
+        }
         super.tearDown();
     }
 
@@ -110,8 +114,20 @@ public class DeleteEmployeeDialogTest extends BaseSeleniumTest {
     }
 
     @Test
-    @Ignore
     public void employeeDetails_deleteAsExpected() {
+        deletedBySelenium = true;
+
+        deleteEmployeeDialog.clickDeleteEmployeeBtn();
+        deleteEmployeeDialog.assertConfirmDialogIsPresent();
+        deleteEmployeeDialog.confirmDeletion();
+
+        FindEmployeeDialogForDelete findEmployeeDialogForDelete = adminPage.clickDeleteEmployeeMenuItem();
+        findEmployeeDialogForDelete.assertDialogIsPresent();
+
+        findEmployeeDialogForDelete.setEmployeeId(employee.getId() + "");
+        findEmployeeDialogForDelete.clickFindEmployeeBtnForDelete();
+        findEmployeeDialogForDelete.assertGrowlMessageDisplayed(
+                "Employee Id ("+employee.getId()+") not found!");
     }
 
 }

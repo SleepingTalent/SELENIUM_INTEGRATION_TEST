@@ -116,7 +116,7 @@ public class DeleteEmployeeDialog extends PageObject {
         return findFormElementById(FORM, POSTCODE_LABEL_ID);
     }
 
-    public void clickEditEmployeeBtn() {
+    public void clickDeleteEmployeeBtn() {
         findFormElementById(FORM, DELETE_EMPLOYEE_BTN).click();
     }
 
@@ -150,5 +150,13 @@ public class DeleteEmployeeDialog extends PageObject {
 
     public void setPostcode(String postcode) {
         setInputTextOnElement(postCodeInputDisplayed(),postcode);
+    }
+
+    public void assertConfirmDialogIsPresent() {
+        findFormElementById(FORM,"okBtn");
+    }
+
+    public void confirmDeletion() {
+        findFormElementById(FORM,"okBtn").click();
     }
 }

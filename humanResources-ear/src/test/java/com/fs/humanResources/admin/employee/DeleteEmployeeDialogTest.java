@@ -56,7 +56,7 @@ public class DeleteEmployeeDialogTest extends BaseSeleniumTest {
     }
 
     private void navigateToDeleteDialog() {
-        adminPage.assertEmployeeAdminMenuDisplayed().click();
+        adminPage.openEmployeeAdminMenu();
 
         FindEmployeeDialogForDelete findEmployeeDialogForDelete = adminPage.clickDeleteEmployeeMenuItem();
         findEmployeeDialogForDelete.assertDialogIsPresent();
@@ -150,7 +150,7 @@ public class DeleteEmployeeDialogTest extends BaseSeleniumTest {
         deleteEmployeeDialog.assertConfirmDialogIsPresent();
         deleteEmployeeDialog.confirmDeletion();
 
-        adminPage.assertEmployeeAdminMenuDisplayed().click();
+        adminPage.openEmployeeAdminMenu();
 
         FindEmployeeDialogForDelete findEmployeeDialogForDelete = adminPage.clickDeleteEmployeeMenuItem();
         findEmployeeDialogForDelete.assertDialogIsPresent();

@@ -26,7 +26,7 @@ public class AdminPageTest extends BaseSeleniumTest {
 
     @Test
     public void menusDisplayed_asExpected() {
-        adminPage.assertEmployeeAdminMenuDisplayed().click();
+        adminPage.openEmployeeAdminMenu();
         adminPage.assertEditEmployeeMenuItemDisplayed();
         adminPage.assertAddEmployeeMenuItemDisplayed();
         adminPage.assertDeleteEmployeeMenuItemDisplayed();

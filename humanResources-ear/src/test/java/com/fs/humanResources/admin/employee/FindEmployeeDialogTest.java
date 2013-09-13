@@ -21,7 +21,7 @@ public class FindEmployeeDialogTest extends BaseSeleniumTest {
         adminPage = humanResourcesHome.clickLoginBtn();
         adminPage.assertPageIsPresent();
 
-        adminPage.assertEmployeeAdminMenuDisplayed().click();
+        adminPage.openEmployeeAdminMenu();
 
         adminPage.assertEditEmployeeMenuItemDisplayed();
         findEmployeeDialogForEdit = adminPage.clickEditEmployeeMenuItem();

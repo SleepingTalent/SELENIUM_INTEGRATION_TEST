@@ -54,7 +54,7 @@ public class EditEmployeeDialogTest extends BaseSeleniumTest {
     }
 
     private void navigateToEditEmployee() {
-        adminPage.assertEmployeeAdminMenuDisplayed().click();
+        adminPage.openEmployeeAdminMenu();
 
         FindEmployeeDialogForEdit findEmployeeDialogForEdit = adminPage.clickEditEmployeeMenuItem();
         findEmployeeDialogForEdit.assertDialogIsPresent();
@@ -186,7 +186,7 @@ public class EditEmployeeDialogTest extends BaseSeleniumTest {
         editEmployeeDialog.clickEditEmployeeBtn();
         editEmployeeDialog.assertDialogIsNotPresent();
 
-        adminPage.assertEmployeeAdminMenuDisplayed().click();
+        adminPage.openEmployeeAdminMenu();
 
         FindEmployeeDialogForEdit findEmployeeDialogForEdit = adminPage.clickEditEmployeeMenuItem();
         findEmployeeDialogForEdit.assertDialogIsPresent();

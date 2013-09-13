@@ -28,8 +28,13 @@ public class AdminPage extends PageObject {
         findFormElementById(FORM, CONTENT_PANEL_ID);
     }
 
-    public WebElement assertEmployeeAdminMenuDisplayed() {
+    private WebElement assertEmployeeAdminMenuDisplayed() {
         return assertMenuDisplayed("Employee Admin");
+    }
+
+    public void openEmployeeAdminMenu() {
+        moveToElement(assertEmployeeAdminMenuDisplayed());
+        assertEmployeeAdminMenuDisplayed().click();
     }
 
     public WebElement assertLatestNewsPanelDisplayed() {

@@ -55,6 +55,10 @@ public class HumanResourcesService implements Serializable {
         employeeDAO.update(employeeDTO.getEntity());
     }
 
+    public void deleteEmployeeDetails(EmployeeDTO employeeDTO) {
+        employeeDAO.delete(employeeDTO.getEntity());
+    }
+
     public int findTotalEmployeeCount() {
         return (int) employeeDAO.countAll();
     }

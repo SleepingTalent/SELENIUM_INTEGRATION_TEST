@@ -1,7 +1,7 @@
 package com.fs.humanResources.admin.employee;
 
 import com.fs.domain.page.admin.AdminPage;
-import com.fs.domain.page.admin.dialog.FindEmployeeDialog;
+import com.fs.domain.page.admin.dialog.FindEmployeeDialogForEdit;
 import com.fs.humanResources.common.BaseSeleniumTest;
 import org.junit.Assert;
 import org.junit.Before;
@@ -11,7 +11,7 @@ public class FindEmployeeDialogTest extends BaseSeleniumTest {
 
     AdminPage adminPage;
 
-    FindEmployeeDialog findEmployeeDialog;
+    FindEmployeeDialogForEdit findEmployeeDialogForEdit;
 
     @Before
     public void setUp() {
@@ -24,29 +24,29 @@ public class FindEmployeeDialogTest extends BaseSeleniumTest {
         adminPage.assertEmployeeAdminMenuDisplayed().click();
 
         adminPage.assertEditEmployeeMenuItemDisplayed();
-        findEmployeeDialog = adminPage.clickEditEmployeeMenuItem();
+        findEmployeeDialogForEdit = adminPage.clickEditEmployeeMenuItem();
 
-        findEmployeeDialog.assertDialogIsPresent();
+        findEmployeeDialogForEdit.assertDialogIsPresent();
     }
 
     @Test
     public void findEmployeeFormElements_displayedAsExpected() {
-        Assert.assertEquals("Employee Id:", findEmployeeDialog.employeeIdLabelDisplayed().getText());
-        findEmployeeDialog.employeeInputDisplayed();
+        Assert.assertEquals("Employee Id:", findEmployeeDialogForEdit.employeeIdLabelDisplayed().getText());
+        findEmployeeDialogForEdit.employeeInputDisplayed();
     }
 
     @Test
     public void validationMessages_displayedAsExpected() {
-        findEmployeeDialog.clickFindEmployeeBtn();
-        findEmployeeDialog.assertGrowlMessageDisplayed("Employee Id is required");
+        findEmployeeDialogForEdit.clickFindEmployeeBtn();
+        findEmployeeDialogForEdit.assertGrowlMessageDisplayed("Employee Id is required");
     }
 
     @Test
     public void validationMessages_displayedAsExpected_whenIdNotFound() {
         String unknownId = "68785959";
 
-        findEmployeeDialog.setEmployeeId(unknownId);
-        findEmployeeDialog.clickFindEmployeeBtn();
-        findEmployeeDialog.assertGrowlMessageDisplayed("Employee Id ("+unknownId+") not found!");
+        findEmployeeDialogForEdit.setEmployeeId(unknownId);
+        findEmployeeDialogForEdit.clickFindEmployeeBtn();
+        findEmployeeDialogForEdit.assertGrowlMessageDisplayed("Employee Id ("+unknownId+") not found!");
     }
 }

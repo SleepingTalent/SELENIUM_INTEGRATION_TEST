@@ -2,6 +2,9 @@
                 xmlns:ui="http://java.sun.com/jsf/facelets">
 
     <ui:include src="findEmployeeDialog.xhtml">
+        <ui:param name="dialogId" value="findEmployeeDialogForEdit" />
+        <ui:param name="dialogWidgetVar" value="_findEmployeeDialogForEdit" />
+        <ui:param name="formId" value="findEmployeeForEdit" />
         <ui:param name="navigationController" value="#{navigationController}" />
         <ui:param name="showDialogAction" value="showEditEmployeeDialog" />
     </ui:include>

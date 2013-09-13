@@ -66,6 +66,18 @@ public class EmployeeController {
         }
     }
 
+    public void deleteEmployee() {
+        EmployeeDTO employeeDTO = employeeModel.getEmployee().getDTO();
+
+        try {
+            log.info("Deleting : " + employeeDTO);
+            humanResourcesService.deleteEmployeeDetails(employeeDTO);
+        } catch (EJBException ejbe) {
+            handleErrors("Error Deleting : " + employeeDTO.getFirstName()+" "+employeeDTO.getLastName());
+            throw new AbortProcessingException();
+        }
+    }
+
     public void findEmployee() {
         log.info("Find Employee with Id : " + getEmployee().getEmployeeId());
 

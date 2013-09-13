@@ -1,0 +1,11 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets">
+
+    <ui:include src="findEmployeeDialog.xhtml">
+        <ui:param name="dialogId" value="findEmployeeDialogForDelete" />
+        <ui:param name="dialogWidgetVar" value="_findEmployeeDialogForDelete" />
+        <ui:param name="formId" value="findEmployeeForDelete" />
+        <ui:param name="navigationController" value="#{navigationController}" />
+        <ui:param name="showDialogAction" value="showDeleteEmployeeDialog" />
+    </ui:include>
+</ui:composition>

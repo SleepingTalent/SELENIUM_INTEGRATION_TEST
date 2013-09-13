@@ -4,9 +4,9 @@
                 xmlns:f="http://java.sun.com/jsf/core"
                 xmlns:p="http://primefaces.org/ui">
 
-    <p:dialog id="findEmployeeDialog" widgetVar="_findEmployeeDialog" header="Enter Employee Id" modal="true" dynamic="true" resizable="false" closable="true">
+    <p:dialog id="#{dialogId}" widgetVar="#{dialogWidgetVar}" header="Enter Employee Id" modal="true" dynamic="true" resizable="false" closable="true">
 
-        <h:form id="findEmployee">
+        <h:form id="#{formId}">
                 <p:panelGrid columns="2">
                     <h:outputText id="employeeIdlbl" value="Employee Id:"/>
                     <p:inputText label="employeeId" id="employeeId" required="true"

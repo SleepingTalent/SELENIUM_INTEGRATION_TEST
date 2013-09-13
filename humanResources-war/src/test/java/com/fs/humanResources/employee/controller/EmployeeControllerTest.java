@@ -121,6 +121,13 @@ public class EmployeeControllerTest extends BaseUnitTest {
     }
 
     @Test
+    public void deleteEmployee_deletesEmployee_asExpected() {
+        employeeController.deleteEmployee();
+        verify(employeeModel, times(1)).getEmployee();
+        verify(humanResourcesService, times(1)).deleteEmployeeDetails(Matchers.<EmployeeDTO>anyObject());
+    }
+
+    @Test
     public void findEmployee_findsEmployee_asExpected() {
         employeeController.findEmployee();
 
@@ -195,6 +202,14 @@ public class EmployeeControllerTest extends BaseUnitTest {
                 humanResourcesService).updateEmployeeDetails(Matchers.<EmployeeDTO>anyObject());
 
         employeeController.updateEmployee();
+    }
+
+    @Test(expected = AbortProcessingException.class)
+    public void deleteEmployee_throwsAbortProcessingException_whenSaveFails() {
+        doThrow(new EJBException()).when(
+                humanResourcesService).deleteEmployeeDetails(Matchers.<EmployeeDTO>anyObject());
+
+        employeeController.deleteEmployee();
     }
 
     @Test

@@ -5,10 +5,10 @@ import com.fs.domain.page.admin.dialog.EditEmployeeDialog;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public class FindEmployeeDialog extends PageObject {
+public class FindEmployeeDialogForEdit extends PageObject {
 
-    private static final String FORM = "findEmployee";
-    private static final String FIND_EMPLOYEE_DIALOG = "findEmployeeDialog";
+    private static final String FORM = "findEmployeeForEdit";
+    private static final String FIND_EMPLOYEE_DIALOG_FOR_EDIT = "findEmployeeDialogForEdit";
 
     private static final String EMPLOYEE_ID = "employeeId";
     private static final String EMPLOYEE_LABEL_ID = "employeeIdlbl";
@@ -18,7 +18,7 @@ public class FindEmployeeDialog extends PageObject {
     private static final String DIALOG_VISIBLE_CLASS = "ui-overlay-visible";
     private static final String DIALOG_NOT_VISIBLE_CLASS = "ui-overlay-hidden";
 
-    public FindEmployeeDialog(WebDriver driver) {
+    public FindEmployeeDialogForEdit(WebDriver driver) {
         super(driver);
     }
 

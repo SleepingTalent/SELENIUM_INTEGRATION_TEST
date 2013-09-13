@@ -133,6 +133,12 @@ public class HumanResourcesServiceTest extends BaseUnitTest {
         verify(employeeDAO,times(1)).update(eq(employee));
     }
 
+    @Test
+    public void deleteEmployeeDetails_verify_expected_methods_called() throws NoResultException, EmployeeNotFoundException {
+        humanResourcesService.deleteEmployeeDetails(employeeDTO);
+        verify(employeeDAO,times(1)).delete(eq(employee));
+    }
+
     private Employee createEmployee() {
         String firstName = "Joe";
         String lastName = "Smith";

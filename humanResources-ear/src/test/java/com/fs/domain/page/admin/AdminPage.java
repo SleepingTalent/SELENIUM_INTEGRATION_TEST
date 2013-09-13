@@ -4,7 +4,8 @@ package com.fs.domain.page.admin;
 import com.fs.domain.common.page.PageObject;
 import com.fs.domain.page.HumanResourcesHome;
 import com.fs.domain.page.admin.dialog.AddEmployeeDialog;
-import com.fs.domain.page.admin.dialog.FindEmployeeDialog;
+import com.fs.domain.page.admin.dialog.FindEmployeeDialogForDelete;
+import com.fs.domain.page.admin.dialog.FindEmployeeDialogForEdit;
 import com.fs.domain.page.browse.BrowseEmployeesPage;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
@@ -73,10 +74,10 @@ public class AdminPage extends PageObject {
         return new AddEmployeeDialog(getDriver());
     }
 
-    public FindEmployeeDialog clickEditEmployeeMenuItem() {
+    public FindEmployeeDialogForEdit clickEditEmployeeMenuItem() {
         moveToEditEmployeeMenuItem();
         assertEditEmployeeMenuItemDisplayed().click();
-        return new FindEmployeeDialog(getDriver());
+        return new FindEmployeeDialogForEdit(getDriver());
     }
 
     public BrowseEmployeesPage clickBrowseEmployeesMenuItem() {
@@ -93,4 +94,8 @@ public class AdminPage extends PageObject {
         return new HumanResourcesHome(getDriver());
     }
 
+    public FindEmployeeDialogForDelete clickDeleteEmployeeMenuItem() {
+        assertDeleteEmployeeMenuItemDisplayed().click();
+        return new FindEmployeeDialogForDelete(getDriver());
+    }
 }

@@ -2,17 +2,13 @@ package com.fs.humanResources.admin.employee;
 
 import com.fs.domain.page.admin.AdminPage;
 import com.fs.domain.page.admin.dialog.EditEmployeeDialog;
-import com.fs.domain.page.admin.dialog.FindEmployeeDialog;
+import com.fs.domain.page.admin.dialog.FindEmployeeDialogForEdit;
 import com.fs.humanResources.common.BaseSeleniumTest;
 import com.fs.humanResources.model.address.entities.Address;
-import com.fs.humanResources.model.address.helper.AddressHelper;
 import com.fs.humanResources.model.employee.entities.Employee;
 import org.junit.*;
-import org.openqa.selenium.interactions.Actions;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 public class EditEmployeeDialogTest extends BaseSeleniumTest {
 
@@ -56,11 +52,11 @@ public class EditEmployeeDialogTest extends BaseSeleniumTest {
 
         adminPage.assertEmployeeAdminMenuDisplayed().click();
 
-        FindEmployeeDialog findEmployeeDialog = adminPage.clickEditEmployeeMenuItem();
-        findEmployeeDialog.assertDialogIsPresent();
+        FindEmployeeDialogForEdit findEmployeeDialogForEdit = adminPage.clickEditEmployeeMenuItem();
+        findEmployeeDialogForEdit.assertDialogIsPresent();
 
-        findEmployeeDialog.setEmployeeId(employee.getId() + "");
-        editEmployeeDialog = findEmployeeDialog.clickFindEmployeeBtn();
+        findEmployeeDialogForEdit.setEmployeeId(employee.getId() + "");
+        editEmployeeDialog = findEmployeeDialogForEdit.clickFindEmployeeBtn();
 
         editEmployeeDialog.assertDialogIsPresent();
     }
@@ -153,12 +149,12 @@ public class EditEmployeeDialogTest extends BaseSeleniumTest {
         editEmployeeDialog.clickEditEmployeeBtn();
         editEmployeeDialog.assertDialogIsNotPresent();
 
-        FindEmployeeDialog findEmployeeDialog = adminPage.clickEditEmployeeMenuItem();
-        findEmployeeDialog.assertDialogIsPresent();
+        FindEmployeeDialogForEdit findEmployeeDialogForEdit = adminPage.clickEditEmployeeMenuItem();
+        findEmployeeDialogForEdit.assertDialogIsPresent();
 
-        findEmployeeDialog.setEmployeeId(employee.getId() + "");
-        editEmployeeDialog = findEmployeeDialog.clickFindEmployeeBtn();
-        findEmployeeDialog.assertDialogIsNotPresent();
+        findEmployeeDialogForEdit.setEmployeeId(employee.getId() + "");
+        editEmployeeDialog = findEmployeeDialogForEdit.clickFindEmployeeBtn();
+        findEmployeeDialogForEdit.assertDialogIsNotPresent();
 
         editEmployeeDialog.assertDialogIsPresent();
 

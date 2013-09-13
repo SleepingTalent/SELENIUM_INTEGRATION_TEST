@@ -36,8 +36,12 @@ public class NavigationController implements Serializable {
         return NavigationOutcomes.SEARCH_FOR_EMPLOYEE.getOutcome();
     }
 
-    public void showFindEmployeeDialog() {
-          viewHelper.showFindEmployeeDialog();
+    public void showFindEmployeeDialogForEdit() {
+          viewHelper.showFindEmployeeDialogForEdit();
+    }
+
+    public void showFindEmployeeDialogForDelete() {
+        viewHelper.showFindEmployeeDialogForDelete();
     }
 
     public void showAddEmployeeDialog() {
@@ -53,7 +57,7 @@ public class NavigationController implements Serializable {
     }
 
     public void showEditEmployeeDialog() {
-        viewHelper.hideFindEmployeeDialog();
+        viewHelper.hideFindEmployeeDialogForEdit();
         viewHelper.showEditEmployeeDialog();
     }
 
@@ -61,4 +65,12 @@ public class NavigationController implements Serializable {
         viewHelper.hideEditEmployeeDialog();
     }
 
+    public void showDeleteEmployeeDialog() {
+        viewHelper.hideFindEmployeeDialogForDelete();
+        viewHelper.showDeleteEmployeeDialog();
+    }
+
+    public void hideDeleteEmployeeDialog() {
+        viewHelper.hideDeleteEmployeeDialog();
+    }
 }

@@ -60,9 +60,15 @@ public class ViewHelperTest extends BaseUnitTest {
     }
 
     @Test
-    public void showFindEmployeeDialog_callsExpectedMethod() {
-        viewHelper.showFindEmployeeDialog();
-        verify(dialogHelper, times(1)).showDialog(eq(Dialogs.FIND_EMPLOYEE));
+    public void showFindEmployeeDialogForEdit_callsExpectedMethod() {
+        viewHelper.showFindEmployeeDialogForEdit();
+        verify(dialogHelper, times(1)).showDialog(eq(Dialogs.FIND_EMPLOYEE_FOR_EDIT));
+    }
+
+    @Test
+    public void showFindEmployeeDialogForDelete_callsExpectedMethod() {
+        viewHelper.showFindEmployeeDialogForDelete();
+        verify(dialogHelper, times(1)).showDialog(eq(Dialogs.FIND_EMPLOYEE_FOR_DELETE));
     }
 
     @Test
@@ -77,6 +83,12 @@ public class ViewHelperTest extends BaseUnitTest {
         verify(dialogHelper, times(1)).showDialog(eq(Dialogs.EDIT_EMPLOYEE));
     }
 
+    @Test
+    public void showDeleteEmployeeDialog_callsExpectedMethod() {
+        viewHelper.showDeleteEmployeeDialog();
+        verify(dialogHelper, times(1)).showDialog(eq(Dialogs.DELETE_EMPLOYEE));
+    }
+
 
     @Test
     public void showBrowseEmployeesDialog_callsExpectedMethod() {
@@ -85,9 +97,15 @@ public class ViewHelperTest extends BaseUnitTest {
     }
 
     @Test
-    public void hideFindEmployeeDialog_callsExpectedMethod() {
-        viewHelper.hideFindEmployeeDialog();
-        verify(dialogHelper, times(1)).hideDialog(eq(Dialogs.FIND_EMPLOYEE));
+    public void hideFindEmployeeDialogForEdit_callsExpectedMethod() {
+        viewHelper.hideFindEmployeeDialogForEdit();
+        verify(dialogHelper, times(1)).hideDialog(eq(Dialogs.FIND_EMPLOYEE_FOR_EDIT));
+    }
+
+    @Test
+    public void hideFindEmployeeDialogForDelete_callsExpectedMethod() {
+        viewHelper.hideFindEmployeeDialogForDelete();
+        verify(dialogHelper, times(1)).hideDialog(eq(Dialogs.FIND_EMPLOYEE_FOR_DELETE));
     }
 
     @Test
@@ -100,5 +118,11 @@ public class ViewHelperTest extends BaseUnitTest {
     public void hideEditEmployeeDialog_callsExpectedMethod() {
         viewHelper.hideEditEmployeeDialog();
         verify(dialogHelper, times(1)).hideDialog(eq(Dialogs.EDIT_EMPLOYEE));
+    }
+
+    @Test
+    public void hideDeleteEmployeeDialog_callsExpectedMethod() {
+        viewHelper.hideDeleteEmployeeDialog();
+        verify(dialogHelper, times(1)).hideDialog(eq(Dialogs.DELETE_EMPLOYEE));
     }
 }

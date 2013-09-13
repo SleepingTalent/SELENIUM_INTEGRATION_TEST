@@ -3,14 +3,13 @@ package com.fs.humanResources.admin.employee;
 import com.fs.domain.page.admin.AdminPage;
 import com.fs.domain.page.admin.dialog.AddEmployeeDialog;
 import com.fs.domain.page.admin.dialog.EditEmployeeDialog;
-import com.fs.domain.page.admin.dialog.FindEmployeeDialog;
+import com.fs.domain.page.admin.dialog.FindEmployeeDialogForEdit;
 import com.fs.humanResources.common.BaseSeleniumTest;
 import com.fs.humanResources.model.address.entities.Address;
 import com.fs.humanResources.model.employee.entities.Employee;
 import org.junit.*;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.List;
 
 public class AddEmployeeDialogTest extends BaseSeleniumTest {
@@ -76,12 +75,12 @@ public class AddEmployeeDialogTest extends BaseSeleniumTest {
         refreshEmployeeWithEntity();
 
 
-        FindEmployeeDialog findEmployeeDialog = adminPage.clickEditEmployeeMenuItem();
-        findEmployeeDialog.assertDialogIsPresent();
+        FindEmployeeDialogForEdit findEmployeeDialogForEdit = adminPage.clickEditEmployeeMenuItem();
+        findEmployeeDialogForEdit.assertDialogIsPresent();
 
-        findEmployeeDialog.setEmployeeId(employee.getId() + "");
-        EditEmployeeDialog editEmployeeDialog = findEmployeeDialog.clickFindEmployeeBtn();
-        findEmployeeDialog.assertDialogIsNotPresent();
+        findEmployeeDialogForEdit.setEmployeeId(employee.getId() + "");
+        EditEmployeeDialog editEmployeeDialog = findEmployeeDialogForEdit.clickFindEmployeeBtn();
+        findEmployeeDialogForEdit.assertDialogIsNotPresent();
 
         editEmployeeDialog.assertDialogIsPresent();
 

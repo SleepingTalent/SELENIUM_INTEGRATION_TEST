@@ -1,0 +1,71 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <p:dialog id="deleteEmployeeDialog" widgetVar="_deleteEmployeeDialog" header="Delete Employee" modal="true" dynamic="true" resizable="false" closable="true">
+        <h:form id="deleteEmployee">
+                <p:panelGrid columns="2">
+                    <h:outputText id="employeeIdlbl" value="Employee Id:"/>
+                    <p:inputText label="employeeId" id="employeeId" required="true"
+                                 value="#{employeeController.employee.employeeId}"
+                                 disabled="true"/>
+
+                    <h:outputText id="firstNamelbl" value="First Name:"/>
+                    <p:inputText label="firstName" id="firstName" required="true"
+                                 value="#{employeeController.employee.firstName}"
+                                 requiredMessage="Firstname is required"
+                                 disabled="true"/>
+
+                    <h:outputText id="lastNamelbl" value="Last Name:"/>
+                    <p:inputText label="lastName" id="lastName" required="true"
+                                 value="#{employeeController.employee.lastName}"
+                                 requiredMessage="Lastname is required"
+                                 disabled="true"/>
+
+                    <h:outputText id="dateOfBirthlbl" value="DOB (dd/mm/yyyy):"/>
+                    <p:inputMask id="dateOfBirth" required="true"
+                                 value="#{employeeController.employee.dateOfBirth}"
+                                 requiredMessage="Date Of Birth is required" mask="99/99/9999" disabled="true">
+                        <f:convertDateTime pattern="dd/MM/yyyy" />
+                            </p:inputMask>
+
+                    <h:outputText id="houseNumberlbl" value="House No:"/>
+                    <p:inputText label="houseNumber" id="houseNumber" required="true"
+                                 value="#{employeeController.employee.address.houseNumber}"
+                                 requiredMessage="House No is required"
+                                 disabled="true"/>
+
+                    <h:outputText id="addressFirstLinelbl" value="Address Line 1:"/>
+                    <p:inputText label="addressFirstLine" id="addressFirstLine" required="false"
+                                 value="#{employeeController.employee.address.addressFirstLine}"
+                                 disabled="true"/>
+
+                    <h:outputText id="addressSecondLinelbl" value="Address Line 2:"/>
+                    <p:inputText label="addressSecondLine" id="addressSecondLine" required="false"
+                                 value="#{employeeController.employee.address.addressSecondLine}"
+                                 disabled="true"/>
+
+                    <h:outputText id="townCitylbl" value="Town/City:"/>
+                    <p:inputText label="townCity" id="townCity" required="false"
+                                 value="#{employeeController.employee.address.townCity}"
+                                 disabled="true"/>
+
+                    <h:outputText id="postCodelbl" value="Postcode:"/>
+                    <p:inputMask label="postCode" id="postCode" required="true"
+                                 value="#{employeeController.employee.address.postCode}"
+                                 requiredMessage="Postcode is required" mask="***-***"
+                                 disabled="true"/>
+
+                    <f:facet name="footer">
+                        <h:commandButton id="deleteEmployeeBtn" value="Delete Employee"
+                                         actionListener="#{employeeController.deleteEmployee}"
+                                         action="#{navigationController.hideDeleteEmployeeDialog}">
+                            <f:ajax execute="@form" render=":growl" />
+                        </h:commandButton>
+                    </f:facet>
+                </p:panelGrid>
+        </h:form>
+    </p:dialog>
+</ui:composition>

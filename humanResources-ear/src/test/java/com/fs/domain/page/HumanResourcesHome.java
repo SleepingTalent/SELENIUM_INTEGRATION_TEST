@@ -3,8 +3,6 @@ package com.fs.domain.page;
 
 import com.fs.domain.common.page.PageObject;
 import com.fs.domain.page.admin.AdminPage;
-import com.fs.domain.page.admin.dialog.AddEmployeeDialog;
-import com.fs.domain.page.admin.dialog.FindEmployeeDialog;
 import org.apache.log4j.Logger;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;

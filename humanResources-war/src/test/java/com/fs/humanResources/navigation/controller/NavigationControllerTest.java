@@ -53,6 +53,12 @@ public class NavigationControllerTest extends BaseUnitTest {
     }
 
     @Test
+    public void hideDeleteEmployeeDialog_callsExpectedMethod() {
+        navigationController.hideDeleteEmployeeDialog();
+        verify(viewHelper, times(1)).hideDeleteEmployeeDialog();
+    }
+
+    @Test
     public void showAddEmployeeDialog_callsExpectedMethod() {
         navigationController.showAddEmployeeDialog();
         verify(viewHelper, times(1)).showAddEmployeeDialog();
@@ -65,9 +71,21 @@ public class NavigationControllerTest extends BaseUnitTest {
     }
 
     @Test
-    public void showFindEmployeeDialog_callsExpectedMethod() {
-        navigationController.showFindEmployeeDialog();
-        verify(viewHelper, times(1)).showFindEmployeeDialog();
+    public void showDeleteEmployeeDialog_callsExpectedMethod() {
+        navigationController.showDeleteEmployeeDialog();
+        verify(viewHelper, times(1)).showDeleteEmployeeDialog();
+    }
+
+    @Test
+    public void showFindEmployeeDialogForEdit_callsExpectedMethod() {
+        navigationController.showFindEmployeeDialogForEdit();
+        verify(viewHelper, times(1)).showFindEmployeeDialogForEdit();
+    }
+
+    @Test
+    public void showFindEmployeeDialogForDelete_callsExpectedMethod() {
+        navigationController.showFindEmployeeDialogForDelete();
+        verify(viewHelper, times(1)).showFindEmployeeDialogForDelete();
     }
 
     @Test

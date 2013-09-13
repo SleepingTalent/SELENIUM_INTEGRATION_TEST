@@ -30,8 +30,12 @@ public class ViewHelper {
         messagesHelper.addErrorMessage(summary, detail);
     }
 
-    public void showFindEmployeeDialog() {
-        dialogHelper.showDialog(Dialogs.FIND_EMPLOYEE);
+    public void showFindEmployeeDialogForEdit() {
+        dialogHelper.showDialog(Dialogs.FIND_EMPLOYEE_FOR_EDIT);
+    }
+
+    public void showFindEmployeeDialogForDelete() {
+        dialogHelper.showDialog(Dialogs.FIND_EMPLOYEE_FOR_DELETE);
     }
 
     public void showEditEmployeeDialog() {
@@ -46,8 +50,12 @@ public class ViewHelper {
         dialogHelper.showDialog(Dialogs.BROWSE_EMPLOYEES);
     }
 
-    public void hideFindEmployeeDialog() {
-        dialogHelper.hideDialog(Dialogs.FIND_EMPLOYEE);
+    public void hideFindEmployeeDialogForEdit() {
+        dialogHelper.hideDialog(Dialogs.FIND_EMPLOYEE_FOR_EDIT);
+    }
+
+    public void hideFindEmployeeDialogForDelete() {
+        dialogHelper.hideDialog(Dialogs.FIND_EMPLOYEE_FOR_DELETE);
     }
 
     public void hideEditEmployeeDialog() {
@@ -56,5 +64,13 @@ public class ViewHelper {
 
     public void hideAddEmployeeDialog() {
         dialogHelper.hideDialog(Dialogs.ADD_EMPLOYEE);
+    }
+
+    public void showDeleteEmployeeDialog() {
+        dialogHelper.showDialog(Dialogs.DELETE_EMPLOYEE);
+    }
+
+    public void hideDeleteEmployeeDialog() {
+        dialogHelper.hideDialog(Dialogs.DELETE_EMPLOYEE);
     }
 }

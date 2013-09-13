@@ -49,7 +49,7 @@ public class BrowseTableModelTest extends BaseUnitTest {
 
     @Test
     public void postConstruction_buildsDataModel_asExpected() {
-        browseTableModel.postConstruct();
+        browseTableModel.init();
         LazyDataModel<BrowseViewBean> lazyDataModel = browseTableModel.getDataModel();
 
         Assert.assertEquals(1,lazyDataModel.load(0,0,"",null,null).size());
@@ -58,7 +58,7 @@ public class BrowseTableModelTest extends BaseUnitTest {
 
     @Test
     public void lazyDataModel_load_returnsEmployeeAsExpected() {
-        browseTableModel.postConstruct();
+        browseTableModel.init();
         LazyDataModel<BrowseViewBean> lazyDataModel = browseTableModel.getDataModel();
 
         Assert.assertEquals(1,lazyDataModel.load(0,0,"",null,null).size());
@@ -70,7 +70,7 @@ public class BrowseTableModelTest extends BaseUnitTest {
         EmployeeViewBean employeeViewBean = new EmployeeViewBean(employee);
         BrowseViewBean browseViewBean = new BrowseViewBean(employeeViewBean);
 
-        browseTableModel.postConstruct();
+        browseTableModel.init();
         LazyDataModel<BrowseViewBean> lazyDataModel = browseTableModel.getDataModel();
 
         Assert.assertEquals(new Long(12345),lazyDataModel.getRowKey(browseViewBean));
@@ -78,7 +78,7 @@ public class BrowseTableModelTest extends BaseUnitTest {
 
     @Test
     public void lazyDataModel_getRowData_returnsExpectedId() {
-        browseTableModel.postConstruct();
+        browseTableModel.init();
 
         LazyDataModel<BrowseViewBean> lazyDataModel = browseTableModel.getDataModel();
         lazyDataModel.load(0,0,"",null,null);
@@ -90,7 +90,7 @@ public class BrowseTableModelTest extends BaseUnitTest {
 
     @Test
     public void lazyDataModel_getRowData_returnsNullWhenIdNotFound() {
-        browseTableModel.postConstruct();
+        browseTableModel.init();
 
         LazyDataModel<BrowseViewBean> lazyDataModel = browseTableModel.getDataModel();
         lazyDataModel.load(0,0,"",null,null);

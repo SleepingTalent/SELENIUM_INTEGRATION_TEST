@@ -6,6 +6,7 @@ import org.apache.log4j.Logger;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.interactions.HasInputDevices;
 import org.openqa.selenium.interactions.Keyboard;
 
@@ -105,6 +106,10 @@ public abstract class PageObject {
 
     public void assertGrowlMessageDisplayed(String text) {
         findElementByClassWithText(GROWL_MESSAGE_CLASS, text);
+    }
+
+    protected void moveToElement(WebElement element) {
+        new Actions(getDriver()).moveToElement(element).perform();
     }
 
     protected void setInputTextOnElement(WebElement element, String text) {

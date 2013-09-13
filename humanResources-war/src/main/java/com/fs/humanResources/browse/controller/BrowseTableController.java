@@ -28,4 +28,5 @@ public class BrowseTableController {
     public LazyDataModel getLazyModel() {
         return browseTableModel.getDataModel();
     }
+
 }

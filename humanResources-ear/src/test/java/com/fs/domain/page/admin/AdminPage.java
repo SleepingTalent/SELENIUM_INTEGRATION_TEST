@@ -82,20 +82,25 @@ public class AdminPage extends PageObject {
     }
 
     public BrowseEmployeesPage clickBrowseEmployeesMenuItem() {
+        moveToBrowseEmployeeMenuItem();
         assertBrowseEmployeeMenuItemDisplayed().click();
         return new BrowseEmployeesPage(getDriver());
     }
 
     private void moveToEditEmployeeMenuItem() {
-        new Actions(getDriver()).moveToElement(assertEditEmployeeMenuItemDisplayed()).perform();
+        moveToElement(assertEditEmployeeMenuItemDisplayed());
     }
 
     private void moveToDeleteEmployeeMenuItem() {
-        new Actions(getDriver()).moveToElement(assertDeleteEmployeeMenuItemDisplayed()).perform();
+        moveToElement(assertDeleteEmployeeMenuItemDisplayed());
     }
 
     private void moveToAddEmployeeMenuItem() {
-        new Actions(getDriver()).moveToElement(assertDeleteEmployeeMenuItemDisplayed()).perform();
+        moveToElement(assertDeleteEmployeeMenuItemDisplayed());
+    }
+
+    private void moveToBrowseEmployeeMenuItem() {
+        moveToElement(assertBrowseEmployeeMenuItemDisplayed());
     }
 
     public HumanResourcesHome clickLogoutBtn() {

@@ -10,4 +10,4 @@ The application is fully unit tested using the following frameworks.
 
 JUnit/Mocktio - Used for unit testing and mocking to provide a high level of test coverage.
 
-Selenium - Used for full Application Integration testing, the selenium tess use the Page Objects design pattern.
+Selenium - Used for full Application Integration testing, the selenium tests use the Page Objects design pattern.

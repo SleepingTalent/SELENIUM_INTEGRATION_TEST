@@ -174,7 +174,7 @@ public class EditEmployeeDialogTest extends BaseSeleniumTest {
     }
 
     @Test
-    public void editWorksFromBrowse() {
+    public void employee_canBeEdited_fromBrowse() {
         adminPage.assertBrowseMenuDisplayed().click();
         BrowseEmployeesPage browseEmployeesPage = adminPage.clickBrowseEmployeesMenuItem();
         browseEmployeesPage.assertDialogIsPresent();

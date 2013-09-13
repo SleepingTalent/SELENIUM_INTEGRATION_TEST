@@ -137,7 +137,7 @@ public class DeleteEmployeeDialogTest extends BaseSeleniumTest {
     }
 
     @Test
-    public void deletionWorksFromBrowse() {
+    public void employee_canBeDeleted_fromBrowse() {
         deletedBySelenium = true;
 
         adminPage.assertBrowseMenuDisplayed().click();

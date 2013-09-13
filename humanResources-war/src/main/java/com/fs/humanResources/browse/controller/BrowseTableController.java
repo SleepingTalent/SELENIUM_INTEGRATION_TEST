@@ -45,11 +45,4 @@ public class BrowseTableController {
         BrowseViewBean browseViewBean = getSelectedEmployee();
         employeeController.getEmployeeModel().setEmployee(browseViewBean.getEmployee());
     }
-
-    public void onRowSelect(SelectEvent event) {
-        BrowseViewBean browseViewBean = (BrowseViewBean) event.getObject();
-        log.info("Selected :" + browseViewBean.getEmployee());
-        setSelectedEmployee(browseViewBean);
-    }
-
 }

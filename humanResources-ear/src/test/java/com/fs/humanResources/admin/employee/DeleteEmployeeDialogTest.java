@@ -4,6 +4,7 @@ import com.fs.domain.page.admin.AdminPage;
 import com.fs.domain.page.admin.dialog.DeleteEmployeeDialog;
 import com.fs.domain.page.admin.dialog.FindEmployeeDialogForDelete;
 import com.fs.domain.page.admin.dialog.FindEmployeeDialogForEdit;
+import com.fs.domain.page.browse.BrowseEmployeesPage;
 import com.fs.humanResources.common.BaseSeleniumTest;
 import com.fs.humanResources.model.address.entities.Address;
 import com.fs.humanResources.model.employee.entities.Employee;
@@ -52,7 +53,9 @@ public class DeleteEmployeeDialogTest extends BaseSeleniumTest {
 
         adminPage = humanResourcesHome.clickLoginBtn();
         adminPage.assertPageIsPresent();
+    }
 
+    private void navigateToDeleteDialog() {
         adminPage.assertEmployeeAdminMenuDisplayed().click();
 
         FindEmployeeDialogForDelete findEmployeeDialogForDelete = adminPage.clickDeleteEmployeeMenuItem();
@@ -67,13 +70,14 @@ public class DeleteEmployeeDialogTest extends BaseSeleniumTest {
     @After
     public void tearDown() {
         if(!deletedBySelenium) {
-            persitenceHelper.deleteCandidates();
+          persitenceHelper.deleteCandidates();
         }
         super.tearDown();
     }
 
     @Test
     public void deleteEmployeeFormElements_displayedAsExpected() {
+        navigateToDeleteDialog();
         Assert.assertEquals("First Name:", deleteEmployeeDialog.firstNameLabelDisplayed().getText());
         deleteEmployeeDialog.firstNameInputDisplayed();
 
@@ -101,6 +105,7 @@ public class DeleteEmployeeDialogTest extends BaseSeleniumTest {
 
     @Test
     public void employeeDetails_displayedAsExpected() {
+        navigateToDeleteDialog();
         Assert.assertEquals(employee.getId() + "", deleteEmployeeDialog.employeeIdInputDisplayed().getAttribute("value"));
         Assert.assertEquals(employee.getFirstName(), deleteEmployeeDialog.firstNameInputDisplayed().getAttribute("value"));
         Assert.assertEquals(employee.getLastName(), deleteEmployeeDialog.lastNameInputDisplayed().getAttribute("value"));
@@ -115,11 +120,37 @@ public class DeleteEmployeeDialogTest extends BaseSeleniumTest {
 
     @Test
     public void employeeDetails_deleteAsExpected() {
-        deletedBySelenium = true;
+        navigateToDeleteDialog();
 
         deleteEmployeeDialog.clickDeleteEmployeeBtn();
         deleteEmployeeDialog.assertConfirmDialogIsPresent();
         deleteEmployeeDialog.confirmDeletion();
+        deletedBySelenium = true;
+
+        FindEmployeeDialogForDelete findEmployeeDialogForDelete = adminPage.clickDeleteEmployeeMenuItem();
+        findEmployeeDialogForDelete.assertDialogIsPresent();
+
+        findEmployeeDialogForDelete.setEmployeeId(employee.getId() + "");
+        findEmployeeDialogForDelete.clickFindEmployeeBtnForDelete();
+        findEmployeeDialogForDelete.assertGrowlMessageDisplayed(
+                "Employee Id ("+employee.getId()+") not found!");
+    }
+
+    @Test
+    public void deletionWorksFromBrowse() {
+        deletedBySelenium = true;
+
+        adminPage.assertBrowseMenuDisplayed().click();
+        BrowseEmployeesPage browseEmployeesPage = adminPage.clickBrowseEmployeesMenuItem();
+        browseEmployeesPage.assertDialogIsPresent();
+
+        deleteEmployeeDialog = browseEmployeesPage.deleteRowWithText(employee.getLastName());
+
+        deleteEmployeeDialog.clickDeleteEmployeeBtn();
+        deleteEmployeeDialog.assertConfirmDialogIsPresent();
+        deleteEmployeeDialog.confirmDeletion();
+
+        adminPage.assertEmployeeAdminMenuDisplayed().click();
 
         FindEmployeeDialogForDelete findEmployeeDialogForDelete = adminPage.clickDeleteEmployeeMenuItem();
         findEmployeeDialogForDelete.assertDialogIsPresent();

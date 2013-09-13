@@ -28,9 +28,9 @@
             </p:dataTable>
 
             <p:contextMenu id="browseTableContext" for="browseTable">
-                <p:menuitem value="Edit" icon="ui-icon-pencil" actionListener="#{browseTableController.loadEmployee}"
+                <p:menuitem id="editMenuItem" value="Edit" icon="ui-icon-pencil" actionListener="#{browseTableController.loadEmployee}"
                             action="#{navigationController.showEditEmployeeDialogFromBrowse}"/>
-                <p:menuitem value="Delete" icon="ui-icon-close"  actionListener="#{browseTableController.loadEmployee}"
+                <p:menuitem id="deleteMenuItem" value="Delete" icon="ui-icon-close"  actionListener="#{browseTableController.loadEmployee}"
                             action="#{navigationController.showDeleteEmployeeDialogFromBrowse}"/>
             </p:contextMenu>
         </h:form>

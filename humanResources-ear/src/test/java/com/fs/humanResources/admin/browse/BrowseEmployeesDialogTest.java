@@ -7,6 +7,7 @@ import com.fs.humanResources.model.address.entities.Address;
 import com.fs.humanResources.model.employee.entities.Employee;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.text.ParseException;
@@ -77,5 +78,4 @@ public class BrowseEmployeesDialogTest extends BaseSeleniumTest {
         browseEmployeesPage.assertFirstNamePresent("James-20");
         browseEmployeesPage.assertFirstNamePresent("James-29");
     }
-
 }

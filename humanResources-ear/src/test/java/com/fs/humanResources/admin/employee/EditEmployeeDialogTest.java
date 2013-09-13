@@ -2,7 +2,9 @@ package com.fs.humanResources.admin.employee;
 
 import com.fs.domain.page.admin.AdminPage;
 import com.fs.domain.page.admin.dialog.EditEmployeeDialog;
+import com.fs.domain.page.admin.dialog.FindEmployeeDialogForDelete;
 import com.fs.domain.page.admin.dialog.FindEmployeeDialogForEdit;
+import com.fs.domain.page.browse.BrowseEmployeesPage;
 import com.fs.humanResources.common.BaseSeleniumTest;
 import com.fs.humanResources.model.address.entities.Address;
 import com.fs.humanResources.model.employee.entities.Employee;
@@ -49,7 +51,9 @@ public class EditEmployeeDialogTest extends BaseSeleniumTest {
 
         adminPage = humanResourcesHome.clickLoginBtn();
         adminPage.assertPageIsPresent();
+    }
 
+    private void navigateToEditEmployee() {
         adminPage.assertEmployeeAdminMenuDisplayed().click();
 
         FindEmployeeDialogForEdit findEmployeeDialogForEdit = adminPage.clickEditEmployeeMenuItem();
@@ -69,6 +73,7 @@ public class EditEmployeeDialogTest extends BaseSeleniumTest {
 
     @Test
     public void editEmployeeFormElements_displayedAsExpected() {
+        navigateToEditEmployee();
         Assert.assertEquals("First Name:", editEmployeeDialog.firstNameLabelDisplayed().getText());
         editEmployeeDialog.firstNameInputDisplayed();
 
@@ -96,6 +101,7 @@ public class EditEmployeeDialogTest extends BaseSeleniumTest {
 
     @Test
     public void validationMessages_displayedAsExpected() {
+        navigateToEditEmployee();
         editEmployeeDialog.firstNameInputDisplayed().clear();
         editEmployeeDialog.clickEditEmployeeBtn();
         editEmployeeDialog.assertGrowlMessageDisplayed("Firstname is required");
@@ -127,6 +133,7 @@ public class EditEmployeeDialogTest extends BaseSeleniumTest {
 
     @Test
     public void employeeDetails_displayedAsExpected() {
+        navigateToEditEmployee();
         Assert.assertEquals(employee.getId() + "", editEmployeeDialog.employeeIdInputDisplayed().getAttribute("value"));
         Assert.assertEquals(employee.getFirstName(), editEmployeeDialog.firstNameInputDisplayed().getAttribute("value"));
         Assert.assertEquals(employee.getLastName(), editEmployeeDialog.lastNameInputDisplayed().getAttribute("value"));
@@ -141,6 +148,7 @@ public class EditEmployeeDialogTest extends BaseSeleniumTest {
 
     @Test
     public void employeeDetails_updatedAsExpected() {
+        navigateToEditEmployee();
         editEmployeeDialog.setFirstName(employee.getFirstName() + "-upt");
         editEmployeeDialog.setLastName(employee.getLastName() + "-upt");
 
@@ -163,5 +171,33 @@ public class EditEmployeeDialogTest extends BaseSeleniumTest {
         Assert.assertEquals(employee.getLastName() + "-upt", editEmployeeDialog.lastNameInputDisplayed().getAttribute("value"));
 
         Assert.assertEquals(employee.getAddressList().get(0).getHouseNumber() + "-upt", editEmployeeDialog.houseNumberInputDisplayed().getAttribute("value"));
+    }
+
+    @Test
+    public void editWorksFromBrowse() {
+        adminPage.assertBrowseMenuDisplayed().click();
+        BrowseEmployeesPage browseEmployeesPage = adminPage.clickBrowseEmployeesMenuItem();
+        browseEmployeesPage.assertDialogIsPresent();
+
+        editEmployeeDialog = browseEmployeesPage.editRowWithText(employee.getLastName());
+
+        editEmployeeDialog.setLastName(employee.getLastName() + "-upt");
+
+        editEmployeeDialog.clickEditEmployeeBtn();
+        editEmployeeDialog.assertDialogIsNotPresent();
+
+        adminPage.assertEmployeeAdminMenuDisplayed().click();
+
+        FindEmployeeDialogForEdit findEmployeeDialogForEdit = adminPage.clickEditEmployeeMenuItem();
+        findEmployeeDialogForEdit.assertDialogIsPresent();
+
+        findEmployeeDialogForEdit.setEmployeeId(employee.getId() + "");
+        editEmployeeDialog = findEmployeeDialogForEdit.clickFindEmployeeBtn();
+        findEmployeeDialogForEdit.assertDialogIsNotPresent();
+
+        editEmployeeDialog.assertDialogIsPresent();
+
+        Assert.assertEquals(employee.getId() + "", editEmployeeDialog.employeeIdInputDisplayed().getAttribute("value"));
+        Assert.assertEquals(employee.getLastName() + "-upt", editEmployeeDialog.lastNameInputDisplayed().getAttribute("value"));
     }
 }

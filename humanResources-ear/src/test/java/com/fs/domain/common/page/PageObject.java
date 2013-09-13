@@ -77,6 +77,15 @@ public abstract class PageObject {
         }
     }
 
+    protected WebElement findTableRowWithText(String text) {
+        try {
+            return elementHelper.findTableRowWithText(text, true);
+        } catch (SeleniumTimeoutException se) {
+            log.info("Timed out trying to find tr with (" + text + ") retrying!");
+            return elementHelper.findTableRowWithText(text, false);
+        }
+    }
+
     protected WebElement findElementByClassWithText(String className, String text) {
         try {
             return elementHelper.findElementsByClassContainingText(className, text, true);
@@ -110,6 +119,10 @@ public abstract class PageObject {
 
     protected void moveToElement(WebElement element) {
         new Actions(getDriver()).moveToElement(element).perform();
+    }
+
+    protected void rightClickOnElement(WebElement element) {
+        new Actions(getDriver()).contextClick(element).perform();
     }
 
     protected void setInputTextOnElement(WebElement element, String text) {

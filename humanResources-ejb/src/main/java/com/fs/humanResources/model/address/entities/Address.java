@@ -3,6 +3,10 @@ package com.fs.humanResources.model.address.entities;
 
 import com.fs.humanResources.model.common.entities.BaseEntity;
 import com.fs.humanResources.model.employee.entities.Employee;
+import org.hibernate.search.annotations.Analyze;
+import org.hibernate.search.annotations.Field;
+import org.hibernate.search.annotations.Index;
+import org.hibernate.search.annotations.Store;
 
 import javax.persistence.*;
 
@@ -13,10 +17,19 @@ public class Address extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected Long id;
 
+    @Field(index = Index.YES, analyze= Analyze.NO, store = Store.YES)
     private String houseNumber;
+
+    @Field(index = Index.YES, analyze= Analyze.NO, store = Store.YES)
     private String addressFirstLine;
+
+    @Field(index = Index.YES, analyze= Analyze.NO, store = Store.YES)
     private String addressSecondLine;
+
+    @Field(index = Index.YES, analyze= Analyze.NO, store = Store.YES)
     private String townCity;
+
+    @Field(index = Index.YES, analyze= Analyze.NO, store = Store.YES)
     private String postCode;
 
     @ManyToOne(cascade= {CascadeType.PERSIST,CascadeType.REFRESH,CascadeType.MERGE})

@@ -2,6 +2,7 @@ package com.fs.humanResources.model.employee.entities;
 
 import com.fs.humanResources.model.address.entities.Address;
 import com.fs.humanResources.model.common.entities.BaseEntity;
+import org.hibernate.search.annotations.*;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -9,16 +10,24 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
+@Indexed
 public class Employee extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected Long id;
 
+    @Field(index = Index.YES, analyze= Analyze.NO, store = Store.YES)
     private String firstName;
+
+    @Field(index = Index.YES, analyze= Analyze.NO, store = Store.YES)
     private String lastName;
+
+    @Field(index = Index.YES, analyze= Analyze.NO, store = Store.YES)
+    @DateBridge(resolution = Resolution.DAY)
     private Date dateOfBirth;
 
+    @IndexedEmbedded
     @OneToMany(mappedBy="employee",cascade=CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Address> addressList = new ArrayList();
 

@@ -17,8 +17,11 @@ public class PersitenceHelper {
 
     private EntityTransaction entityTransaction;
 
+    private DeletionCanditateStack deletionCanditate;
+
     public PersitenceHelper(EntityManager entityManager) {
         this.entityManager = entityManager;
+        this.deletionCanditate = new DeletionCanditateStack();
     }
 
     public PersitenceHelper(EntityManagerFactory entityManagerFactory) {
@@ -42,6 +45,14 @@ public class PersitenceHelper {
         if(null != entityManager) {
             entityManager.close();
         }
+    }
+
+    public void addDeletionCandidate(Object candidate) {
+        deletionCanditate.push(candidate);
+    }
+
+    public void deleteCandidates() {
+        deletionCanditate.deleteCandidates(entityManager);
     }
 
     public Employee persistNewEmployee(Employee employee) {

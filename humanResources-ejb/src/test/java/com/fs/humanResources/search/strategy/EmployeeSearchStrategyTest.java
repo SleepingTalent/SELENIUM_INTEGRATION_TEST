@@ -70,7 +70,7 @@ public class EmployeeSearchStrategyTest extends BaseUnitTest {
     List<Employee> resultList;
 
     private static String[] SEARCHABLE_FIELDS = {
-            "id", "firstName", "lastName","dateOfBirth","houseNumber","postCode"};
+            "id", "firstName", "lastName","houseNumber","postCode"};
 
     @Before
     public void setUp() {

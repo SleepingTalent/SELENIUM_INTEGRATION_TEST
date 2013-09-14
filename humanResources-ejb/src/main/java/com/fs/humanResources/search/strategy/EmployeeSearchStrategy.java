@@ -15,7 +15,7 @@ public class EmployeeSearchStrategy implements SearchStrategy<Employee> {
     private FullTextEntityManager fullTextEntityManager;
 
     private static String[] SEARCHABLE_FIELDS = {
-            "id", "firstName", "lastName", "dateOfBirth", "houseNumber", "postCode"};
+            "id", "firstName", "lastName", "houseNumber", "postCode"};
 
     public EmployeeSearchStrategy(EntityManager entityManager) {
         this.entityManager = entityManager;

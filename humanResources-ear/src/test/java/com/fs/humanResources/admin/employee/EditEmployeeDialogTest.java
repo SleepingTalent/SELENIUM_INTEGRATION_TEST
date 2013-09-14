@@ -67,7 +67,7 @@ public class EditEmployeeDialogTest extends BaseSeleniumTest {
 
     @After
     public void tearDown() {
-        //persitenceHelper.deleteCandidates();
+        persitenceHelper.deleteCandidates();
         super.tearDown();
     }
 

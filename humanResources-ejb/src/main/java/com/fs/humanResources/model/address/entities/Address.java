@@ -17,19 +17,19 @@ public class Address extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected Long id;
 
-    @Field(name="houseNumber", index = Index.YES, analyze= Analyze.NO, store = Store.YES)
+    @Field(index = Index.YES, analyze= Analyze.NO, store = Store.YES)
     private String houseNumber;
 
-    @Field(name="addressFirstLine", index = Index.YES, analyze= Analyze.NO, store = Store.YES)
+    @Field(index = Index.YES, analyze= Analyze.NO, store = Store.YES)
     private String addressFirstLine;
 
-    @Field(name="addressSecondLine", index = Index.YES, analyze= Analyze.NO, store = Store.YES)
+    @Field(index = Index.YES, analyze= Analyze.NO, store = Store.YES)
     private String addressSecondLine;
 
-    @Field(name="townCity", index = Index.YES, analyze= Analyze.NO, store = Store.YES)
+    @Field(index = Index.YES, analyze= Analyze.NO, store = Store.YES)
     private String townCity;
 
-    @Field(name="postCode", index = Index.YES, analyze= Analyze.NO, store = Store.YES)
+    @Field(index = Index.YES, analyze= Analyze.NO, store = Store.YES)
     private String postCode;
 
     @ManyToOne(cascade= {CascadeType.PERSIST,CascadeType.REFRESH,CascadeType.MERGE})

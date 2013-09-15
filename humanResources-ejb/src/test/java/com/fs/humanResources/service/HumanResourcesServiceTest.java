@@ -7,6 +7,7 @@ import com.fs.humanResources.model.address.entities.Address;
 import com.fs.humanResources.model.address.helper.AddressHelper;
 import com.fs.humanResources.model.employee.dao.EmployeeDAO;
 import com.fs.humanResources.model.employee.entities.Employee;
+import com.fs.humanResources.search.service.SearchService;
 import com.fs.humanResources.service.exception.EmployeeNotFoundException;
 import org.junit.Assert;
 import org.junit.Before;
@@ -39,6 +40,9 @@ public class HumanResourcesServiceTest extends BaseUnitTest {
     @Mock
     EmployeeDTO employeeDTO;
 
+    @Mock
+    SearchService searchService;
+
     List<Employee> employeeList;
 
     @Before
@@ -57,6 +61,7 @@ public class HumanResourcesServiceTest extends BaseUnitTest {
         when(employeeDAO.getEmployeeDetails(eq(notFoundEmployeeId))).thenThrow(new NoResultException());
 
         when(employeeDAO.findAll(anyInt(),anyInt())).thenReturn(employeeList);
+        when(searchService.performSearch(anyString())).thenReturn(employeeList);
     }
 
     @Test
@@ -96,14 +101,41 @@ public class HumanResourcesServiceTest extends BaseUnitTest {
     }
 
     @Test
+    public void searchForEmployees_verify_expected_methods_called() throws NoResultException, EmployeeNotFoundException {
+        humanResourcesService.searchForEmployees("searchTerm");
+        verify(searchService,times(1)).performSearch(eq("searchTerm"));
+    }
+
+
+    @Test
     public void findTotalEmployeeCount_verify_expected_methods_called() throws NoResultException, EmployeeNotFoundException {
         humanResourcesService.findTotalEmployeeCount();
         verify(employeeDAO,times(1)).countAll();
     }
 
     @Test
-    public void findEmployeess_returns_expected_employee() throws NoResultException, EmployeeNotFoundException {
+    public void findEmployees_returns_expected_employee() throws NoResultException, EmployeeNotFoundException {
         List<EmployeeDTO> actual = humanResourcesService.findEmployees(0,0);
+
+        Assert.assertEquals(1,actual.size());
+        Assert.assertEquals(employee.getFirstName(), actual.get(0).getFirstName());
+        Assert.assertEquals(employee.getLastName(), actual.get(0).getLastName());
+        Assert.assertEquals(employee.getId(), actual.get(0).getId());
+        Assert.assertEquals(employee.getDateOfBirth(), actual.get(0).getDateOfBirth());
+
+        Address expectedAddress = employee.getAddressList().get(0);
+        AddressDTO actualAddress = actual.get(0).getAddress();
+
+        Assert.assertEquals(expectedAddress.getHouseNumber(), actualAddress.getHouseNumber());
+        Assert.assertEquals(expectedAddress.getAddressFirstLine(), actualAddress.getAddressFirstLine());
+        Assert.assertEquals(expectedAddress.getAddressSecondLine(), actualAddress.getAddressSecondLine());
+        Assert.assertEquals(expectedAddress.getTownCity(), actualAddress.getTownCity());
+        Assert.assertEquals(expectedAddress.getPostCode(), actualAddress.getPostCode());
+    }
+
+    @Test
+    public void searchForEmployees_returns_expected_employee() throws NoResultException, EmployeeNotFoundException {
+        List<EmployeeDTO> actual = humanResourcesService.searchForEmployees("searchTerm");
 
         Assert.assertEquals(1,actual.size());
         Assert.assertEquals(employee.getFirstName(), actual.get(0).getFirstName());

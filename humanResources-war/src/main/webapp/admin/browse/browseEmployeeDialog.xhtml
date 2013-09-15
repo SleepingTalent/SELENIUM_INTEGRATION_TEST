@@ -8,9 +8,9 @@
               dynamic="true" resizable="false" closable="true">
 
         <h:form id="browseEmployees">
-            <p:dataTable styleClass="browseTable" var="row" value="#{browseTableController.lazyModel}" paginator="true" rows="10"
+            <p:dataTable styleClass="browseTable" var="row" value="#{searchTableController.lazyModel}" paginator="true" rows="10"
                          paginatorTemplate="{FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
-                         rowsPerPageTemplate="5,10,15" selectionMode="single" selection="#{browseTableController.selectedEmployee}"
+                         rowsPerPageTemplate="5,10,15" selectionMode="single" selection="#{searchTableController.selectedEmployee}"
                          id="browseTable" lazy="true" rowKey="#{row.employee.employeeId}">
 
                 <p:column headerText="Employee Id">
@@ -28,9 +28,9 @@
             </p:dataTable>
 
             <p:contextMenu id="browseTableContext" for="browseTable">
-                <p:menuitem id="editMenuItem" value="Edit" icon="ui-icon-pencil" actionListener="#{browseTableController.loadEmployee}"
+                <p:menuitem id="editMenuItem" value="Edit" icon="ui-icon-pencil" actionListener="#{searchTableController.loadEmployee}"
                             action="#{navigationController.showEditEmployeeDialogFromBrowse}"/>
-                <p:menuitem id="deleteMenuItem" value="Delete" icon="ui-icon-close"  actionListener="#{browseTableController.loadEmployee}"
+                <p:menuitem id="deleteMenuItem" value="Delete" icon="ui-icon-close"  actionListener="#{searchTableController.loadEmployee}"
                             action="#{navigationController.showDeleteEmployeeDialogFromBrowse}"/>
             </p:contextMenu>
         </h:form>

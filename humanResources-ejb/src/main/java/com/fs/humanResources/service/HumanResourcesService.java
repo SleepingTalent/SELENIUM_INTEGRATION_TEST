@@ -3,6 +3,7 @@ package com.fs.humanResources.service;
 import com.fs.humanResources.dto.employee.EmployeeDTO;
 import com.fs.humanResources.model.employee.dao.EmployeeDAO;
 import com.fs.humanResources.model.employee.entities.Employee;
+import com.fs.humanResources.search.service.SearchService;
 import com.fs.humanResources.service.exception.EmployeeNotFoundException;
 import org.apache.log4j.Logger;
 
@@ -23,6 +24,9 @@ public class HumanResourcesService implements Serializable {
     @Inject
     EmployeeDAO employeeDAO;
 
+    @Inject
+    SearchService searchService;
+
     public EmployeeDTO getEmployeeDetails(Long employeeId) throws EmployeeNotFoundException {
         try {
             log.info("Getting Employee Details for EmployeeId :" + employeeId);
@@ -36,15 +40,12 @@ public class HumanResourcesService implements Serializable {
 
     public List<EmployeeDTO> findEmployees(int first, int pageSize) {
         log.info("Getting Employees " + first + " to " + pageSize);
+        return getDTOList(employeeDAO.findAll(first, pageSize));
+    }
 
-        List<EmployeeDTO> employeeDTOList = new ArrayList();
-        List<Employee> employeeList = employeeDAO.findAll(first, pageSize);
-
-        for (Employee employee : employeeList) {
-            employeeDTOList.add(new EmployeeDTO(employee));
-        }
-
-        return employeeDTOList;
+    public List<EmployeeDTO> searchForEmployees(String searchTerm) {
+        log.info("Search For Employees with searchTerm : " + searchTerm);
+        return getDTOList(searchService.performSearch(searchTerm));
     }
 
     public void saveEmployeeDetails(EmployeeDTO employeeDTO) {
@@ -61,5 +62,15 @@ public class HumanResourcesService implements Serializable {
 
     public int findTotalEmployeeCount() {
         return (int) employeeDAO.countAll();
+    }
+
+    private List<EmployeeDTO> getDTOList(List<Employee> employeeList) {
+        List<EmployeeDTO> employeeDTOList = new ArrayList<EmployeeDTO>();
+
+        for (Employee employee : employeeList) {
+            employeeDTOList.add(new EmployeeDTO(employee));
+        }
+
+        return employeeDTOList;
     }
 }

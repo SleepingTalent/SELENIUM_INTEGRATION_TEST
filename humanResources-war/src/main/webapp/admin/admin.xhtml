@@ -22,10 +22,9 @@
                 <f:facet name="header">
                     <h:outputText value="Human Resources Admin Tool"/>
                     <h:commandButton id="searchBtn" value="Search" style="float :right"
-                                     actionListener="#{searchController.clearSearchTerm}"
-                                     action="#{navigationController.showSearchTermDialog}"
                                      icon="ui-icon-close">
-                    <f:ajax execute="searchBtn" update=":searchTermDialog"/>
+                        <f:ajax listener="#{searchController.clearSearchTerm" update=":searchTermDialog" />
+                        <f:ajax listener="#{navigationController.showSearchTermDialog}"/>
                     </h:commandButton>
                     <h:commandButton id="logoutBtn" value="Logout" style="float :right"
                                      actionListener="#{authController.logout}"

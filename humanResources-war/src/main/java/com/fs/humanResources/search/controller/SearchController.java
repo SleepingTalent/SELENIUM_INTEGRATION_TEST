@@ -19,9 +19,6 @@ public class SearchController {
     @Inject
     private SearchTableModel searchTableModel;
 
-    @Inject
-    private HumanResourcesService humanResourcesService;
-
     protected ViewHelper viewHelper;
 
     @PostConstruct

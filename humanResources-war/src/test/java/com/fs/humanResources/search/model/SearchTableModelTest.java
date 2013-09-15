@@ -110,6 +110,13 @@ public class SearchTableModelTest extends BaseUnitTest {
         Assert.assertNull("Expected Null!",actualBean);
     }
 
+    @Test
+    public void searchTerm_setsAsExpected() {
+        searchTableModel.setSearchTerm("searchTerm");
+
+        Assert.assertEquals("searchTerm",searchTableModel.getSearchTerm());
+    }
+
     private Employee createEmployee() {
         String firstName = "Joe";
         String lastName = "Smith";

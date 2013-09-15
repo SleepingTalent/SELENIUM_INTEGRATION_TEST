@@ -65,6 +65,12 @@ public class NavigationControllerTest extends BaseUnitTest {
     }
 
     @Test
+    public void showSearchResultsDialog_callsExpectedMethod() {
+        navigationController.showSearchResultsDialog();
+        verify(viewHelper, times(1)).showSearchResultsDialog();
+    }
+
+    @Test
     public void showEditEmployeeDialog_callsExpectedMethod() {
         navigationController.showEditEmployeeDialog();
         verify(viewHelper, times(1)).hideFindEmployeeDialogForEdit();
@@ -108,6 +114,12 @@ public class NavigationControllerTest extends BaseUnitTest {
     public void showBrowseEmployeesDialog_callsExpectedMethod() {
         navigationController.showBrowseEmployeesDialog();
         verify(viewHelper, times(1)).showBrowseEmployeesDialog();
+    }
+
+    @Test
+    public void showSearchTermDialog_callsExpectedMethod() {
+        navigationController.showSearchTermDialog();
+        verify(viewHelper, times(1)).showSearchTermDialog();
     }
 }
 

@@ -22,6 +22,7 @@ import java.util.Date;
 import java.util.List;
 
 import static org.mockito.Matchers.anyInt;
+import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.when;
 
 public class SearchTableModelTest extends BaseUnitTest {
@@ -44,7 +45,7 @@ public class SearchTableModelTest extends BaseUnitTest {
         employeeList = new ArrayList<EmployeeDTO>();
         employeeList.add(employee);
 
-        when(humanResourcesService.findEmployees(anyInt(), anyInt())).thenReturn(employeeList);
+        when(humanResourcesService.searchForEmployees(anyString())).thenReturn(employeeList);
     }
 
     @Test

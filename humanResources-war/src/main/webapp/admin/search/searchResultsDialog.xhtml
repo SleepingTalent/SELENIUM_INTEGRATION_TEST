@@ -4,14 +4,14 @@
                 xmlns:f="http://java.sun.com/jsf/core"
                 xmlns:p="http://primefaces.org/ui">
 
-    <p:dialog id="browseEmployeesDialog" widgetVar="_browseEmployeesDialog" styleClass="browseEmployeesDialog" header="Browse Employees" modal="true"
+    <p:dialog id="searchResultsDialog" widgetVar="_searchResultsDialog" header="SearchResults" modal="true"
               dynamic="true" resizable="false" closable="true">
 
-        <h:form id="browseEmployees">
-            <p:dataTable styleClass="browseTable" var="row" value="#{browseTableController.lazyModel}" paginator="true" rows="10"
+        <h:form id="searchResults">
+            <p:dataTable styleClass="searchResultsTable" var="row" value="#{searchTableController.lazyModel}" paginator="true" rows="10"
                          paginatorTemplate="{FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
-                         rowsPerPageTemplate="5,10,15" selectionMode="single" selection="#{browseTableController.selectedEmployee}"
-                         id="browseTable" lazy="true" rowKey="#{row.employee.employeeId}">
+                         rowsPerPageTemplate="5,10,15" selectionMode="single" selection="#{searchTableController.selectedEmployee}"
+                         id="searchResultsTable" lazy="true" rowKey="#{row.employee.employeeId}">
 
                 <p:column headerText="Employee Id">
                     <h:outputText value="#{row.employee.employeeId}"/>
@@ -28,9 +28,9 @@
             </p:dataTable>
 
             <p:contextMenu id="browseTableContext" for="browseTable">
-                <p:menuitem id="editMenuItem" value="Edit" icon="ui-icon-pencil" actionListener="#{browseTableController.loadEmployee}"
+                <p:menuitem id="editMenuItem" value="Edit" icon="ui-icon-pencil" actionListener="#{searchTableController.loadEmployee}"
                             action="#{navigationController.showEditEmployeeDialogFromBrowse}"/>
-                <p:menuitem id="deleteMenuItem" value="Delete" icon="ui-icon-close"  actionListener="#{browseTableController.loadEmployee}"
+                <p:menuitem id="deleteMenuItem" value="Delete" icon="ui-icon-close"  actionListener="#{searchTableController.loadEmployee}"
                             action="#{navigationController.showDeleteEmployeeDialogFromBrowse}"/>
             </p:contextMenu>
         </h:form>

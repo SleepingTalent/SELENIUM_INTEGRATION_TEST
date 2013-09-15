@@ -30,6 +30,8 @@ public class SearchTableModel implements Serializable {
 
     private LazyDataModel<SearchViewBean> dataModel;
 
+    private String searchTerm;
+
     @PostConstruct
     public void init() {
         lazyLoadedData = new ArrayList<SearchViewBean>();
@@ -69,7 +71,7 @@ public class SearchTableModel implements Serializable {
             public List<SearchViewBean> load(int first, int pageSize, String sortField, SortOrder sortOrder, Map<String, String> filters) {
                 lazyLoadedData.clear();
 
-                List<EmployeeDTO> employeeDTOList = humanResourcesService.findEmployees(first, pageSize);
+                List<EmployeeDTO> employeeDTOList = humanResourcesService.searchForEmployees(searchTerm);
 
                 for(EmployeeDTO employeeDTO : employeeDTOList) {
                     log.info("adding "+employeeDTO);
@@ -78,10 +80,18 @@ public class SearchTableModel implements Serializable {
                     lazyLoadedData.add(searchViewBean);
                 }
 
-                setRowCount(humanResourcesService.findTotalEmployeeCount());
+                setRowCount(employeeDTOList.size());
 
                 return lazyLoadedData;
             }
         };
+    }
+
+    public String getSearchTerm() {
+        return searchTerm;
+    }
+
+    public void setSearchTerm(String searchTerm) {
+        this.searchTerm = searchTerm;
     }
 }

@@ -52,6 +52,11 @@ public class NavigationController implements Serializable {
         viewHelper.showBrowseEmployeesDialog();
     }
 
+    public void showSearchResultsDialog() {
+        viewHelper.hideSearchTermDialog();
+        viewHelper.showSearchResultsDialog();
+    }
+
     public void hideAddEmployeeDialog() {
         viewHelper.hideAddEmployeeDialog();
     }
@@ -82,5 +87,9 @@ public class NavigationController implements Serializable {
 
     public void hideDeleteEmployeeDialog() {
         viewHelper.hideDeleteEmployeeDialog();
+    }
+
+    public void showSearchTermDialog() {
+        viewHelper.showSearchTermDialog();
     }
 }

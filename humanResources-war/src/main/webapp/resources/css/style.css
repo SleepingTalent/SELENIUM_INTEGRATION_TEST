@@ -21,6 +21,11 @@
     min-height:200px;
 }
 
+.searchResultsTable {
+    width:600px;
+    min-height:200px;
+}
+
 .addEmployeePanel {
    min-width:450px;
    min-height:510px;

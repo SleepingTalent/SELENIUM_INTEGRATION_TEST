@@ -78,14 +78,6 @@ public class ViewHelper {
         dialogHelper.hideDialog(Dialogs.BROWSE_EMPLOYEES);
     }
 
-    public void hideSearchTermDialog() {
-        dialogHelper.hideDialog(Dialogs.SEARCH_TERM_DIALOG);
-    }
-
-    public void showSearchTermDialog() {
-        dialogHelper.showDialog(Dialogs.SEARCH_TERM_DIALOG);
-    }
-
     public void showSearchResultsDialog() {
         dialogHelper.showDialog(Dialogs.SEARCH_RESULTS);
     }

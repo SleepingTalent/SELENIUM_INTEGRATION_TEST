@@ -133,18 +133,6 @@ public class ViewHelperTest extends BaseUnitTest {
     }
 
     @Test
-    public void hideSearchTermDialog_callsExpectedMethod() {
-        viewHelper.hideSearchTermDialog();
-        verify(dialogHelper, times(1)).hideDialog(eq(Dialogs.SEARCH_TERM_DIALOG));
-    }
-
-    @Test
-    public void showSearchTermDialog_callsExpectedMethod() {
-        viewHelper.showSearchTermDialog();
-        verify(dialogHelper, times(1)).showDialog(eq(Dialogs.SEARCH_TERM_DIALOG));
-    }
-
-    @Test
     public void showSearchResultsDialog_callsExpectedMethod() {
         viewHelper.showSearchResultsDialog();
         verify(dialogHelper, times(1)).showDialog(eq(Dialogs.SEARCH_RESULTS));

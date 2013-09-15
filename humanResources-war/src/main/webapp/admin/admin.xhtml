@@ -20,55 +20,54 @@
             <p:panel id="contentPanel" styleClass="contentPanel">
 
                 <f:facet name="header">
-                    <h:outputText value="Human Resources Admin Tool"/>
-                    <h:commandButton id="searchBtn" value="Search" style="float :right"
-                                     icon="ui-icon-close">
-                        <f:ajax listener="#{searchController.clearSearchTerm" update=":searchTermDialog" />
-                        <f:ajax listener="#{navigationController.showSearchTermDialog}"/>
-                    </h:commandButton>
-                    <h:commandButton id="logoutBtn" value="Logout" style="float :right"
+                    <h:commandButton id="logoutBtn" value="Logout"
                                      actionListener="#{authController.logout}"
                                      action="#{navigationController.navigateToHome}"/>
+                    <h:commandButton id="searchBtn" value="Search" style="float :right" update=":searchResults"
+                                     action="#{navigationController.showSearchResultsDialog}">
+                        <f:ajax execute="searchTerm"/>
+                    </h:commandButton>
+                    <h:inputText id="searchTerm" value="#{searchController.searchTableModel.searchTerm}" style="float :right"/>
                 </f:facet>
 
-                    <p:layout id="adminToolLayout">
-                        <p:layoutUnit position="west" resizable="true">
-                            <p:panelMenu styleClass="adminMenu" autoDisplay="false">
-                                <p:submenu label="Employee Admin" icon="ui-icon-gear">
-                                    <p:menuitem id="addEmployee" value="Add Employee"
-                                                actionListener="#{employeeController.clearEmployee}"
-                                                action="#{navigationController.showAddEmployeeDialog}"
-                                                icon="ui-icon-disk" update=":addEmployee"/>
-                                    <p:menuitem id="editEmployee" value="Edit Employee"
-                                                actionListener="#{employeeController.clearEmployee}"
-                                                action="#{navigationController.showFindEmployeeDialogForEdit}"
-                                                icon="ui-icon-pencil" update=":findEmployeeForEdit"/>
-                                    <p:menuitem id="deleteEmployee" value="Delete Employee"
-                                                actionListener="#{employeeController.clearEmployee}"
-                                                action="#{navigationController.showFindEmployeeDialogForDelete}"
-                                                icon="ui-icon-close" update=":findEmployeeForDelete"/>
-                                </p:submenu>
-                                <p:submenu label="Browse" icon="ui-icon-folder-collapsed">
-                                    <p:menuitem id="browseEmployees" value="Browse Employees"
-                                                actionListener="#{searchTableController.clearDataModel}"
-                                                action="#{navigationController.showBrowseEmployeesDialog}"
-                                                icon="ui-icon-folder-open" update=":browseEmployees"/>
-                                </p:submenu>
-                            </p:panelMenu>
-                        </p:layoutUnit>
+                <p:layout id="adminToolLayout">
+                    <p:layoutUnit position="west" resizable="true">
+                        <p:panelMenu styleClass="adminMenu" autoDisplay="false">
+                            <p:submenu label="Employee Admin" icon="ui-icon-gear">
+                                <p:menuitem id="addEmployee" value="Add Employee"
+                                            actionListener="#{employeeController.clearEmployee}"
+                                            action="#{navigationController.showAddEmployeeDialog}"
+                                            icon="ui-icon-disk" update=":addEmployee"/>
+                                <p:menuitem id="editEmployee" value="Edit Employee"
+                                            actionListener="#{employeeController.clearEmployee}"
+                                            action="#{navigationController.showFindEmployeeDialogForEdit}"
+                                            icon="ui-icon-pencil" update=":findEmployeeForEdit"/>
+                                <p:menuitem id="deleteEmployee" value="Delete Employee"
+                                            actionListener="#{employeeController.clearEmployee}"
+                                            action="#{navigationController.showFindEmployeeDialogForDelete}"
+                                            icon="ui-icon-close" update=":findEmployeeForDelete"/>
+                            </p:submenu>
+                            <p:submenu label="Browse" icon="ui-icon-folder-collapsed">
+                                <p:menuitem id="browseEmployees" value="Browse Employees"
+                                            actionListener="#{searchTableController.clearDataModel}"
+                                            action="#{navigationController.showBrowseEmployeesDialog}"
+                                            icon="ui-icon-folder-open" update=":browseEmployees"/>
+                            </p:submenu>
+                        </p:panelMenu>
+                    </p:layoutUnit>
 
-                        <p:layoutUnit position="center">
-                            <p:panel id="newsPanel" header="Latest News">
-                                Welcome to the Human Resources Admin Tool.
-                                <p:imageSwitch effect="fade">
-                                    <ui:repeat value="#{imageController.newsImages}" var="image">
-                                        <p:graphicImage value="/images/#{image}"/>
-                                    </ui:repeat>
-                                </p:imageSwitch>
-                            </p:panel>
-                        </p:layoutUnit>
-                    </p:layout>
-                </p:panel>
+                    <p:layoutUnit position="center">
+                        <p:panel id="newsPanel" header="Latest News">
+                            Welcome to the Human Resources Admin Tool.
+                            <p:imageSwitch effect="fade">
+                                <ui:repeat value="#{imageController.newsImages}" var="image">
+                                    <p:graphicImage value="/images/#{image}"/>
+                                </ui:repeat>
+                            </p:imageSwitch>
+                        </p:panel>
+                    </p:layoutUnit>
+                </p:layout>
+            </p:panel>
         </h:form>
 
         <ui:include src="employee/addEmployeeDialog.xhtml"/>
@@ -77,6 +76,7 @@
         <ui:include src="employee/findEmployeeForDeleteDialog.xhtml"/>
         <ui:include src="employee/deleteEmployeeDialog.xhtml"/>
         <ui:include src="browse/browseEmployeeDialog.xhtml"/>
+        <ui:include src="search/searchResultsDialog.xhtml"/>
     </ui:define>
 </ui:composition>
 

@@ -8,7 +8,6 @@ public enum Dialogs {
     EDIT_EMPLOYEE("_editEmployeeDialog"),
     BROWSE_EMPLOYEES("_browseEmployeesDialog"),
     DELETE_EMPLOYEE("_deleteEmployeeDialog"),
-    SEARCH_TERM_DIALOG("_searchTermDialog"),
     SEARCH_RESULTS("_searchResultsDialog");
 
     private final String dialogWidgetVar;

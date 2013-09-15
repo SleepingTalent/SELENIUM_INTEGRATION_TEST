@@ -115,11 +115,5 @@ public class NavigationControllerTest extends BaseUnitTest {
         navigationController.showBrowseEmployeesDialog();
         verify(viewHelper, times(1)).showBrowseEmployeesDialog();
     }
-
-    @Test
-    public void showSearchTermDialog_callsExpectedMethod() {
-        navigationController.showSearchTermDialog();
-        verify(viewHelper, times(1)).showSearchTermDialog();
-    }
 }
 

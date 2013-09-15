@@ -41,7 +41,7 @@ public class SearchTableController {
     }
 
     public void loadEmployee() {
-        SearchViewBean browseViewBean = getSelectedEmployee();
-        employeeController.getEmployeeModel().setEmployee(browseViewBean.getEmployee());
+        SearchViewBean searchViewBean = getSelectedEmployee();
+        employeeController.getEmployeeModel().setEmployee(searchViewBean.getEmployee());
     }
 }

@@ -3,6 +3,7 @@ package com.fs.humanResources.search.strategy;
 import com.fs.humanResources.model.employee.entities.Employee;
 import org.apache.lucene.search.Query;
 import org.hibernate.search.jpa.FullTextEntityManager;
+import org.hibernate.search.jpa.Search;
 import org.hibernate.search.query.dsl.QueryBuilder;
 
 import javax.persistence.EntityManager;
@@ -35,7 +36,7 @@ public class EmployeeSearchStrategy implements SearchStrategy<Employee> {
     }
 
     private FullTextEntityManager getFullTextEntityMananger() {
-        return org.hibernate.search.jpa.Search.getFullTextEntityManager(entityManager);
+        return Search.getFullTextEntityManager(entityManager);
     }
 
     private javax.persistence.Query createFullTextQuery(FullTextEntityManager fullTextEntityManager, org.apache.lucene.search.Query query) {

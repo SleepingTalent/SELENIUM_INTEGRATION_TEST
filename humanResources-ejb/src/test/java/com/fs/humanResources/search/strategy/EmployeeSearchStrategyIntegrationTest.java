@@ -1,35 +1,16 @@
 package com.fs.humanResources.search.strategy;
 
 import com.fs.common.BaseSearchTest;
-import com.fs.common.BaseUnitTest;
 import com.fs.humanResources.model.address.entities.Address;
-import com.fs.humanResources.model.employee.dao.EmployeeDAO;
 import com.fs.humanResources.model.employee.entities.Employee;
-import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.log4j.Logger;
-import org.apache.lucene.search.Query;
-import org.hibernate.search.SearchFactory;
-import org.hibernate.search.jpa.FullTextEntityManager;
-import org.hibernate.search.jpa.FullTextQuery;
-import org.hibernate.search.query.dsl.*;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.ArgumentMatcher;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.internal.matchers.VarargMatcher;
 
-import javax.persistence.EntityManager;
 import java.text.ParseException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
-
-import static org.mockito.Matchers.eq;
-import static org.mockito.Mockito.*;
 
 public class EmployeeSearchStrategyIntegrationTest extends BaseSearchTest {
 
@@ -69,7 +50,7 @@ public class EmployeeSearchStrategyIntegrationTest extends BaseSearchTest {
 
     @After
     public void tearDown() {
-        persitenceHelper.deleteCandidates();
+       persitenceHelper.deleteCandidates();
     }
 
     @Test

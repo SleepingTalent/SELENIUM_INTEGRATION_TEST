@@ -31,10 +31,9 @@ public class DeletionCanditateStack {
     }
 
     public void deleteCandidates(EntityManager entityManager) {
-        EntityTransaction transaction = entityManager.getTransaction();
-        transaction.begin();
-
         while (!deletionCandidates.empty()) {
+            EntityTransaction transaction = entityManager.getTransaction();
+            transaction.begin();
             Object deletionCandidate = deletionCandidates.pop();
 
             Long candidateId = ((BaseEntity) deletionCandidate).getId();
@@ -42,8 +41,9 @@ public class DeletionCanditateStack {
 
             deletionCandidate = entityManager.find(deletionCandidate.getClass(),candidateId);
             entityManager.remove(deletionCandidate);
+            transaction.commit();
         }
 
-        transaction.commit();
+
     }
 }

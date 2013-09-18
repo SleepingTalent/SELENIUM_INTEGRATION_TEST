@@ -12,6 +12,30 @@
   <name>humanResources-ejb</name>
   <packaging>jar</packaging>
 
+    <properties>
+        <skip.integration.tests>false</skip.integration.tests>
+    </properties>
+
+
+    <repositories>
+            <!-- You should seriously consider using a repository manager or declare repositories in your settings.xml.
+               See http://www.sonatype.com/people/2009/02/why-putting-repositories-in-your-poms-is-a-bad-idea/   -->
+            <repository>
+                <id>jboss-public-repository-group</id>
+                <name>JBoss Public Maven Repository Group</name>
+                <url>https://repository.jboss.org/nexus/content/groups/public-jboss/</url>
+                <layout>default</layout>
+            </repository>
+            <repository>
+                <id>maven2-repository</id>
+                <url>http://repo1.maven.org/maven2</url>
+            </repository>
+            <repository>
+                <id>java.net</id>
+                <url>http://download.java.net/maven/2</url>
+            </repository>
+    </repositories>
+
     <build>
         <plugins>
             <plugin>
@@ -85,6 +109,7 @@
                     <includes>
                         <include>**/*IntegrationTest*</include>
                     </includes>
+                    <skip>${skip.integration.tests}</skip>
                     <failIfNoTests>true</failIfNoTests>
                     <failIfNoSpecifiedTests>true</failIfNoSpecifiedTests>
                 </configuration>
@@ -124,12 +149,26 @@
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-core</artifactId>
-            <version>4.2.3.Final</version>
+            <version>4.0.0.Final</version>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-entitymanager</artifactId>
-            <version>4.2.3.Final</version>
+            <version>4.0.0.Final</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-validator</artifactId>
+            <version>4.2.0.Final</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-search</artifactId>
+            <version>4.0.0.Final</version>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>mysql</groupId>
@@ -168,11 +207,6 @@
             <version>3.0.2.Final</version>
             <type>pom</type>
             <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-search</artifactId>
-            <version>4.4.0.Alpha1</version>
         </dependency>
     </dependencies>
 

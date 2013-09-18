@@ -3,8 +3,6 @@ package com.fs.humanResources.dto.address;
 
 import com.fs.humanResources.model.address.entities.Address;
 
-import java.util.List;
-
 public class AddressDTO {
 
     private Long id;

@@ -8,11 +8,11 @@ import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 
-import static org.mockito.Matchers.eq;
-import static org.mockito.Mockito.*;
-
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
+
+import static org.mockito.Matchers.eq;
+import static org.mockito.Mockito.*;
 
 public class SearchServiceTest extends BaseUnitTest {
 

@@ -51,6 +51,7 @@ public class EmployeeSearchStrategyIntegrationTest extends BaseSearchTest {
     @After
     public void tearDown() {
        persitenceHelper.deleteCandidates();
+
     }
 
     @Test

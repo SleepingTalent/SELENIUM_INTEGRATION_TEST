@@ -10,10 +10,6 @@ http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd" version="1.0">
         <class>com.fs.humanResources.model.address.entities.Address</class>
 
         <properties>
-            <!--
-            <property name="hibernate.ejb.cfgfile" value="/hibernate.cfg.xml"/>
-            <property name="hibernate.hbm2ddl.auto" value="create"/>
-            -->
             <property name="hibernate.archive.autodetection" value="class, hbm"/>
             <property name="hibernate.show_sql" value="false"/>
             <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver"/>
@@ -23,8 +19,6 @@ http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd" version="1.0">
             <property name="hibernate.c3p0.timeout" value="300"/>
             <property name="hibernate.c3p0.max_statements" value="50"/>
             <property name="hibernate.c3p0.idle_test_period" value="3000"/>
-            <property name="hibernate.search.default.directory_provider" value="filesystem"/>
-            <property name="hibernate.search.default.indexBase" value="C:/lucene/indexes"/>
         </properties>
     </persistence-unit>
 </persistence>

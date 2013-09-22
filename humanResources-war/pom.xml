@@ -169,7 +169,7 @@
             <groupId>humanResources-app</groupId>
             <artifactId>humanResources-ejb</artifactId>
             <version>1.0</version>
-            <type>jar</type>
+            <type>ejb</type>
             <scope>provided</scope>
         </dependency>
         <dependency>

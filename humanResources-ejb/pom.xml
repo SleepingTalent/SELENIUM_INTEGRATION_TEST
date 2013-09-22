@@ -165,12 +165,6 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-search</artifactId>
-            <version>4.0.0.Final</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <version>5.1.26</version>

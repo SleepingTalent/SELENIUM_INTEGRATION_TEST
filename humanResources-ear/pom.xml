@@ -77,16 +77,16 @@
                             <bundleFileName>humanResources-war.war</bundleFileName>
                             <contextRoot>/humanResources</contextRoot>
                         </webModule>
-                        <jarModule>
+                        <ejbModule>
                             <groupId>humanResources-app</groupId>
                             <artifactId>humanResources-ejb</artifactId>
-                            <bundleFileName>humanResources-ejb.jar</bundleFileName>
-                            <includeInApplicationXml>true</includeInApplicationXml>
-                        </jarModule>
+                        </ejbModule>
                     </modules>
-                    <displayName>My Ear Name displayed in the App Server</displayName>
+                    <displayName>humanResources</displayName>
                     <!-- If I want maven to generate the application.xml, set this to true -->
                     <generateApplicationXml>true</generateApplicationXml>
+                    <defaultLibBundleDir>lib</defaultLibBundleDir>
+                    <version>6</version>
                 </configuration>
             </plugin>
             <plugin>
@@ -172,7 +172,7 @@
             <groupId>humanResources-app</groupId>
             <artifactId>humanResources-ejb</artifactId>
             <version>1.0</version>
-            <type>jar</type>
+            <type>ejb</type>
         </dependency>
         <dependency>
             <groupId>junit</groupId>

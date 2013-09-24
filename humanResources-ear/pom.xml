@@ -13,7 +13,7 @@
 
     <properties>
         <skip.deployment>false</skip.deployment>
-        <skip.selenium>false</skip.selenium>
+        <skip.selenium>true</skip.selenium>
     </properties>
 
     <repositories>
@@ -80,12 +80,13 @@
                         <ejbModule>
                             <groupId>humanResources-app</groupId>
                             <artifactId>humanResources-ejb</artifactId>
-                            <bundleFileName>humanResources-ejb.jar</bundleFileName>
                         </ejbModule>
                     </modules>
-                    <displayName>My Ear Name displayed in the App Server</displayName>
+                    <displayName>humanResources</displayName>
                     <!-- If I want maven to generate the application.xml, set this to true -->
                     <generateApplicationXml>true</generateApplicationXml>
+                    <defaultLibBundleDir>lib</defaultLibBundleDir>
+                    <version>6</version>
                 </configuration>
             </plugin>
             <plugin>
@@ -225,6 +226,17 @@
             <artifactId>hibernate-entitymanager</artifactId>
             <version>4.2.3.Final</version>
             <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-search</artifactId>
+            <version>4.0.0.Final</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.hibernate</groupId>
+                    <artifactId>hibernate-annotations</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
     </dependencies>
 </project>

@@ -13,7 +13,7 @@
 
     <properties>
         <skip.deployment>false</skip.deployment>
-        <skip.selenium>true</skip.selenium>
+        <skip.selenium>false</skip.selenium>
     </properties>
 
     <repositories>

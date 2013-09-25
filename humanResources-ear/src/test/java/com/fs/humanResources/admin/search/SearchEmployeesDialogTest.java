@@ -55,7 +55,7 @@ public class SearchEmployeesDialogTest extends BaseSeleniumTest {
         adminPage = humanResourcesHome.clickLoginBtn();
         adminPage.assertPageIsPresent();
 
-        adminPage.enterSearchTerm("James");
+        adminPage.enterSearchTerm("AB1CDX");
         employeeSearchPage = adminPage.clickSearchButton();
         employeeSearchPage.assertDialogIsPresent();
     }

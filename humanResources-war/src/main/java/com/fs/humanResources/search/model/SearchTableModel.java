@@ -71,7 +71,7 @@ public class SearchTableModel implements Serializable {
             public List<SearchViewBean> load(int first, int pageSize, String sortField, SortOrder sortOrder, Map<String, String> filters) {
                 lazyLoadedData.clear();
 
-                List<EmployeeDTO> employeeDTOList = humanResourcesService.searchForEmployees(searchTerm);
+                List<EmployeeDTO> employeeDTOList = humanResourcesService.searchForEmployees(searchTerm,first,pageSize);
 
                 for(EmployeeDTO employeeDTO : employeeDTOList) {
                     log.info("adding "+employeeDTO);
@@ -80,7 +80,8 @@ public class SearchTableModel implements Serializable {
                     lazyLoadedData.add(searchViewBean);
                 }
 
-                setRowCount(employeeDTOList.size());
+                //TODO : Need to implement a way to return the full search result count.
+                setRowCount(30);
 
                 return lazyLoadedData;
             }

@@ -11,7 +11,7 @@ import java.util.List;
 
 @Entity
 @Indexed
-public class Employee extends BaseEntity {
+public class Employee extends BaseEntity implements Comparable<Employee> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -75,6 +75,16 @@ public class Employee extends BaseEntity {
         addressList.add(address);
         if(address.getEmployee() != this) {
            address.setEmployee(this);
+        }
+    }
+
+    public int compareTo(Employee employee) {
+        if (this.id < employee.id) {
+            return -1;
+        }else if (this.id > employee.id) {
+            return 1;
+        } else {
+            return 0;
         }
     }
 }

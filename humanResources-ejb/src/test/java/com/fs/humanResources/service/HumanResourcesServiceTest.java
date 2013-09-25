@@ -45,6 +45,9 @@ public class HumanResourcesServiceTest extends BaseUnitTest {
 
     List<Employee> employeeList;
 
+    int first = 0;
+    int pageSize = 10;
+
     @Before
     public void setUp() throws NoResultException {
         foundEmployeeId = 12345l;
@@ -61,7 +64,7 @@ public class HumanResourcesServiceTest extends BaseUnitTest {
         when(employeeDAO.getEmployeeDetails(eq(notFoundEmployeeId))).thenThrow(new NoResultException());
 
         when(employeeDAO.findAll(anyInt(),anyInt())).thenReturn(employeeList);
-        when(searchService.performSearch(anyString())).thenReturn(employeeList);
+        when(searchService.performSearch(anyString(), anyInt(), anyInt())).thenReturn(employeeList);
     }
 
     @Test
@@ -102,8 +105,8 @@ public class HumanResourcesServiceTest extends BaseUnitTest {
 
     @Test
     public void searchForEmployees_verify_expected_methods_called() throws NoResultException, EmployeeNotFoundException {
-        humanResourcesService.searchForEmployees("searchTerm");
-        verify(searchService,times(1)).performSearch(eq("searchTerm"));
+        humanResourcesService.searchForEmployees("searchTerm", first, pageSize);
+        verify(searchService,times(1)).performSearch(eq("searchTerm"), anyInt(), anyInt());
     }
 
 
@@ -135,7 +138,7 @@ public class HumanResourcesServiceTest extends BaseUnitTest {
 
     @Test
     public void searchForEmployees_returns_expected_employee() throws NoResultException, EmployeeNotFoundException {
-        List<EmployeeDTO> actual = humanResourcesService.searchForEmployees("searchTerm");
+        List<EmployeeDTO> actual = humanResourcesService.searchForEmployees("searchTerm", first, pageSize);
 
         Assert.assertEquals(1,actual.size());
         Assert.assertEquals(employee.getFirstName(), actual.get(0).getFirstName());

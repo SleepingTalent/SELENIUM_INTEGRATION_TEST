@@ -1,7 +1,6 @@
 package com.fs.humanResources.search.model;
 
 import com.fs.common.BaseUnitTest;
-import com.fs.humanResources.browse.view.BrowseViewBean;
 import com.fs.humanResources.dto.employee.EmployeeDTO;
 import com.fs.humanResources.employee.view.employee.EmployeeViewBean;
 import com.fs.humanResources.model.address.entities.Address;
@@ -45,7 +44,7 @@ public class SearchTableModelTest extends BaseUnitTest {
         employeeList = new ArrayList<EmployeeDTO>();
         employeeList.add(employee);
 
-        when(humanResourcesService.searchForEmployees(anyString())).thenReturn(employeeList);
+        when(humanResourcesService.searchForEmployees(anyString(), anyInt(), anyInt())).thenReturn(employeeList);
     }
 
     @Test

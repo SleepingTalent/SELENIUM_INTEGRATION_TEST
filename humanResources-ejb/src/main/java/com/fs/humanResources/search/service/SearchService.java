@@ -14,6 +14,7 @@ import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.io.Serializable;
+import java.util.Collections;
 import java.util.List;
 
 @Named
@@ -29,12 +30,12 @@ public class SearchService implements Serializable {
             "id", "firstName", "lastName", "addressList.houseNumber", "addressList.postCode"};
 
     @TransactionAttribute(TransactionAttributeType.REQUIRED)
-    public List<Employee> performSearch(String searchTerm) {
+    public List<Employee> performSearch(String searchTerm, int first, int pageSize) {
         log.info("Executing Search for : "+searchTerm);
-        return executeSearch(searchTerm);
+        return executeSearch(searchTerm,first,pageSize);
     }
 
-    public List<Employee> executeSearch(String searchTerm) {
+    public List<Employee> executeSearch(String searchTerm, int first, int pageSize) {
         FullTextEntityManager fullTextEntityManager = getFullTextEntityMananger();
 
         QueryBuilder queryBuilder = fullTextEntityManager.getSearchFactory()
@@ -42,10 +43,18 @@ public class SearchService implements Serializable {
 
         Query query = queryBuilder.keyword()
                 .onFields(SEARCHABLE_FIELDS)
-                .matching(searchTerm).createQuery();
+                .matching(searchTerm)
+                .createQuery();
 
-        List<Employee> results = createFullTextQuery(fullTextEntityManager, query).getResultList();
+        javax.persistence.Query fullTextQuery = createFullTextQuery(fullTextEntityManager, query);
+
+        fullTextQuery.setFirstResult(first);
+        fullTextQuery.setMaxResults(pageSize);
+
+        List<Employee> results = fullTextQuery.getResultList();
         log.info(results.size()+" results returned!");
+
+        Collections.sort(results);
 
         return results;
     }

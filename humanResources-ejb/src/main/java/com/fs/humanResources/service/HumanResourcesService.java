@@ -43,9 +43,9 @@ public class HumanResourcesService implements Serializable {
         return getDTOList(employeeDAO.findAll(first, pageSize));
     }
 
-    public List<EmployeeDTO> searchForEmployees(String searchTerm) {
+    public List<EmployeeDTO> searchForEmployees(String searchTerm, int first, int pageSize) {
         log.info("Search For Employees with searchTerm : " + searchTerm);
-        return getDTOList(searchService.performSearch(searchTerm));
+        return getDTOList(searchService.performSearch(searchTerm,first,pageSize));
     }
 
     public void saveEmployeeDetails(EmployeeDTO employeeDTO) {

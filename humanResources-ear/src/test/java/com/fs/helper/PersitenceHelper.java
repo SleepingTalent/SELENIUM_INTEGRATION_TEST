@@ -101,8 +101,9 @@ public class PersitenceHelper {
 
         try {
             log.info("Starting Reindex..");
-            MassIndexer massIndexer =fullTextEntityManager.createIndexer();
+            MassIndexer massIndexer = fullTextEntityManager.createIndexer(Employee.class);
             massIndexer.startAndWait();
+            fullTextEntityManager.flushToIndexes();
             log.info("Reindex complete");
         } catch (Exception ex) {
             log.error("Error Reindexing",ex);

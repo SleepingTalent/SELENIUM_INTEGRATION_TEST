@@ -7,6 +7,7 @@ import com.fs.domain.page.admin.dialog.AddEmployeeDialog;
 import com.fs.domain.page.admin.dialog.FindEmployeeDialogForDelete;
 import com.fs.domain.page.admin.dialog.FindEmployeeDialogForEdit;
 import com.fs.domain.page.browse.BrowseEmployeesPage;
+import com.fs.domain.page.search.EmployeeSearchPage;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -66,6 +67,10 @@ public class AdminPage extends PageObject {
         return findFormElementById(FORM,"searchBtn");
     }
 
+    public WebElement assertSearchInputDisplayed() {
+        return findFormElementById(FORM,"searchTerm");
+    }
+
     private WebElement assertMenuDisplayed(String labelText) {
         return findLinkByText(labelText);
     }
@@ -117,5 +122,14 @@ public class AdminPage extends PageObject {
         moveToDeleteEmployeeMenuItem();
         assertDeleteEmployeeMenuItemDisplayed().click();
         return new FindEmployeeDialogForDelete(getDriver());
+    }
+
+    public EmployeeSearchPage clickSearchButton() {
+        assertSearchBtnDisplayed().click();
+        return new EmployeeSearchPage(getDriver());
+    }
+
+    public void enterSearchTerm(String searchTerm) {
+        setInputTextOnElement(assertSearchInputDisplayed(),searchTerm);
     }
 }

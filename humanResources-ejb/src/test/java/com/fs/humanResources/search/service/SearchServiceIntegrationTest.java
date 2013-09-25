@@ -1,4 +1,4 @@
-package com.fs.humanResources.search.strategy;
+package com.fs.humanResources.search.service;
 
 import com.fs.common.BaseSearchTest;
 import com.fs.humanResources.model.address.entities.Address;
@@ -12,11 +12,11 @@ import org.junit.Test;
 import java.text.ParseException;
 import java.util.List;
 
-public class EmployeeSearchStrategyIntegrationTest extends BaseSearchTest {
+public class SearchServiceIntegrationTest extends BaseSearchTest {
 
-    Logger log = Logger.getLogger(EmployeeSearchStrategyIntegrationTest.class);
+    Logger log = Logger.getLogger(SearchServiceIntegrationTest.class);
 
-    EmployeeSearchStrategy employeeSearchStrategy;
+    SearchService searchService;
 
     Employee employee;
 
@@ -24,7 +24,8 @@ public class EmployeeSearchStrategyIntegrationTest extends BaseSearchTest {
 
     @Before
     public void setUp() throws ParseException {
-        employeeSearchStrategy = new EmployeeSearchStrategy(getEntityManager());
+        searchService = new SearchService();
+        searchService.setEntityManager(getEntityManager());
 
         address = new Address();
         address.setHouseNumber("50");
@@ -56,7 +57,7 @@ public class EmployeeSearchStrategyIntegrationTest extends BaseSearchTest {
 
     @Test
     public void searchingForId_returns_ExpectedResults() {
-      List<Employee> results = employeeSearchStrategy.executeSearch(employee.getId().toString());
+      List<Employee> results = searchService.executeSearch(employee.getId().toString());
 
       Assert.assertEquals(1,results.size());
       Assert.assertEquals(employee.getId(),results.get(0).getId());
@@ -64,13 +65,13 @@ public class EmployeeSearchStrategyIntegrationTest extends BaseSearchTest {
 
     @Test
     public void searchingForUnknownId_returns_ExpectedResults() {
-        List<Employee> results = employeeSearchStrategy.executeSearch("57685");
+        List<Employee> results = searchService.executeSearch("57685");
         Assert.assertEquals(0,results.size());
     }
 
     @Test
     public void searchingForFirstname_returns_ExpectedResults() {
-        List<Employee> results = employeeSearchStrategy.executeSearch(employee.getFirstName());
+        List<Employee> results = searchService.executeSearch(employee.getFirstName());
 
         Assert.assertEquals(1,results.size());
         Assert.assertEquals(employee.getFirstName(),results.get(0).getFirstName());
@@ -78,13 +79,13 @@ public class EmployeeSearchStrategyIntegrationTest extends BaseSearchTest {
 
     @Test
     public void searchingForUnknownFirstname_returns_ExpectedResults() {
-        List<Employee> results = employeeSearchStrategy.executeSearch("unknown");
+        List<Employee> results = searchService.executeSearch("unknown");
         Assert.assertEquals(0,results.size());
     }
 
     @Test
     public void searchingForLastname_returns_ExpectedResults() {
-        List<Employee> results = employeeSearchStrategy.executeSearch(employee.getLastName());
+        List<Employee> results = searchService.executeSearch(employee.getLastName());
 
         Assert.assertEquals(1,results.size());
         Assert.assertEquals(employee.getLastName(),results.get(0).getLastName());
@@ -92,13 +93,13 @@ public class EmployeeSearchStrategyIntegrationTest extends BaseSearchTest {
 
     @Test
     public void searchingForUnknownLastname_returns_ExpectedResults() {
-        List<Employee> results = employeeSearchStrategy.executeSearch("unknown");
+        List<Employee> results = searchService.executeSearch("unknown");
         Assert.assertEquals(0,results.size());
     }
 
     @Test
     public void searchingForHousename_returns_ExpectedResults() {
-        List<Employee> results = employeeSearchStrategy.executeSearch(
+        List<Employee> results = searchService.executeSearch(
                 employee.getAddressList().get(0).getHouseNumber());
 
         Assert.assertEquals(1,results.size());
@@ -108,13 +109,13 @@ public class EmployeeSearchStrategyIntegrationTest extends BaseSearchTest {
 
     @Test
     public void searchingForUnknownHousename_returns_ExpectedResults() {
-        List<Employee> results = employeeSearchStrategy.executeSearch("unknown");
+        List<Employee> results = searchService.executeSearch("unknown");
         Assert.assertEquals(0,results.size());
     }
 
     @Test
     public void searchingForPostcode_returns_ExpectedResults() {
-        List<Employee> results = employeeSearchStrategy.executeSearch(
+        List<Employee> results = searchService.executeSearch(
                 employee.getAddressList().get(0).getPostCode());
 
         Assert.assertEquals(1,results.size());
@@ -124,7 +125,7 @@ public class EmployeeSearchStrategyIntegrationTest extends BaseSearchTest {
 
     @Test
     public void searchingForUnknownPostcode_returns_ExpectedResults() {
-        List<Employee> results = employeeSearchStrategy.executeSearch("unknown");
+        List<Employee> results = searchService.executeSearch("unknown");
         Assert.assertEquals(0,results.size());
     }
 }

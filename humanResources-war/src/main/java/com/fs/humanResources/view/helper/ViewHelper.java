@@ -81,4 +81,8 @@ public class ViewHelper {
     public void showSearchResultsDialog() {
         dialogHelper.showDialog(Dialogs.SEARCH_RESULTS);
     }
+
+    public void hideSearchResultsDialog() {
+        dialogHelper.hideDialog(Dialogs.SEARCH_RESULTS);
+    }
 }

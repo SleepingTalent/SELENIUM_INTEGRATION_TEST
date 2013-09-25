@@ -5,6 +5,10 @@ import com.fs.humanResources.model.address.entities.Address;
 import com.fs.humanResources.model.employee.dao.EmployeeDAO;
 import com.fs.humanResources.model.employee.entities.Employee;
 import org.apache.commons.lang.RandomStringUtils;
+import org.apache.log4j.Logger;
+import org.hibernate.search.MassIndexer;
+import org.hibernate.search.jpa.FullTextEntityManager;
+import org.hibernate.search.jpa.Search;
 import org.junit.Assert;
 
 import javax.persistence.EntityManager;
@@ -13,6 +17,8 @@ import javax.persistence.EntityTransaction;
 import java.util.List;
 
 public class PersitenceHelper {
+
+    Logger log = Logger.getLogger(PersitenceHelper.class);
 
     private EntityManager entityManager;
 
@@ -88,6 +94,19 @@ public class PersitenceHelper {
 
     public String getUniqueString(int length) {
         return RandomStringUtils.random(length, true, true);
+    }
+
+    public void reindex() {
+        FullTextEntityManager fullTextEntityManager = Search.getFullTextEntityManager(entityManager);
+
+        try {
+            log.info("Starting Reindex..");
+            MassIndexer massIndexer =fullTextEntityManager.createIndexer();
+            massIndexer.startAndWait();
+            log.info("Reindex complete");
+        } catch (Exception ex) {
+            log.error("Error Reindexing",ex);
+        }
     }
 
 

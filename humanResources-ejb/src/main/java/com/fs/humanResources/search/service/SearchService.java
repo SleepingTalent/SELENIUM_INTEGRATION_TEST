@@ -6,9 +6,12 @@ import com.fs.humanResources.search.strategy.SearchStrategy;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.Stateless;
+import javax.ejb.TransactionAttribute;
+import javax.ejb.TransactionAttributeType;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.transaction.Transaction;
 import java.io.Serializable;
 import java.util.List;
 
@@ -26,14 +29,8 @@ public class SearchService implements Serializable {
         searchStrategy = new EmployeeSearchStrategy(entityManager);
     }
 
+    @TransactionAttribute(TransactionAttributeType.REQUIRED)
     public List<Employee> performSearch(String searchTerm) {
-        entityManager.getTransaction().begin();
-
-        try {
-            return searchStrategy.executeSearch(searchTerm);
-        } finally {
-            entityManager.getTransaction().commit();
-            entityManager.close();
-        }
+        return searchStrategy.executeSearch(searchTerm);
     }
 }

@@ -73,6 +73,7 @@ public class Employee extends BaseEntity {
 
     public void addAddress(Address address) {
         addressList.add(address);
+
         if(address.getEmployee() != this) {
            address.setEmployee(this);
         }

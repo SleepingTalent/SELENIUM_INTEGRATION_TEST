@@ -19,7 +19,6 @@ import static org.mockito.Matchers.eq;
 import static org.mockito.Mockito.*;
 
 public class AddressDAOTest extends BaseUnitTest {
-
     public static final String COUNT_QUERY = "SELECT count(o) from Address o ";
     public static final String EMPLOYEE_PRIMARY_ADDRESS_QUERY = "select a from Address a where a.employee = :thisEmployee and a.primaryAddress = true";
 

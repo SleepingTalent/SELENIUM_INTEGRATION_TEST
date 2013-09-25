@@ -45,9 +45,7 @@ public class EmployeeDAOIntegrationTest extends BaseDAOTest {
         employee.setDateOfBirth(new Date());
 
         Assert.assertNull("Expected Id to be Null!", employee.getId());
-
         employeeDAO.create(employee);
-
         Assert.assertNotNull("Expected Id to be populated!", employee.getId());
     }
 
@@ -129,7 +127,6 @@ public class EmployeeDAOIntegrationTest extends BaseDAOTest {
 
         Assert.assertEquals(1, employee.getAddressList().size());
         Assert.assertEquals(1, addressDAO.getEmployeeAddressList(employee).size());
-
     }
 
     @Test

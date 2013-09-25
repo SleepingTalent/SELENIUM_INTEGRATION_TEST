@@ -37,9 +37,7 @@ public class EmployeeSearchStrategyIntegrationTest extends BaseSearchTest {
         employee = new Employee();
         employee.setFirstName("James");
         employee.setLastName(persitenceHelper.getUniqueString(8));
-
         employee.setDateOfBirth(simpleDateFormat.parse("15/07/1976"));
-
         employee.addAddress(address);
 
         beginTransaction();

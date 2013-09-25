@@ -47,7 +47,6 @@ public class AddressDAOIntegrationTest extends BaseDAOTest {
         oldAddress.setPostCode("EF2 HK5");
         oldAddress.setPrimaryAddress(false);
 
-
         beginTransaction();
         employee = persitenceHelper.persistNewEmployee(employee);
         mainAddress = persitenceHelper.persistNewAddress(mainAddress,employee);

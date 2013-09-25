@@ -16,7 +16,8 @@ public class EmployeeSearchStrategy implements SearchStrategy<Employee> {
     private FullTextEntityManager fullTextEntityManager;
 
     private static String[] SEARCHABLE_FIELDS = {
-            "id", "firstName", "lastName", "addressList.houseNumber", "addressList.postCode"};
+            "id", "firstName", "lastName",
+            "addressList.houseNumber", "addressList.postCode"};
 
     public EmployeeSearchStrategy(EntityManager entityManager) {
         this.entityManager = entityManager;
@@ -25,7 +26,6 @@ public class EmployeeSearchStrategy implements SearchStrategy<Employee> {
 
     @Override
     public List<Employee> executeSearch(String searchTerm) {
-
         QueryBuilder queryBuilder = fullTextEntityManager.getSearchFactory()
                 .buildQueryBuilder().forEntity(Employee.class).get();
 

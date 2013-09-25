@@ -22,7 +22,6 @@ import static org.mockito.Mockito.*;
 public class EmployeeDAOTest extends BaseUnitTest {
 
     private static final String COUNT_QUERY = "SELECT count(o) from Employee o ";
-
     private static final String FIND_EMPLOYEE_BY_LASTNAME = "select e from Employee e where e.lastName = :thisLastName";
 
     @InjectMocks

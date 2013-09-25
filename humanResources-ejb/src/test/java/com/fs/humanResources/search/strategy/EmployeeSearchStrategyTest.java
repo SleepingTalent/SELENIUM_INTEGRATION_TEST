@@ -29,7 +29,6 @@ public class EmployeeSearchStrategyTest extends BaseUnitTest {
 
     Logger log = Logger.getLogger(EmployeeSearchStrategyTest.class);
 
-
     @InjectMocks
     EmployeeSearchStrategy employeeSearchStrategy;
 

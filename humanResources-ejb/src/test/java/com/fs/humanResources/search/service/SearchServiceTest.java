@@ -36,6 +36,7 @@ public class SearchServiceTest extends BaseUnitTest {
     @Test
     public void init_initialisesSearchStrategy_asExpected() {
         searchService.init();
+
         Assert.assertEquals("com.fs.humanResources.search.service.SearchService",searchService.getClass().getName());
     }
 

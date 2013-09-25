@@ -4,7 +4,7 @@ import com.fs.humanResources.model.address.dao.AddressDAO;
 import com.fs.humanResources.model.address.entities.Address;
 import com.fs.humanResources.model.employee.dao.EmployeeDAO;
 import com.fs.humanResources.model.employee.entities.Employee;
-import org.apache.commons.lang3.RandomStringUtils;
+import org.apache.commons.lang.RandomStringUtils;
 import org.junit.Assert;
 
 import javax.persistence.EntityManager;

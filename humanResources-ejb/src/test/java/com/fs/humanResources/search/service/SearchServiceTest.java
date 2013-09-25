@@ -42,6 +42,13 @@ public class SearchServiceTest extends BaseUnitTest {
     @Test
     public void performSearch_callsExpectedMethods() {
         searchService.performSearch("searchTerm");
+
+        verify(entityManager,times(2)).getTransaction();
+        verify(entityManager,times(1)).close();
+
+        verify(transaction,times(1)).begin();
+        verify(transaction,times(1)).commit();
+
         verify(searchStrategy,times(1)).executeSearch(eq("searchTerm"));
     }
 }

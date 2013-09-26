@@ -31,4 +31,14 @@ public class ImageController implements Serializable {
 
         return images;
     }
+
+    public List<String> getAdminImages() {
+
+        List<String> images = new ArrayList<String>();
+        images.add("business-1.jpg");
+        images.add("business-8.jpg");
+        images.add("business-9.jpg");
+
+        return images;
+    }
 }

@@ -26,6 +26,24 @@
     border: none;
 }
 
+.adminInfoPanel {
+    width: 700px;
+    height: 300px;
+    position: absolute;
+    left: 400px;
+    margin-top: 10px;
+    border: none;
+}
+
+.adminMenuPanel {
+    width: 250px;
+    height: 300px;
+    position: absolute;
+    left: 10px;
+    margin-top: 10px;
+    border: none;
+}
+
 .adminLogin {
     width: 200px;
     height: 100px;

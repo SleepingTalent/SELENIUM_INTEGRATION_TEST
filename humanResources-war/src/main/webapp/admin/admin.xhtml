@@ -27,11 +27,12 @@
                                      action="#{navigationController.showSearchResultsDialog}">
                         <f:ajax execute="searchTerm"/>
                     </h:commandButton>
-                    <h:inputText id="searchTerm" value="#{searchController.searchTableModel.searchTerm}" style="float :right"/>
+                    <h:inputText id="searchTerm" value="#{searchController.searchTableModel.searchTerm}"
+                                 style="float :right"/>
                 </f:facet>
 
-                <p:layout id="adminToolLayout">
-                    <p:layoutUnit position="west" resizable="true">
+                <p:fieldset styleClass="adminMenuPanel">
+                    <h:panelGrid id="adminMenuPanel" columns="2" cellpadding="10">
                         <p:panelMenu styleClass="adminMenu" autoDisplay="false">
                             <p:submenu label="Employee Admin" icon="ui-icon-gear">
                                 <p:menuitem id="addEmployee" value="Add Employee"
@@ -54,19 +55,20 @@
                                             icon="ui-icon-folder-open" update=":browseEmployees"/>
                             </p:submenu>
                         </p:panelMenu>
-                    </p:layoutUnit>
+                    </h:panelGrid>
+                </p:fieldset>
 
-                    <p:layoutUnit position="center">
-                        <p:panel id="newsPanel" header="Latest News">
-                            Welcome to the Human Resources Admin Tool.
-                            <p:imageSwitch effect="fade">
-                                <ui:repeat value="#{imageController.newsImages}" var="image">
-                                    <p:graphicImage value="/images/#{image}"/>
-                                </ui:repeat>
-                            </p:imageSwitch>
-                        </p:panel>
-                    </p:layoutUnit>
-                </p:layout>
+
+                <p:fieldset styleClass="adminInfoPanel">
+                    <h:panelGrid id="adminInfoPanel" columns="2" cellpadding="10">
+                        <p:imageSwitch effect="fade">
+                            <ui:repeat value="#{imageController.adminImages}" var="image">
+                                <p:graphicImage value="/images/#{image}"/>
+                            </ui:repeat>
+                        </p:imageSwitch>
+                        <h:outputText value="Welcome to the Employee Admin Tool!"/>
+                    </h:panelGrid>
+                </p:fieldset>
             </p:panel>
         </h:form>
 

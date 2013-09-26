@@ -11,7 +11,6 @@ import com.fs.domain.page.search.EmployeeSearchPage;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 
 public class AdminPage extends PageObject {
 
@@ -19,7 +18,7 @@ public class AdminPage extends PageObject {
 
     private static final String FORM = "adminTool";
     private static final String CONTENT_PANEL_ID = "contentPanel";
-    private static final String LATEST_NEWS_PANEL_ID = "newsPanel";
+    private static final String ADMIN_INFO_PANEL = "adminInfoPanel";
 
     public AdminPage(WebDriver driver) {
         super(driver);
@@ -38,8 +37,8 @@ public class AdminPage extends PageObject {
         assertEmployeeAdminMenuDisplayed().click();
     }
 
-    public WebElement assertLatestNewsPanelDisplayed() {
-        return findFormElementById(FORM, LATEST_NEWS_PANEL_ID);
+    public WebElement assertAdminInfoPanelDisplayed() {
+        return findFormElementById(FORM, ADMIN_INFO_PANEL);
     }
 
     public WebElement assertBrowseMenuDisplayed() {

@@ -42,7 +42,7 @@ public class AdminPageTest extends BaseSeleniumTest {
 
     @Test
     public void latestNewsDisplayed_asExpected() {
-       String actualText = adminPage.assertLatestNewsPanelDisplayed().getText();
-        Assert.assertEquals("Latest News\nWelcome to the Human Resources Admin Tool.",actualText);
+       String actualText = adminPage.assertAdminInfoPanelDisplayed().getText();
+        Assert.assertEquals("Welcome to the Employee Admin Tool!",actualText);
     }
 }

@@ -8,27 +8,49 @@
 }
 
 .newsPanel {
-    min-width:100px;
-    min-height:100px;
+    width: 700px;
+    height: 300px;
+    position: absolute;
+    left: 280px;
+    margin-top: 10px;
+    border: none;
+}
+
+.newStartPanel {
+    width: 700px;
+    height: 300px;
+    position: absolute;
+    left: 280px;
+    top: 330px;
+    margin-top: 10px;
+    border: none;
+}
+
+.adminLogin {
+    width: 200px;
+    height: 100px;
+    position: absolute;
+    left: 10px;
+    margin-top: 10px;
 }
 
 .adminMenu {
-    width:235px;
+    width: 235px;
 }
 
 .browseTable {
-    width:600px;
-    min-height:200px;
+    width: 600px;
+    min-height: 200px;
 }
 
 .searchResultsTable {
-    width:600px;
-    min-height:200px;
+    width: 600px;
+    min-height: 200px;
 }
 
 .addEmployeePanel {
-   min-width:450px;
-   min-height:510px;
+    min-width: 450px;
+    min-height: 510px;
 }
 
 .contentPanel {

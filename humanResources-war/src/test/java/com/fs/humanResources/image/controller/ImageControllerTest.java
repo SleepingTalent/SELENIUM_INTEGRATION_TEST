@@ -23,4 +23,25 @@ public class ImageControllerTest extends BaseUnitTest {
         Assert.assertEquals("office-4.jpg", imageNames.get(3));
         Assert.assertEquals("office-5.jpg", imageNames.get(4));
     }
+
+
+    @Test
+    public void getAdinImages_returnsExpectedImageNames() {
+        List<String> imageNames = imageController.getAdminImages();
+
+        Assert.assertEquals(3, imageNames.size());
+        Assert.assertEquals("business-1.jpg", imageNames.get(0));
+        Assert.assertEquals("business-8.jpg", imageNames.get(1));
+        Assert.assertEquals("business-9.jpg", imageNames.get(2));
+    }
+
+    @Test
+    public void getNewStartImages_returnsExpectedImageNames() {
+        List<String> imageNames = imageController.getNewStartImages();
+
+        Assert.assertEquals(3, imageNames.size());
+        Assert.assertEquals("business-2.jpg", imageNames.get(0));
+        Assert.assertEquals("business-3.jpg", imageNames.get(1));
+        Assert.assertEquals("business-6.jpg", imageNames.get(2));
+    }
 }

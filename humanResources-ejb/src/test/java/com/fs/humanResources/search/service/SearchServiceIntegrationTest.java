@@ -60,7 +60,7 @@ public class SearchServiceIntegrationTest extends BaseSearchTest {
 
     @Test
     public void searchingForId_returns_ExpectedResults() {
-      List<Employee> results = searchService.executeSearch(employee.getId().toString(), first, pageSize);
+      List<Employee> results = searchService.performSearch(employee.getId().toString(), first, pageSize);
 
       Assert.assertEquals(1,results.size());
       Assert.assertEquals(employee.getId(),results.get(0).getId());
@@ -68,13 +68,13 @@ public class SearchServiceIntegrationTest extends BaseSearchTest {
 
     @Test
     public void searchingForUnknownId_returns_ExpectedResults() {
-        List<Employee> results = searchService.executeSearch("57685", first, pageSize);
+        List<Employee> results = searchService.performSearch("57685", first, pageSize);
         Assert.assertEquals(0,results.size());
     }
 
     @Test
     public void searchingForFirstname_returns_ExpectedResults() {
-        List<Employee> results = searchService.executeSearch(employee.getFirstName(), first, pageSize);
+        List<Employee> results = searchService.performSearch(employee.getFirstName(), first, pageSize);
 
         Assert.assertEquals(1,results.size());
         Assert.assertEquals(employee.getFirstName(),results.get(0).getFirstName());
@@ -82,13 +82,13 @@ public class SearchServiceIntegrationTest extends BaseSearchTest {
 
     @Test
     public void searchingForUnknownFirstname_returns_ExpectedResults() {
-        List<Employee> results = searchService.executeSearch("unknown", first, pageSize);
+        List<Employee> results = searchService.performSearch("unknown", first, pageSize);
         Assert.assertEquals(0,results.size());
     }
 
     @Test
     public void searchingForLastname_returns_ExpectedResults() {
-        List<Employee> results = searchService.executeSearch(employee.getLastName(), first, pageSize);
+        List<Employee> results = searchService.performSearch(employee.getLastName(), first, pageSize);
 
         Assert.assertEquals(1,results.size());
         Assert.assertEquals(employee.getLastName(),results.get(0).getLastName());
@@ -96,13 +96,13 @@ public class SearchServiceIntegrationTest extends BaseSearchTest {
 
     @Test
     public void searchingForUnknownLastname_returns_ExpectedResults() {
-        List<Employee> results = searchService.executeSearch("unknown", first, pageSize);
+        List<Employee> results = searchService.performSearch("unknown", first, pageSize);
         Assert.assertEquals(0,results.size());
     }
 
     @Test
     public void searchingForHousename_returns_ExpectedResults() {
-        List<Employee> results = searchService.executeSearch(
+        List<Employee> results = searchService.performSearch(
                 employee.getAddressList().get(0).getHouseNumber(), first, pageSize);
 
         Assert.assertEquals(1,results.size());
@@ -112,13 +112,13 @@ public class SearchServiceIntegrationTest extends BaseSearchTest {
 
     @Test
     public void searchingForUnknownHousename_returns_ExpectedResults() {
-        List<Employee> results = searchService.executeSearch("unknown", first, pageSize);
+        List<Employee> results = searchService.performSearch("unknown", first, pageSize);
         Assert.assertEquals(0,results.size());
     }
 
     @Test
     public void searchingForPostcode_returns_ExpectedResults() {
-        List<Employee> results = searchService.executeSearch(
+        List<Employee> results = searchService.performSearch(
                 employee.getAddressList().get(0).getPostCode(), first, pageSize);
 
         Assert.assertEquals(1,results.size());
@@ -128,7 +128,7 @@ public class SearchServiceIntegrationTest extends BaseSearchTest {
 
     @Test
     public void searchingForUnknownPostcode_returns_ExpectedResults() {
-        List<Employee> results = searchService.executeSearch("unknown", first, pageSize);
+        List<Employee> results = searchService.performSearch("unknown", first, pageSize);
         Assert.assertEquals(0,results.size());
     }
 }

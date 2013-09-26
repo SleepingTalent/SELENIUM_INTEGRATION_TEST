@@ -35,7 +35,7 @@ public class SearchService implements Serializable {
         return executeSearch(searchTerm,first,pageSize);
     }
 
-    public List<Employee> executeSearch(String searchTerm, int first, int pageSize) {
+    private List<Employee> executeSearch(String searchTerm, int first, int pageSize) {
         FullTextEntityManager fullTextEntityManager = getFullTextEntityMananger();
 
         QueryBuilder queryBuilder = fullTextEntityManager.getSearchFactory()

@@ -76,7 +76,6 @@ public class AddEmployeeDialogTest extends BaseSeleniumTest {
 
 
         FindEmployeeDialogForEdit findEmployeeDialogForEdit = adminPage.clickEditEmployeeMenuItem();
-        findEmployeeDialogForEdit.assertDialogIsPresent();
 
         findEmployeeDialogForEdit.setEmployeeId(employee.getId() + "");
         EditEmployeeDialog editEmployeeDialog = findEmployeeDialogForEdit.clickFindEmployeeBtn();

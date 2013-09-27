@@ -23,7 +23,11 @@ public class FindEmployeeDialogForEdit extends PageObject {
     }
 
     public void assertDialogIsPresent() {
+        assertDialogIsPresent(false);
+    }
 
+    public void assertDialogIsPresent(boolean reThrow) {
+        findElementById(FORM, reThrow);
     }
 
     public void assertDialogIsNotPresent() {

@@ -42,11 +42,15 @@ public abstract class PageObject {
     }
 
     protected WebElement findElementById(String id) {
+        return findElementById(id, false);
+    }
+
+    protected WebElement findElementById(String id, boolean reThrow) {
         try {
             return elementHelper.findElementById(id, true);
         } catch (SeleniumTimeoutException se) {
             log.info("Timed out trying to find element (" + id + ") retrying!");
-            return elementHelper.findElementById(id, false);
+            return elementHelper.findElementById(id, reThrow);
         }
     }
 
@@ -63,7 +67,7 @@ public abstract class PageObject {
         try {
             return elementHelper.findByIdAndAttribute(id, attributeName, attributeValue, true);
         } catch (SeleniumTimeoutException se) {
-            log.info("Timed out trying to find element (" + id + ") with Attr (@"+attributeName+"=\""+attributeValue+"\") retrying!");
+            log.info("Timed out trying to find element (" + id + ") with Attr (@" + attributeName + "=\"" + attributeValue + "\") retrying!");
             return elementHelper.findByIdAndAttribute(id, attributeName, attributeValue, false);
         }
     }

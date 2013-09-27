@@ -1,6 +1,7 @@
 package com.fs.domain.page.admin;
 
 
+import com.fs.domain.common.exception.SeleniumTimeoutException;
 import com.fs.domain.common.page.PageObject;
 import com.fs.domain.page.HumanResourcesHome;
 import com.fs.domain.page.admin.dialog.AddEmployeeDialog;
@@ -47,27 +48,27 @@ public class AdminPage extends PageObject {
 
 
     public WebElement assertEditEmployeeMenuItemDisplayed() {
-        return findFormElementById(FORM,"editEmployee");
+        return findFormElementById(FORM, "editEmployee");
     }
 
     public WebElement assertAddEmployeeMenuItemDisplayed() {
-        return findFormElementById(FORM,"addEmployee");
+        return findFormElementById(FORM, "addEmployee");
     }
 
     public WebElement assertDeleteEmployeeMenuItemDisplayed() {
-        return findFormElementById(FORM,"deleteEmployee");
+        return findFormElementById(FORM, "deleteEmployee");
     }
 
     public WebElement assertBrowseEmployeeMenuItemDisplayed() {
-        return findFormElementById(FORM,"browseEmployees");
+        return findFormElementById(FORM, "browseEmployees");
     }
 
     public WebElement assertSearchBtnDisplayed() {
-        return findFormElementById(FORM,"searchBtn");
+        return findFormElementById(FORM, "searchBtn");
     }
 
     public WebElement assertSearchInputDisplayed() {
-        return findFormElementById(FORM,"searchTerm");
+        return findFormElementById(FORM, "searchTerm");
     }
 
     private WebElement assertMenuDisplayed(String labelText) {
@@ -75,7 +76,7 @@ public class AdminPage extends PageObject {
     }
 
     public WebElement assertLogoutBtnDisplayed() {
-        return findFormElementById(FORM,"logoutBtn");
+        return findFormElementById(FORM, "logoutBtn");
     }
 
     public AddEmployeeDialog clickAddEmployeeMenuItem() {
@@ -85,9 +86,19 @@ public class AdminPage extends PageObject {
     }
 
     public FindEmployeeDialogForEdit clickEditEmployeeMenuItem() {
-        moveToEditEmployeeMenuItem();
-        assertEditEmployeeMenuItemDisplayed().click();
-        return new FindEmployeeDialogForEdit(getDriver());
+        FindEmployeeDialogForEdit findEmployeeDialogForEdit = new FindEmployeeDialogForEdit(getDriver());
+
+        try {
+            moveToEditEmployeeMenuItem();
+            assertEditEmployeeMenuItemDisplayed().click();
+            findEmployeeDialogForEdit.assertDialogIsPresent(true);
+        } catch (SeleniumTimeoutException se) {
+            moveToEditEmployeeMenuItem();
+            assertEditEmployeeMenuItemDisplayed().click();
+            findEmployeeDialogForEdit.assertDialogIsPresent();
+        }
+
+        return findEmployeeDialogForEdit;
     }
 
     public BrowseEmployeesPage clickBrowseEmployeesMenuItem() {
@@ -118,9 +129,21 @@ public class AdminPage extends PageObject {
     }
 
     public FindEmployeeDialogForDelete clickDeleteEmployeeMenuItem() {
+        FindEmployeeDialogForDelete findEmployeeDialogForDelete = new FindEmployeeDialogForDelete(getDriver());
+
+        try {
+            moveToDeleteEmployeeMenuItem();
+            assertDeleteEmployeeMenuItemDisplayed().click();
+            findEmployeeDialogForDelete.assertDialogIsPresent(true);
+        } catch (SeleniumTimeoutException se) {
+            moveToDeleteEmployeeMenuItem();
+            assertDeleteEmployeeMenuItemDisplayed().click();
+            findEmployeeDialogForDelete.assertDialogIsPresent();
+        }
+
         moveToDeleteEmployeeMenuItem();
         assertDeleteEmployeeMenuItemDisplayed().click();
-        return new FindEmployeeDialogForDelete(getDriver());
+        return findEmployeeDialogForDelete;
     }
 
     public EmployeeSearchPage clickSearchButton() {
@@ -129,6 +152,6 @@ public class AdminPage extends PageObject {
     }
 
     public void enterSearchTerm(String searchTerm) {
-        setInputTextOnElement(assertSearchInputDisplayed(),searchTerm);
+        setInputTextOnElement(assertSearchInputDisplayed(), searchTerm);
     }
 }

@@ -84,7 +84,7 @@
                             <artifactId>humanResources-ejb</artifactId>
                         </ejbModule>
                     </modules>
-                    <displayName>My Ear Name displayed in the App Server</displayName>
+                    <displayName>humanResources</displayName>
                     <!-- If I want maven to generate the application.xml, set this to true -->
                     <generateApplicationXml>true</generateApplicationXml>
                 </configuration>
@@ -157,7 +157,7 @@
             </plugin>
         </plugins>
 
-        <finalName>humanResources-ear</finalName>
+        <finalName>humanResources</finalName>
     </build>
 
     <!-- Define the versions of your ear components here -->

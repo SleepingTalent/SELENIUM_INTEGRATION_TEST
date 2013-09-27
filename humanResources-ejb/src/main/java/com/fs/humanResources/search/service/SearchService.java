@@ -1,5 +1,7 @@
 package com.fs.humanResources.search.service;
 
+import com.fs.humanResources.dto.common.DtoHelper;
+import com.fs.humanResources.dto.search.SearchResultsDTO;
 import com.fs.humanResources.model.employee.entities.Employee;
 import org.apache.log4j.Logger;
 import org.apache.lucene.search.Query;
@@ -30,12 +32,12 @@ public class SearchService implements Serializable {
             "id", "firstName", "lastName", "addressList.houseNumber", "addressList.postCode"};
 
     @TransactionAttribute(TransactionAttributeType.REQUIRED)
-    public List<Employee> performSearch(String searchTerm, int first, int pageSize) {
+    public SearchResultsDTO performSearch(String searchTerm, int first, int pageSize) {
         log.info("Executing Search for : "+searchTerm);
         return executeSearch(searchTerm,first,pageSize);
     }
 
-    private List<Employee> executeSearch(String searchTerm, int first, int pageSize) {
+    private SearchResultsDTO executeSearch(String searchTerm, int first, int pageSize) {
         FullTextEntityManager fullTextEntityManager = getFullTextEntityMananger();
 
         QueryBuilder queryBuilder = fullTextEntityManager.getSearchFactory()
@@ -46,17 +48,22 @@ public class SearchService implements Serializable {
                 .matching(searchTerm)
                 .createQuery();
 
-        javax.persistence.Query fullTextQuery = createFullTextQuery(fullTextEntityManager, query);
+        javax.persistence.Query paginatedResultsQuery = createFullTextQuery(fullTextEntityManager, query);
+        paginatedResultsQuery.setFirstResult(first);
+        paginatedResultsQuery.setMaxResults(pageSize);
 
-        fullTextQuery.setFirstResult(first);
-        fullTextQuery.setMaxResults(pageSize);
+        List<Employee> paginatedResults = paginatedResultsQuery.getResultList();
+        log.info(paginatedResults.size()+" results returned!");
 
-        List<Employee> results = fullTextQuery.getResultList();
-        log.info(results.size()+" results returned!");
+        Collections.sort(paginatedResults);
 
-        Collections.sort(results);
+        javax.persistence.Query totalResultsQuery = createFullTextQuery(fullTextEntityManager, query);
 
-        return results;
+        int totalResultCount = totalResultsQuery.getResultList().size();
+
+        SearchResultsDTO searchResultsDTO = new SearchResultsDTO(DtoHelper.create().getDTOList(paginatedResults),totalResultCount);
+
+        return searchResultsDTO;
     }
 
     private FullTextEntityManager getFullTextEntityMananger() {

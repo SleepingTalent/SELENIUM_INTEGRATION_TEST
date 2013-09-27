@@ -69,14 +69,11 @@ public class SearchEmployeesDialogTest extends BaseSeleniumTest {
     @Test
     public void paginationWorksAsExpected() {
         employeeSearchPage.assertFirstNamePresent("James-0");
-        employeeSearchPage.assertFirstNamePresent("James-9");
 
         employeeSearchPage.clickNextPageBtn();
-        employeeSearchPage.assertFirstNamePresent("James-10");
-        employeeSearchPage.assertFirstNamePresent("James-19");
+        employeeSearchPage.assertFirstNamePresent("James-13");
 
         employeeSearchPage.clickNextPageBtn();
-        employeeSearchPage.assertFirstNamePresent("James-20");
-        employeeSearchPage.assertFirstNamePresent("James-29");
+        employeeSearchPage.assertFirstNamePresent("James-27");
     }
 }

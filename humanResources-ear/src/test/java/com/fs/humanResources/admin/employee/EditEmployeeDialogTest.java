@@ -5,6 +5,7 @@ import com.fs.domain.page.admin.dialog.EditEmployeeDialog;
 import com.fs.domain.page.admin.dialog.FindEmployeeDialogForDelete;
 import com.fs.domain.page.admin.dialog.FindEmployeeDialogForEdit;
 import com.fs.domain.page.browse.BrowseEmployeesPage;
+import com.fs.domain.page.search.EmployeeSearchPage;
 import com.fs.humanResources.common.BaseSeleniumTest;
 import com.fs.humanResources.model.address.entities.Address;
 import com.fs.humanResources.model.employee.entities.Employee;
@@ -182,6 +183,34 @@ public class EditEmployeeDialogTest extends BaseSeleniumTest {
         browseEmployeesPage.assertDialogIsPresent();
 
         editEmployeeDialog = browseEmployeesPage.editRowWithText(employee.getLastName());
+
+        editEmployeeDialog.setLastName(employee.getLastName() + "-upt");
+
+        editEmployeeDialog.clickEditEmployeeBtn();
+
+        adminPage.openEmployeeAdminMenu();
+        adminPage.openEmployeeAdminMenu();
+
+        FindEmployeeDialogForEdit findEmployeeDialogForEdit = adminPage.clickEditEmployeeMenuItem();
+        findEmployeeDialogForEdit.assertDialogIsPresent();
+
+        findEmployeeDialogForEdit.setEmployeeId(employee.getId() + "");
+        editEmployeeDialog = findEmployeeDialogForEdit.clickFindEmployeeBtn();
+        findEmployeeDialogForEdit.assertDialogIsNotPresent();
+
+        editEmployeeDialog.assertDialogIsPresent();
+
+        Assert.assertEquals(employee.getId() + "", editEmployeeDialog.employeeIdInputDisplayed().getAttribute("value"));
+        Assert.assertEquals(employee.getLastName() + "-upt", editEmployeeDialog.lastNameInputDisplayed().getAttribute("value"));
+    }
+
+    @Test
+    public void employee_canBeEdited_fromSearch() {
+        adminPage.enterSearchTerm(employee.getAddressList().get(0).getPostCode());
+        EmployeeSearchPage employeeSearchPage = adminPage.clickSearchButton();
+        employeeSearchPage.assertDialogIsPresent();
+
+        editEmployeeDialog = employeeSearchPage.editRowWithText(employee.getLastName());
 
         editEmployeeDialog.setLastName(employee.getLastName() + "-upt");
 

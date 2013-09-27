@@ -28,9 +28,9 @@
 
             <p:contextMenu id="searchTableContext" for="searchResultsTable">
                 <p:menuitem id="searchEditMenuItem" value="Edit" icon="ui-icon-pencil" actionListener="#{searchTableController.loadEmployee}"
-                            action="#{navigationController.showEditEmployeeDialogFromBrowse}"/>
+                            action="#{navigationController.showEditEmployeeDialogFromSearch}"/>
                 <p:menuitem id="searchDeleteMenuItem" value="Delete" icon="ui-icon-close"  actionListener="#{searchTableController.loadEmployee}"
-                            action="#{navigationController.showDeleteEmployeeDialogFromBrowse}"/>
+                            action="#{navigationController.showDeleteEmployeeDialogFromSearch}"/>
             </p:contextMenu>
         </h:form>
     </p:dialog>

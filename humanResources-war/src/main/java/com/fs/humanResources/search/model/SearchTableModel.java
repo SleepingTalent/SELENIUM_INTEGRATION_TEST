@@ -1,6 +1,7 @@
 package com.fs.humanResources.search.model;
 
 import com.fs.humanResources.dto.employee.EmployeeDTO;
+import com.fs.humanResources.dto.search.SearchResultsDTO;
 import com.fs.humanResources.employee.view.employee.EmployeeViewBean;
 import com.fs.humanResources.search.view.SearchViewBean;
 import com.fs.humanResources.service.HumanResourcesService;
@@ -39,10 +40,10 @@ public class SearchTableModel implements Serializable {
     }
 
     public void clearDataModel() {
-       init();
+        init();
     }
 
-    public LazyDataModel<SearchViewBean> getDataModel(){
+    public LazyDataModel<SearchViewBean> getDataModel() {
         return dataModel;
     }
 
@@ -51,10 +52,10 @@ public class SearchTableModel implements Serializable {
 
             @Override
             public SearchViewBean getRowData(String rowKey) {
-                for(SearchViewBean searchViewBean : lazyLoadedData) {
+                for (SearchViewBean searchViewBean : lazyLoadedData) {
                     String id = searchViewBean.getEmployee().getEmployeeId().toString();
 
-                    if(id.equals(rowKey)) {
+                    if (id.equals(rowKey)) {
                         return searchViewBean;
                     }
                 }
@@ -71,17 +72,16 @@ public class SearchTableModel implements Serializable {
             public List<SearchViewBean> load(int first, int pageSize, String sortField, SortOrder sortOrder, Map<String, String> filters) {
                 lazyLoadedData.clear();
 
-                List<EmployeeDTO> employeeDTOList = humanResourcesService.searchForEmployees(searchTerm,first,pageSize);
+                SearchResultsDTO searchResultsDTO = humanResourcesService.searchForEmployees(searchTerm, first, pageSize);
 
-                for(EmployeeDTO employeeDTO : employeeDTOList) {
-                    log.info("adding "+employeeDTO);
+                for (EmployeeDTO employeeDTO : searchResultsDTO.getPaginatedResults()) {
+                    log.info("adding " + employeeDTO);
                     EmployeeViewBean employeeViewBean = new EmployeeViewBean(employeeDTO);
                     SearchViewBean searchViewBean = new SearchViewBean(employeeViewBean);
                     lazyLoadedData.add(searchViewBean);
                 }
 
-                //TODO : Need to implement a way to return the full search result count.
-                setRowCount(30);
+                setRowCount(searchResultsDTO.getTotalResults());
 
                 return lazyLoadedData;
             }

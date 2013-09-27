@@ -5,6 +5,7 @@ import com.fs.domain.page.admin.dialog.DeleteEmployeeDialog;
 import com.fs.domain.page.admin.dialog.FindEmployeeDialogForDelete;
 import com.fs.domain.page.admin.dialog.FindEmployeeDialogForEdit;
 import com.fs.domain.page.browse.BrowseEmployeesPage;
+import com.fs.domain.page.search.EmployeeSearchPage;
 import com.fs.humanResources.common.BaseSeleniumTest;
 import com.fs.humanResources.model.address.entities.Address;
 import com.fs.humanResources.model.employee.entities.Employee;
@@ -145,6 +146,33 @@ public class DeleteEmployeeDialogTest extends BaseSeleniumTest {
         browseEmployeesPage.assertDialogIsPresent();
 
         deleteEmployeeDialog = browseEmployeesPage.deleteRowWithText(employee.getLastName());
+
+        deleteEmployeeDialog.clickDeleteEmployeeBtn();
+        deleteEmployeeDialog.assertConfirmDialogIsPresent();
+        deleteEmployeeDialog.confirmDeletion();
+
+        adminPage.openEmployeeAdminMenu();
+
+        FindEmployeeDialogForDelete findEmployeeDialogForDelete = adminPage.clickDeleteEmployeeMenuItem();
+        findEmployeeDialogForDelete.assertDialogIsPresent();
+
+        findEmployeeDialogForDelete.setEmployeeId(employee.getId() + "");
+        findEmployeeDialogForDelete.clickFindEmployeeBtnForDelete();
+        findEmployeeDialogForDelete.assertGrowlMessageDisplayed(
+                "Employee Id ("+employee.getId()+") not found!");
+    }
+
+
+    @Test
+    public void employee_canBeDeleted_fromSearch() {
+        deletedBySelenium = true;
+
+        adminPage.enterSearchTerm(employee.getAddressList().get(0).getPostCode());
+
+        EmployeeSearchPage employeeSearchPage = adminPage.clickSearchButton();
+        employeeSearchPage.assertDialogIsPresent();
+
+        deleteEmployeeDialog = employeeSearchPage.deleteRowWithText(employee.getLastName());
 
         deleteEmployeeDialog.clickDeleteEmployeeBtn();
         deleteEmployeeDialog.assertConfirmDialogIsPresent();

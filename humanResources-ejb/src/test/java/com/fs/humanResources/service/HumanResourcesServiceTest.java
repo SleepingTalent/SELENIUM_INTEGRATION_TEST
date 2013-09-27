@@ -2,7 +2,9 @@ package com.fs.humanResources.service;
 
 import com.fs.common.BaseUnitTest;
 import com.fs.humanResources.dto.address.AddressDTO;
+import com.fs.humanResources.dto.common.DtoHelper;
 import com.fs.humanResources.dto.employee.EmployeeDTO;
+import com.fs.humanResources.dto.search.SearchResultsDTO;
 import com.fs.humanResources.model.address.entities.Address;
 import com.fs.humanResources.model.address.helper.AddressHelper;
 import com.fs.humanResources.model.employee.dao.EmployeeDAO;
@@ -45,6 +47,8 @@ public class HumanResourcesServiceTest extends BaseUnitTest {
 
     List<Employee> employeeList;
 
+    SearchResultsDTO searchResultsDTO;
+
     int first = 0;
     int pageSize = 10;
 
@@ -58,13 +62,16 @@ public class HumanResourcesServiceTest extends BaseUnitTest {
         employeeList = new ArrayList<Employee>();
         employeeList.add(employee);
 
+        searchResultsDTO = new SearchResultsDTO(
+                DtoHelper.create().getDTOList(employeeList),employeeList.size());
+
         when(employeeDTO.getEntity()).thenReturn(employee);
 
         when(employeeDAO.getEmployeeDetails(eq(foundEmployeeId))).thenReturn(employee);
         when(employeeDAO.getEmployeeDetails(eq(notFoundEmployeeId))).thenThrow(new NoResultException());
 
         when(employeeDAO.findAll(anyInt(),anyInt())).thenReturn(employeeList);
-        when(searchService.performSearch(anyString(), anyInt(), anyInt())).thenReturn(employeeList);
+        when(searchService.performSearch(anyString(), anyInt(), anyInt())).thenReturn(searchResultsDTO);
     }
 
     @Test
@@ -138,16 +145,18 @@ public class HumanResourcesServiceTest extends BaseUnitTest {
 
     @Test
     public void searchForEmployees_returns_expected_employee() throws NoResultException, EmployeeNotFoundException {
-        List<EmployeeDTO> actual = humanResourcesService.searchForEmployees("searchTerm", first, pageSize);
+        SearchResultsDTO actual = humanResourcesService.searchForEmployees("searchTerm", first, pageSize);
 
-        Assert.assertEquals(1,actual.size());
-        Assert.assertEquals(employee.getFirstName(), actual.get(0).getFirstName());
-        Assert.assertEquals(employee.getLastName(), actual.get(0).getLastName());
-        Assert.assertEquals(employee.getId(), actual.get(0).getId());
-        Assert.assertEquals(employee.getDateOfBirth(), actual.get(0).getDateOfBirth());
+        Assert.assertEquals(1,actual.getPaginatedResults().size());
+        Assert.assertEquals(1,actual.getTotalResults());
 
-        Address expectedAddress = employee.getAddressList().get(0);
-        AddressDTO actualAddress = actual.get(0).getAddress();
+        Assert.assertEquals(searchResultsDTO.getPaginatedResults().get(0).getFirstName(), actual.getPaginatedResults().get(0).getFirstName());
+        Assert.assertEquals(searchResultsDTO.getPaginatedResults().get(0).getLastName(),  actual.getPaginatedResults().get(0).getLastName());
+        Assert.assertEquals(searchResultsDTO.getPaginatedResults().get(0).getId(),  actual.getPaginatedResults().get(0).getId());
+        Assert.assertEquals(searchResultsDTO.getPaginatedResults().get(0).getDateOfBirth(),  actual.getPaginatedResults().get(0).getDateOfBirth());
+
+        AddressDTO expectedAddress = searchResultsDTO.getPaginatedResults().get(0).getAddress();
+        AddressDTO actualAddress =  actual.getPaginatedResults().get(0).getAddress();
 
         Assert.assertEquals(expectedAddress.getHouseNumber(), actualAddress.getHouseNumber());
         Assert.assertEquals(expectedAddress.getAddressFirstLine(), actualAddress.getAddressFirstLine());

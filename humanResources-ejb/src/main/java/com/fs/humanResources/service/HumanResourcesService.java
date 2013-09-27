@@ -1,6 +1,8 @@
 package com.fs.humanResources.service;
 
+import com.fs.humanResources.dto.common.DtoHelper;
 import com.fs.humanResources.dto.employee.EmployeeDTO;
+import com.fs.humanResources.dto.search.SearchResultsDTO;
 import com.fs.humanResources.model.employee.dao.EmployeeDAO;
 import com.fs.humanResources.model.employee.entities.Employee;
 import com.fs.humanResources.search.service.SearchService;
@@ -40,12 +42,12 @@ public class HumanResourcesService implements Serializable {
 
     public List<EmployeeDTO> findEmployees(int first, int pageSize) {
         log.info("Getting Employees " + first + " to " + pageSize);
-        return getDTOList(employeeDAO.findAll(first, pageSize));
+        return DtoHelper.create().getDTOList(employeeDAO.findAll(first, pageSize));
     }
 
-    public List<EmployeeDTO> searchForEmployees(String searchTerm, int first, int pageSize) {
+    public SearchResultsDTO searchForEmployees(String searchTerm, int first, int pageSize) {
         log.info("Search For Employees with searchTerm : " + searchTerm);
-        return getDTOList(searchService.performSearch(searchTerm,first,pageSize));
+        return searchService.performSearch(searchTerm,first,pageSize);
     }
 
     public void saveEmployeeDetails(EmployeeDTO employeeDTO) {
@@ -64,13 +66,4 @@ public class HumanResourcesService implements Serializable {
         return (int) employeeDAO.countAll();
     }
 
-    private List<EmployeeDTO> getDTOList(List<Employee> employeeList) {
-        List<EmployeeDTO> employeeDTOList = new ArrayList<EmployeeDTO>();
-
-        for (Employee employee : employeeList) {
-            employeeDTOList.add(new EmployeeDTO(employee));
-        }
-
-        return employeeDTOList;
-    }
 }

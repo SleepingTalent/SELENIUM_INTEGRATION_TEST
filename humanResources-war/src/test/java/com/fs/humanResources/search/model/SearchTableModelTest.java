@@ -1,7 +1,9 @@
 package com.fs.humanResources.search.model;
 
 import com.fs.common.BaseUnitTest;
+import com.fs.humanResources.dto.common.DtoHelper;
 import com.fs.humanResources.dto.employee.EmployeeDTO;
+import com.fs.humanResources.dto.search.SearchResultsDTO;
 import com.fs.humanResources.employee.view.employee.EmployeeViewBean;
 import com.fs.humanResources.model.address.entities.Address;
 import com.fs.humanResources.model.address.helper.AddressHelper;
@@ -36,6 +38,8 @@ public class SearchTableModelTest extends BaseUnitTest {
 
     EmployeeDTO employee;
 
+    SearchResultsDTO searchResultsDTO;
+
     @Before
     public void setUp() throws NoResultException {
 
@@ -44,7 +48,9 @@ public class SearchTableModelTest extends BaseUnitTest {
         employeeList = new ArrayList<EmployeeDTO>();
         employeeList.add(employee);
 
-        when(humanResourcesService.searchForEmployees(anyString(), anyInt(), anyInt())).thenReturn(employeeList);
+        searchResultsDTO = new SearchResultsDTO(employeeList,employeeList.size());
+
+        when(humanResourcesService.searchForEmployees(anyString(), anyInt(), anyInt())).thenReturn(searchResultsDTO);
     }
 
     @Test

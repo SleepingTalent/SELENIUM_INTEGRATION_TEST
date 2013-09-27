@@ -1,6 +1,7 @@
 package com.fs.humanResources.search.service;
 
 import com.fs.common.BaseSearchTest;
+import com.fs.humanResources.dto.search.SearchResultsDTO;
 import com.fs.humanResources.model.address.entities.Address;
 import com.fs.humanResources.model.employee.entities.Employee;
 import org.apache.log4j.Logger;
@@ -54,81 +55,89 @@ public class SearchServiceIntegrationTest extends BaseSearchTest {
 
     @After
     public void tearDown() {
-       persitenceHelper.deleteCandidates();
+        persitenceHelper.deleteCandidates();
 
     }
 
     @Test
     public void searchingForId_returns_ExpectedResults() {
-      List<Employee> results = searchService.performSearch(employee.getId().toString(), first, pageSize);
+        SearchResultsDTO searchResultsDTO = searchService.performSearch(employee.getId().toString(), first, pageSize);
 
-      Assert.assertEquals(1,results.size());
-      Assert.assertEquals(employee.getId(),results.get(0).getId());
+        Assert.assertEquals(1, searchResultsDTO.getPaginatedResults().size());
+        Assert.assertEquals(1, searchResultsDTO.getTotalResults());
+        Assert.assertEquals(employee.getId(), searchResultsDTO.getPaginatedResults().get(0).getId());
     }
 
     @Test
     public void searchingForUnknownId_returns_ExpectedResults() {
-        List<Employee> results = searchService.performSearch("57685", first, pageSize);
-        Assert.assertEquals(0,results.size());
+        SearchResultsDTO searchResultsDTO = searchService.performSearch("57685", first, pageSize);
+        Assert.assertEquals(0, searchResultsDTO.getPaginatedResults().size());
+        Assert.assertEquals(0, searchResultsDTO.getTotalResults());
     }
 
     @Test
     public void searchingForFirstname_returns_ExpectedResults() {
-        List<Employee> results = searchService.performSearch(employee.getFirstName(), first, pageSize);
+        SearchResultsDTO searchResultsDTO = searchService.performSearch(employee.getFirstName(), first, pageSize);
 
-        Assert.assertEquals(1,results.size());
-        Assert.assertEquals(employee.getFirstName(),results.get(0).getFirstName());
+        Assert.assertEquals(1, searchResultsDTO.getPaginatedResults().size());
+        Assert.assertEquals(1, searchResultsDTO.getTotalResults());
+        Assert.assertEquals(employee.getFirstName(), searchResultsDTO.getPaginatedResults().get(0).getFirstName());
     }
 
     @Test
     public void searchingForUnknownFirstname_returns_ExpectedResults() {
-        List<Employee> results = searchService.performSearch("unknown", first, pageSize);
-        Assert.assertEquals(0,results.size());
+        SearchResultsDTO searchResultsDTO = searchService.performSearch("unknown", first, pageSize);
+        Assert.assertEquals(0, searchResultsDTO.getPaginatedResults().size());
+        Assert.assertEquals(0, searchResultsDTO.getTotalResults());
     }
 
     @Test
     public void searchingForLastname_returns_ExpectedResults() {
-        List<Employee> results = searchService.performSearch(employee.getLastName(), first, pageSize);
+        SearchResultsDTO searchResultsDTO = searchService.performSearch(employee.getLastName(), first, pageSize);
 
-        Assert.assertEquals(1,results.size());
-        Assert.assertEquals(employee.getLastName(),results.get(0).getLastName());
+        Assert.assertEquals(1, searchResultsDTO.getPaginatedResults().size());
+        Assert.assertEquals(1, searchResultsDTO.getTotalResults());
+        Assert.assertEquals(employee.getLastName(), searchResultsDTO.getPaginatedResults().get(0).getLastName());
     }
 
     @Test
     public void searchingForUnknownLastname_returns_ExpectedResults() {
-        List<Employee> results = searchService.performSearch("unknown", first, pageSize);
-        Assert.assertEquals(0,results.size());
+        SearchResultsDTO searchResultsDTO = searchService.performSearch("unknown", first, pageSize);
+        Assert.assertEquals(0, searchResultsDTO.getPaginatedResults().size());
+        Assert.assertEquals(0, searchResultsDTO.getTotalResults());
     }
 
     @Test
     public void searchingForHousename_returns_ExpectedResults() {
-        List<Employee> results = searchService.performSearch(
+        SearchResultsDTO searchResultsDTO = searchService.performSearch(
                 employee.getAddressList().get(0).getHouseNumber(), first, pageSize);
 
-        Assert.assertEquals(1,results.size());
+        Assert.assertEquals(1, searchResultsDTO.getPaginatedResults().size());
+        Assert.assertEquals(1, searchResultsDTO.getTotalResults());
         Assert.assertEquals(employee.getAddressList().get(0).getHouseNumber(),
-                results.get(0).getAddressList().get(0).getHouseNumber());
+                searchResultsDTO.getPaginatedResults().get(0).getAddress().getHouseNumber());
     }
 
     @Test
     public void searchingForUnknownHousename_returns_ExpectedResults() {
-        List<Employee> results = searchService.performSearch("unknown", first, pageSize);
-        Assert.assertEquals(0,results.size());
+        SearchResultsDTO searchResultsDTO = searchService.performSearch("unknown", first, pageSize);
+        Assert.assertEquals(0, searchResultsDTO.getPaginatedResults().size());
+        Assert.assertEquals(0, searchResultsDTO.getTotalResults());
     }
 
     @Test
     public void searchingForPostcode_returns_ExpectedResults() {
-        List<Employee> results = searchService.performSearch(
+        SearchResultsDTO searchResultsDTO = searchService.performSearch(
                 employee.getAddressList().get(0).getPostCode(), first, pageSize);
 
-        Assert.assertEquals(1,results.size());
+        Assert.assertEquals(1, searchResultsDTO.getPaginatedResults().size());
         Assert.assertEquals(employee.getAddressList().get(0).getPostCode(),
-                results.get(0).getAddressList().get(0).getPostCode());
+                searchResultsDTO.getPaginatedResults().get(0).getAddress().getPostCode());
     }
 
     @Test
     public void searchingForUnknownPostcode_returns_ExpectedResults() {
-        List<Employee> results = searchService.performSearch("unknown", first, pageSize);
-        Assert.assertEquals(0,results.size());
+        SearchResultsDTO searchResultsDTO = searchService.performSearch("unknown", first, pageSize);
+        Assert.assertEquals(0, searchResultsDTO.getPaginatedResults().size());
     }
 }

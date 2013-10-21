@@ -21,7 +21,7 @@ public class HumanResourcesHome extends PageObject {
     }
 
     public void openHomePage() {
-        openHomePage("http://localhost:8181/humanResources/");
+        openHomePage("http://localhost:8080/humanResources/");
         getDriver().manage().window().maximize();
         assertHomePageDisplayed();
     }

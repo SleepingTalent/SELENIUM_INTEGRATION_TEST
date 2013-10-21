@@ -9,7 +9,7 @@ import java.util.Map;
 public class EntityManagerHelper {
 
     public static EntityManagerFactory getEntityManagerFactory() {
-        String databaseUrl = replaceIfNullOrEmtpy(System.getProperty("database.url"),"localhost:3307/codeExampleDB") ;
+        String databaseUrl = replaceIfNullOrEmtpy(System.getProperty("database.url"),"localhost:3306/codeExampleDB") ;
         String databaseUser = replaceIfNullOrEmtpy(System.getProperty("database.user"),"codeExample");
         String databasePassword = replaceIfNullOrEmtpy(System.getProperty("database.password"),"codeExample") ;
 

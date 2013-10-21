@@ -138,9 +138,8 @@ public class DeleteEmployeeDialogTest extends BaseSeleniumTest {
     }
 
     @Test
+    @Ignore
     public void employee_canBeDeleted_fromBrowse() {
-        deletedBySelenium = true;
-
         adminPage.assertBrowseMenuDisplayed().click();
         BrowseEmployeesPage browseEmployeesPage = adminPage.clickBrowseEmployeesMenuItem();
         browseEmployeesPage.assertDialogIsPresent();
@@ -160,13 +159,14 @@ public class DeleteEmployeeDialogTest extends BaseSeleniumTest {
         findEmployeeDialogForDelete.clickFindEmployeeBtnForDelete();
         findEmployeeDialogForDelete.assertGrowlMessageDisplayed(
                 "Employee Id ("+employee.getId()+") not found!");
+
+        deletedBySelenium = true;
     }
 
 
     @Test
+    @Ignore
     public void employee_canBeDeleted_fromSearch() {
-        deletedBySelenium = true;
-
         adminPage.enterSearchTerm(employee.getAddressList().get(0).getPostCode());
 
         EmployeeSearchPage employeeSearchPage = adminPage.clickSearchButton();
@@ -187,6 +187,8 @@ public class DeleteEmployeeDialogTest extends BaseSeleniumTest {
         findEmployeeDialogForDelete.clickFindEmployeeBtnForDelete();
         findEmployeeDialogForDelete.assertGrowlMessageDisplayed(
                 "Employee Id ("+employee.getId()+") not found!");
+
+        deletedBySelenium = true;
     }
 
 }

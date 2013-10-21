@@ -148,6 +148,7 @@ public class EditEmployeeDialogTest extends BaseSeleniumTest {
     }
 
     @Test
+    @Ignore
     public void employeeDetails_updatedAsExpected() {
         navigateToEditEmployee();
         editEmployeeDialog.setFirstName(employee.getFirstName() + "-upt");
@@ -177,6 +178,7 @@ public class EditEmployeeDialogTest extends BaseSeleniumTest {
     }
 
     @Test
+    @Ignore
     public void employee_canBeEdited_fromBrowse() {
         adminPage.assertBrowseMenuDisplayed().click();
         BrowseEmployeesPage browseEmployeesPage = adminPage.clickBrowseEmployeesMenuItem();
@@ -205,6 +207,7 @@ public class EditEmployeeDialogTest extends BaseSeleniumTest {
     }
 
     @Test
+    @Ignore
     public void employee_canBeEdited_fromSearch() {
         adminPage.enterSearchTerm(employee.getAddressList().get(0).getPostCode());
         EmployeeSearchPage employeeSearchPage = adminPage.clickSearchButton();
